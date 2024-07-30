@@ -1,53 +1,76 @@
 import globals from "globals";
 import pluginJs from "@eslint/js";
 import jsdoc from "eslint-plugin-jsdoc";
-import { default as jquery } from "eslint-config-jquery";
+import { default as jqueryConfig } from "eslint-config-jquery";
 
+const ignoresConfig = {
+  ignores: [
+    "bin/index.js"
+  ]
+};
 
-export default [
-  {
-    ignores: [
-      "bin/*.js"
-    ]
-  },
-  pluginJs.configs.recommended,
+const filesConfig = {
+
+  //files: [
+  //      "src/**/*.js"
+  //      ]
+
+};
+
+const jsdocConfig = [
   jsdoc.configs[ "flat/recommended" ],
-  jquery,
   {
-    languageOptions: {
-      globals: globals.nodeBuiltin
+    plugins: {
+      jsdoc
     },
     files: [
       "src/**/*.js"
     ],
-    rules:
-    {
-      indent: [
+    rules: {
+      "jsdoc/informative-docs": "warn",
+      "jsdoc/no-blank-blocks": "warn",
+      "jsdoc/require-description-complete-sentence": "warn",
+      "jsdoc/require-jsdoc": [
         "error",
-        2
+        {
+          "require": {
+            "ClassDeclaration": true,
+            "MethodDefinition": true
+          }
+        }
       ],
-      "linebreak-style": [
-        "error",
-        "unix"
-      ],
-      "jsdoc/check-indentation": [
-        "warn"
-      ],
-      "jsdoc/check-line-alignment": [
-        "warn"
-      ],
-      "jsdoc/require-description": [
-        "warn"
-      ],
-      "jsdoc/require-description-complete-sentence": [
-        "warn"
-      ],
-      "jsdoc/require-file-overview": [
-        "warn"
-      ],
-      "jsdoc/require-throws": [
-        "warn"
-      ]
+      "jsdoc/require-file-overview": "warn"
     }
   }
 ];
+
+const globalsConfig = {
+  languageOptions: {
+    globals: globals.nodeBuiltin
+  }
+};
+
+const rulesConfig = {
+  rules: {
+    "indent": [
+      "error",
+      2
+    ],
+    "linebreak-style": [
+      "error",
+      "unix"
+    ]
+  }
+};
+
+const config = [
+  ignoresConfig,
+  filesConfig,
+  rulesConfig,
+  globalsConfig,
+  pluginJs.configs.recommended,
+  jqueryConfig,
+  ...jsdocConfig
+];
+
+export default config;
