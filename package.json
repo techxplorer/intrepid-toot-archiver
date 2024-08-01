@@ -1,10 +1,10 @@
 {
-  "name": "mmfa",
+  "name": "intrepid-toot-archiver",
   "version": "1.0.0",
-  "description": "My MicroFiction Archiver",
+  "description": "A CLI app to make an archive of toots",
   "main": "index.js",
   "bin": {
-    "my-microfiction-archiver": "./bin/index.js"
+    "intrepid-toot-archiver": "./bin/index.js"
   },
   "type": "module",
   "scripts": {
