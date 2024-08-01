@@ -11,8 +11,15 @@
     "test": "node --test",
     "lint": "eslint ."
   },
-  "author": "Corey Wallis <corey@techxplorer.com>",
-  "homepage": "https://github.com/techxplorer/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/techxplorer/intrepid-toot-archiver.git"
+  },
+  "author": "Corey Wallis <corey@techxplorer.com> (https://techxplorer.com)",
+  "bugs": {
+    "url": "https://github.com/techxplorer/intrepid-toot-archiver/issues"
+  },
+  "homepage": "https://github.com/techxplorer/intrepid-toot-archiver#readme",
   "license": "MIT",
   "engines": {
     "node": ">=22.0.0"
