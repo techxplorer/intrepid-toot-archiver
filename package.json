@@ -12,6 +12,7 @@
     "lint": "eslint ."
   },
   "author": "Corey Wallis <corey@techxplorer.com>",
+  "homepage": "https://github.com/techxplorer/",
   "license": "MIT",
   "engines": {
     "node": ">=22.0.0"
