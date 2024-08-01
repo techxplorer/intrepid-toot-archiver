@@ -25,7 +25,8 @@
     "node": ">=22.0.0"
   },
   "dependencies": {
-    "commander": "^12.1.0"
+    "commander": "^12.1.0",
+    "pretty-ms": "^9.1.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.8.0",
