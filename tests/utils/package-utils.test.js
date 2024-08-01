@@ -5,6 +5,9 @@ import { default as semverValid } from "semver/functions/valid.js";
 
 import PackageUtils from "../../src/utils/package-utils.js";
 
+const testDescription = "A CLI app to make an archive of toots";
+const testHomepage = "https://github.com/techxplorer/intrepid-toot-archiver#readme";
+
 describe( "PackageUtils", () => {
 
   describe( "getVersion", () => {
@@ -44,7 +47,7 @@ describe( "PackageUtils", () => {
       const appPackage = new PackageUtils();
       assert.equal(
         appPackage.getDescription(),
-        "My MicroFiction Archiver"
+        testDescription
       );
     } );
 
@@ -74,7 +77,7 @@ describe( "PackageUtils", () => {
       const appPackage = new PackageUtils();
       assert.equal(
         appPackage.getHomepage(),
-        "https://github.com/techxplorer/"
+        testHomepage
       );
     } );
 
