@@ -30,7 +30,7 @@ export default class LookupUser {
     const userName = await input( {
       message: "Enter the user name",
       required: true,
-      validate: ( value = "" ) => matches( value, /^@?([A-Z0-9._%+-]+)/ ) || "Enter valid user name"
+      validate: ( value = "" ) => matches( value, /^@?([A-Z0-9._%+-]+)/gmi ) || "Enter valid user name"
     } );
 
     console.log( chalk.green( "Collected information" ) );
