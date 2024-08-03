@@ -56,8 +56,6 @@ export default class LookupUser {
 
     console.log( chalk.bold( "Looking up user..." ) );
 
-    //console.log( `Server host: ${ host }\nUser name:   ${ userName }` );
-
   }
 
 }
