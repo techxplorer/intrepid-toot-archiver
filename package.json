@@ -36,7 +36,6 @@
     "eslint": "^9.8.0",
     "eslint-config-jquery": "^3.0.2",
     "eslint-plugin-jsdoc": "^48.9.2",
-    "globals": "^15.8.0",
-    "semver": "^7.6.3"
+    "globals": "^15.8.0"
   }
 }
