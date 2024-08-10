@@ -1,16 +1,13 @@
 /**
  * @file The defintition of the FetchUserDetails class.
  */
-
 import isFQDN from "validator/lib/isFQDN.js";
 import matches from "validator/lib/matches.js";
-
-export const userNameRegEx = /^@{1}[A-Z0-9._%+-]+/i;
 
 /**
  * Fetch the user details using the supplied information.
  */
-export default class FetchUserDetails {
+class FetchUserDetails {
 
   /**
    * An instance of a URL object representing the URL to use to fetch data.
@@ -84,3 +81,9 @@ export default class FetchUserDetails {
   }
 
 }
+
+/**
+ * A regular expression used to validate user names.
+ */
+export const userNameRegEx = /^@{1}[A-Z0-9._%+-]+/i;
+export default FetchUserDetails;

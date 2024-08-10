@@ -8,7 +8,7 @@ import fs from "node:fs";
  * Make available various properties from the package.json file, and
  * provide simple methods to explore unit testing.
  */
-export default class PackageUtils {
+class PackageUtils {
 
   appPackage = Object();
 
@@ -87,3 +87,5 @@ export default class PackageUtils {
     );
   }
 }
+
+export default PackageUtils;

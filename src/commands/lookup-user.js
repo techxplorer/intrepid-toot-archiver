@@ -1,7 +1,6 @@
 /**
  * @file The defintition of the lookup-user command class.
  */
-
 import chalk from "chalk";
 import { input, confirm } from "@inquirer/prompts";
 import isFQDN from "validator/lib/isFQDN.js";
@@ -10,10 +9,10 @@ import matches from "validator/lib/matches.js";
 import { userNameRegEx } from "../lib/fetch-user-details.js";
 
 /**
- * Make available various properties from the package.json file, and
- * provide simple methods to explore unit testing.
+ * Command to collect server and user information and fetch the user
+ * object from the server.
  */
-export default class LookupUser {
+class LookupUser {
 
   /**
    * Run the command to lookup user details.
@@ -61,3 +60,5 @@ export default class LookupUser {
   }
 
 }
+
+export default LookupUser;
