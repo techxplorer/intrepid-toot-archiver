@@ -47,6 +47,7 @@ export default class FetchUserDetails {
 
   /**
    * Lookup the user and fetch the user details JSON.
+   * @throws {Error} When the JSON object cannot be fetched from the server.
    */
   async fetchData() {
 
@@ -57,10 +58,29 @@ export default class FetchUserDetails {
       }
 
       this.fetchedUserData = await response.json();
-      console.log( this.fetchedUserData );
+
     } catch ( error ) {
-      throw new Error( `Response status: ${ error }` );
+      throw new Error( error );
     }
+  }
+
+  /**
+   * Get the user id from the fetched user JSON object.
+   * @returns {string} The value of the id property from the user object.
+   * @throws {Error} When the id property is missing from the user object.
+   */
+  async getUserId() {
+
+    if ( this.fetchedUserData === null ) {
+      await this.fetchData();
+    }
+
+    if ( this.fetchedUserData.id === undefined ) {
+      throw new Error( "Missing id property of user JSON object" );
+    }
+
+    return this.fetchedUserData.id;
+
   }
 
 }

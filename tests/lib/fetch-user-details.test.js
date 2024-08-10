@@ -1,7 +1,10 @@
 import assert from "node:assert/strict";
-import { describe, it } from "node:test";
+import { before, describe, it } from "node:test";
+import path from "node:path";
 
+import ci from "ci-info";
 import isURL from "validator/lib/isURL.js";
+import nock from "nock";
 
 import FetchUserDetails from "../../src/lib/fetch-user-details.js";
 
@@ -14,6 +17,10 @@ const testFailUserName = "geton";
 const testUserNameMessage =  "A valid username is required";
 
 const testFetchURL = "https://theblower.au/api/v1/accounts/lookup?acct=@geton";
+const testUserId = "109308203429082969";
+
+const nockArtefacts = path.resolve( "tests/artefacts/nock" );
+const nockBack = nock.back;
 
 describe( "FetchUserDetails", () => {
 
@@ -94,6 +101,16 @@ describe( "FetchUserDetails", () => {
   } );
 
   describe( "fetchData", async() => {
+    before( () => {
+      nockBack.fixtures = nockArtefacts;
+
+      if ( ci.isCI ) {
+        nockBack.setMode( "lockdown" );
+      } else {
+        nockBack.setMode( "record" );
+      }
+    } );
+
     it( "should successfully fetch the user data JSON object", async() => {
       const fetcher = new FetchUserDetails(
         testPassFQDN,
@@ -105,14 +122,77 @@ describe( "FetchUserDetails", () => {
         null
       );
 
+      const { nockDone } = await nockBack( "user-data.json" );
+
       await fetcher.fetchData();
+
+      nockDone();
 
       assert.notEqual(
         fetcher.fetchedUserData,
         null
       );
+
+      assert.equal(
+        fetcher.fetchedUserData.id,
+        testUserId
+      );
+
     } );
 
+  } );
+
+  describe( "getUserId", async() => {
+    before( () => {
+      nockBack.fixtures = nockArtefacts;
+
+      if ( ci.isCI ) {
+        nockBack.setMode( "lockdown" );
+      } else {
+        nockBack.setMode( "record" );
+      }
+    } );
+
+    it( "should get the user id from the server", async() => {
+
+      const fetcher = new FetchUserDetails(
+        testPassFQDN,
+        testPassUserName
+      );
+
+      const { nockDone } = await nockBack( "user-data.json" );
+
+      await fetcher.fetchData();
+      const userId = await fetcher.getUserId();
+
+      nockDone();
+
+      assert.equal(
+        userId,
+        testUserId
+      );
+
+    } );
+
+    it( "should get the user id from the server without fetching first", async() => {
+
+      const fetcher = new FetchUserDetails(
+        testPassFQDN,
+        testPassUserName
+      );
+
+      const { nockDone } = await nockBack( "user-data.json" );
+
+      const userId = await fetcher.getUserId();
+
+      nockDone();
+
+      assert.equal(
+        userId,
+        testUserId
+      );
+
+    } );
   } );
 
 } );
