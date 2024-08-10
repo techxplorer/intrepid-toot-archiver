@@ -1,0 +1,17 @@
+{
+  "source": {
+    "include": [
+      "src/commands",
+      "src/lib",
+      "src/utils"
+    ]
+  },
+  "tags": {
+    "allowUnknownTags": false
+  },
+  "opts": {
+    "destination": "jsdoc/",
+    "package": "package.json",
+    "readme": "README.md"
+  }
+}

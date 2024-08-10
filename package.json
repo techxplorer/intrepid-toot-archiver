@@ -9,7 +9,8 @@
   "type": "module",
   "scripts": {
     "test": "node --test",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "doc": "jsdoc -c jsdoc.config.json"
   },
   "repository": {
     "type": "git",
@@ -38,6 +39,7 @@
     "eslint-config-jquery": "^3.0.2",
     "eslint-plugin-jsdoc": "^48.9.2",
     "globals": "^15.8.0",
+    "jsdoc": "~4.0.3",
     "nock": "^14.0.0-beta.9"
   }
 }
