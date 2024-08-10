@@ -7,6 +7,7 @@ import isFQDN from "validator/lib/isFQDN.js";
 import matches from "validator/lib/matches.js";
 
 import { userNameRegEx } from "../lib/fetch-user-details.js";
+import FetchUserDetails from "../lib/fetch-user-details.js";
 
 /**
  * Command to collect server and user information and fetch the user
@@ -34,8 +35,7 @@ class LookupUser {
       validate: ( value = "" ) => matches( value, userNameRegEx ) || "Enter valid user name"
     } );
 
-    console.log( chalk.green( "Collected information" ) );
-    console.table( [
+    const tableDef = [
       {
         name: "Server host",
         value: host
@@ -44,7 +44,10 @@ class LookupUser {
         name: "User name",
         value: userName
       }
-    ] );
+    ];
+
+    console.log( chalk.green( "Collected information" ) );
+    console.table( tableDef );
 
     const useConfig = await confirm( {
       message: "Lookup user using collected information",
@@ -56,6 +59,21 @@ class LookupUser {
     }
 
     console.log( chalk.bold( "Looking up user..." ) );
+
+    const fetcher = new FetchUserDetails(
+      host,
+      userName
+    );
+
+    const userId = await fetcher.getUserId();
+
+    tableDef.push( {
+      name: "User Id",
+      value: userId
+    } );
+
+    console.log( chalk.green( "Fetched user details" ) );
+    console.table( tableDef );
 
   }
 
