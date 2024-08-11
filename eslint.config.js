@@ -26,6 +26,9 @@ const jsdocConfig = [
     files: [
       "src/**/*.js"
     ],
+    ignores: [
+      "test/**/*.js"
+    ],
     rules: {
       "jsdoc/informative-docs": "warn",
       "jsdoc/no-blank-blocks": "warn",
