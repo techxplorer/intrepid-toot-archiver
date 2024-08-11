@@ -17,7 +17,7 @@ const testFailArchivePathMsgTwo = "Archive path must be a directory";
 const testPassArchivePath = path.resolve( "tests/artefacts/status-archive" );
 
 const testFailStatusArray = null;
-const testFailStatusArrayMsg = "Fetched statuses must be an array";
+const testFailStatusArrayMsg = "New statuses must be an array";
 const testPassStatusArray = [];
 
 const testPassFQDN = "theblower.au";
@@ -46,7 +46,6 @@ function tidyArchiveDir() {
   );
 }
 
-
 describe( "StatusArchive", () => {
 
   describe( "constructor", () => {
@@ -55,8 +54,7 @@ describe( "StatusArchive", () => {
       assert.throws(
         () => {
           new StatusArchive(
-            testFailArchivePathOne,
-            testFailStatusArray
+            testFailArchivePathOne
           );
         },
         {
@@ -70,8 +68,7 @@ describe( "StatusArchive", () => {
       assert.throws(
         () => {
           new StatusArchive(
-            testFailArchivePathTwo,
-            testFailStatusArray
+            testFailArchivePathTwo
           );
         },
         {
@@ -81,32 +78,15 @@ describe( "StatusArchive", () => {
       );
     } );
 
-    it( "should throw a TypeError when the fetched statuses is not an array", () => {
-      assert.throws(
-        () => {
-          new StatusArchive(
-            testPassArchivePath,
-            testFailStatusArrayMsg
-          );
-        },
-        {
-          name: "TypeError",
-          message: testFailStatusArrayMsg
-        }
-      );
-    } );
-
     it( "should not throw an error when the parameters are valid", () => {
       assert.doesNotThrow(
         () => {
           new StatusArchive(
-            testPassArchivePath,
-            testPassStatusArray
+            testPassArchivePath
           );
         }
       );
     } );
-
   } );
 
   describe( "addStatuses", async() => {
@@ -128,6 +108,40 @@ describe( "StatusArchive", () => {
       tidyArchiveDir();
     } );
 
+    it( "should throw a TypeError when the new statuses is not an array", async() => {
+
+      const archive = new StatusArchive(
+        testPassArchivePath
+      );
+
+      await assert.rejects(
+        async() => {
+          await archive.addStatuses(
+            testFailStatusArray
+          );
+        },
+        {
+          name: "TypeError",
+          message: testFailStatusArrayMsg
+        }
+      );
+    } );
+
+    it( "should not throw a TypeError when the new statuses is not an array", async() => {
+
+      const archive = new StatusArchive(
+        testPassArchivePath
+      );
+
+      await assert.doesNotReject(
+        async() => {
+          await archive.addStatuses(
+            testPassStatusArray
+          );
+        }
+      );
+    } );
+
     it( "should add the expected number of statuses to the archive", async() => {
       const fetcher = new FetchStatuses(
         testPassFQDN,
@@ -141,11 +155,12 @@ describe( "StatusArchive", () => {
       nockDone();
 
       const archive = new StatusArchive(
-        testPassArchivePath,
-        fetcher.fetchedStatusData
+        testPassArchivePath
       );
 
-      const addedStatuses = await archive.addStatuses();
+      const addedStatuses = await archive.addStatuses(
+        fetcher.fetchedStatusData
+      );
 
       assert.equal(
         addedStatuses,
@@ -183,10 +198,110 @@ describe( "StatusArchive", () => {
         actualStatus,
         expectedStatus
       );
+    } );
+  } );
 
+  describe( "getStatusCount", async() => {
+    before( () => {
+      nockBack.fixtures = nockArtefacts;
+
+      if ( ci.isCI ) {
+        nockBack.setMode( "lockdown" );
+      } else {
+        nockBack.setMode( "record" );
+      }
+
+      tidyArchiveDir();
 
     } );
 
+    after( () => {
+      tidyArchiveDir();
+    } );
+
+    it( "should return an empty array for an empty archive", async() => {
+
+      const archive = new StatusArchive(
+        testPassArchivePath
+      );
+
+      archive.statuses = [];
+      archive.cacheStale = false;
+
+      const statusCount = archive.getStatusCount();
+
+      assert.equal(
+        statusCount,
+        0
+      );
+
+    } );
   } );
 
+  describe( "loadStatuses", async() => {
+
+    before( () => {
+      nockBack.fixtures = nockArtefacts;
+
+      if ( ci.isCI ) {
+        nockBack.setMode( "lockdown" );
+      } else {
+        nockBack.setMode( "record" );
+      }
+
+      tidyArchiveDir();
+
+    } );
+
+    after( () => {
+      tidyArchiveDir();
+    } );
+
+    it( "should get an accurate list of statuses", async() => {
+
+      const archive = new StatusArchive(
+        testPassArchivePath
+      );
+
+      let statusCount = await archive.loadStatuses();
+
+      assert.equal(
+        statusCount,
+        0
+      );
+
+      const fetcher = new FetchStatuses(
+        testPassFQDN,
+        testPassUserId
+      );
+
+      const { nockDone } = await nockBack( "user-statuses.json" );
+
+      await fetcher.fetchData();
+
+      nockDone();
+
+      const addedStatuses = await archive.addStatuses(
+        fetcher.fetchedStatusData
+      );
+
+      assert.equal(
+        addedStatuses,
+        testPassStatusCount
+      );
+
+      statusCount = await archive.loadStatuses();
+
+      assert.equal(
+        statusCount,
+        testPassStatusCount
+      );
+
+      assert.notEqual(
+        archive.statuses.indexOf( testStatusFileName ),
+        -1
+      );
+
+    } );
+  } );
 } );

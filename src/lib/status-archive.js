@@ -2,7 +2,7 @@
  * @file The defintition of the StatusArchive class.
  */
 import { lstatSync } from "node:fs";
-import { writeFile } from "node:fs/promises";
+import { readdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 /**
@@ -17,17 +17,23 @@ class StatusArchive {
   archivePath = null;
 
   /**
-   * An array of status objects.
+   * An array of statuses in the archive.
    * @type {Array}
    */
   statuses = Array();
 
   /**
+   * A flag to indicate if the status cache is stale.
+   * @type {boolean}
+   */
+  cacheStale = true;
+
+  /**
    * Manage the archive of statuses.
    * @param {string} archivePath The path to the status archive directory.
-   * @param {Array} fetchedStatuses An array of status to add to the archive.
+   * @throws {TypeError} When the parameters are incorrect.
    */
-  constructor( archivePath, fetchedStatuses ) {
+  constructor( archivePath ) {
 
     let syncStatus = null;
 
@@ -43,40 +49,82 @@ class StatusArchive {
       throw new TypeError( "Archive path must be a directory" );
     }
 
-    if ( !Array.isArray( fetchedStatuses ) ) {
-      throw new TypeError( "Fetched statuses must be an array" );
-    }
-
     this.archivePath = archivePath;
-    this.statuses = fetchedStatuses;
 
   }
 
   /**
    * Add any missing statuses to the archive.
+   * @param {Array} newStatuses A list of potential new statuses objects.
    * @returns {number} The number of statuses added to the archive.
+   * @throws {TypeError} When the parameters are incorrect.
    */
-  async addStatuses() {
+  async addStatuses( newStatuses ) {
+
+    if ( !Array.isArray( newStatuses ) ) {
+      throw new TypeError( "New statuses must be an array" );
+    }
 
     let addedStatuses = 0;
 
-    for ( const status of this.statuses ) {
+    for ( const status of newStatuses ) {
       const filePath = path.join(
         this.archivePath,
         status.id + ".json"
       );
 
-      await writeFile( filePath, JSON.stringify( status, null, 2 ) );
+      await writeFile(
+        filePath,
+        JSON.stringify( status, null, 2 ),
+        {
+          flag: "wx"
+        }
+      );
 
       addedStatuses++;
 
     }
 
+    this.cacheStale = true;
 
     return addedStatuses;
 
   }
 
+  /**
+   * Get the list of statuses in the archive.
+   * @returns {number} The number of statuses in the archive.
+   */
+  getStatusCount() {
+
+    if ( this.cacheStale ) {
+      this.loadStatuses();
+    }
+
+    return this.statuses.length;
+  }
+
+  /**
+   * Get a list of statuses in the archive.
+   * @returns {number} The number of statuses in the archive.
+   */
+  async loadStatuses() {
+
+    if ( this.cacheStale === false ) {
+      return this.statuses;
+    }
+
+    this.statuses = Array();
+
+    this.statuses = await readdir(
+      this.archivePath
+    );
+
+    this.statuses = this.statuses.filter( status => path.extname( status ) === ".json" );
+
+    this.cacheStale = false;
+    return this.getStatusCount();
+  }
 }
 
 export default StatusArchive;
