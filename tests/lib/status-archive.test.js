@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { lstatSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { after, before, describe, it } from "node:test";
 
@@ -22,10 +23,19 @@ const testPassStatusArray = [];
 const testPassFQDN = "theblower.au";
 const testPassUserId = "109308203429082969";
 const testPassStatusCount = 20;
+const testStatusFileName = "112793425453345288.json";
+const testActualStatusFilePath = path.join( testPassArchivePath, testStatusFileName );
+const testExpectedStatusFilePath = path.join(
+  path.resolve( "tests/artefacts/statuses" ),
+  testStatusFileName
+);
 
 const nockArtefacts = path.resolve( "tests/artefacts/nock" );
 const nockBack = nock.back;
 
+/**
+ * Helper function to tidy the archive directory.
+ */
 function tidyArchiveDir() {
   rimraf.sync(
     testPassArchivePath + "/*.json",
@@ -141,6 +151,39 @@ describe( "StatusArchive", () => {
         addedStatuses,
         testPassStatusCount
       );
+    } );
+
+    it( "should output statuses in the expected format", async() => {
+
+      assert.ok(
+        lstatSync(
+          testExpectedStatusFilePath
+        )
+      );
+
+      assert.ok(
+        lstatSync(
+          testActualStatusFilePath
+        )
+      );
+
+      const actualStatus = JSON.parse(
+        readFileSync(
+          testActualStatusFilePath
+        )
+      );
+
+      const expectedStatus = JSON.parse(
+        readFileSync(
+          testExpectedStatusFilePath
+        )
+      );
+
+      assert.deepEqual(
+        actualStatus,
+        expectedStatus
+      );
+
 
     } );
 

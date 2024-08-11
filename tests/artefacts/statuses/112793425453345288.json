@@ -1,0 +1,76 @@
+{
+  "id": "112793425453345288",
+  "created_at": "2024-07-16T00:51:26.625Z",
+  "in_reply_to_id": null,
+  "in_reply_to_account_id": null,
+  "sensitive": false,
+  "spoiler_text": "",
+  "visibility": "public",
+  "language": "en",
+  "uri": "https://theblower.au/users/geton/statuses/112793425453345288",
+  "url": "https://theblower.au/@geton/112793425453345288",
+  "replies_count": 0,
+  "reblogs_count": 6,
+  "favourites_count": 18,
+  "edited_at": null,
+  "content": "<p>Hello Blowerians!</p><p>There&#39;s been an uptick in reported posts lately, for probably obvious reasons. We&#39;d like to make a few points very clear.</p><p>1. Criticism of any nation&#39;s actions is not considered racism by us.<br />2. With that in mind, please be careful with your wording, and do not use general racial terms when talking about the actions of governments.<br />3. We expect all *public* posts that appear on the Local feed to meet a fairly conservative PG-13 standard. This is not just &quot;adult&quot; content, but also violence/gore.<br />4. When boosting content from others, please keep the above in mind and think about what you&#39;re amplifying.</p><p>Please note that point 3 especially doesn&#39;t mean you can&#39;t post things outside of that standard, but use content warnings, post followers-only, or preferably both when doing so.</p><p>You&#39;re pretty much all good right now, but we may tap this sign a little bit and then as we go along.</p><p>Please ask us questions any time if you&#39;re unsure about anything! Thanks!</p>",
+  "reblog": null,
+  "application": {
+    "name": "Tusky",
+    "website": "https://tusky.app"
+  },
+  "account": {
+    "id": "109308203429082969",
+    "username": "geton",
+    "acct": "geton",
+    "display_name": "Get On The Blower",
+    "locked": false,
+    "bot": false,
+    "discoverable": true,
+    "group": false,
+    "created_at": "2022-11-08T00:00:00.000Z",
+    "note": "<p>... and sort it out</p><p>Admins are <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@mike\" class=\"u-url mention\">@<span>mike</span></a></span>, <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@s0\" class=\"u-url mention\">@<span>s0</span></a></span>, and <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@shug\" class=\"u-url mention\">@<span>shug</span></a></span></p>",
+    "url": "https://theblower.au/@geton",
+    "uri": "https://theblower.au/users/geton",
+    "avatar": "https://static.theblower.au/accounts/avatars/109/308/203/429/082/969/original/970e290791f6189c.jpg",
+    "avatar_static": "https://static.theblower.au/accounts/avatars/109/308/203/429/082/969/original/970e290791f6189c.jpg",
+    "header": "https://static.theblower.au/accounts/headers/109/308/203/429/082/969/original/9c282abd2948a2b2.jpg",
+    "header_static": "https://static.theblower.au/accounts/headers/109/308/203/429/082/969/original/9c282abd2948a2b2.jpg",
+    "followers_count": 1179,
+    "following_count": 25,
+    "statuses_count": 216,
+    "last_status_at": "2024-08-02",
+    "noindex": false,
+    "emojis": [],
+    "roles": [
+      {
+        "id": "4",
+        "name": "Announcer",
+        "color": "#e40707"
+      }
+    ],
+    "fields": [
+      {
+        "name": "Support Us!",
+        "value": "<a href=\"https://chinwag.au/theblower\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">chinwag.au/theblower</span><span class=\"invisible\"></span></a>",
+        "verified_at": "2024-02-21T09:21:28.714+00:00"
+      },
+      {
+        "name": "Rules",
+        "value": "<a href=\"https://theblower.au/about\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">theblower.au/about</span><span class=\"invisible\"></span></a>",
+        "verified_at": null
+      },
+      {
+        "name": "Privacy",
+        "value": "<a href=\"https://chinwag.au/privacy\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">chinwag.au/privacy</span><span class=\"invisible\"></span></a>",
+        "verified_at": "2024-02-21T09:21:30.261+00:00"
+      }
+    ]
+  },
+  "media_attachments": [],
+  "mentions": [],
+  "tags": [],
+  "emojis": [],
+  "card": null,
+  "poll": null
+}
