@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
-import { lstatSync, readFileSync } from "node:fs";
+import { lstatSync, readFileSync, copyFileSync } from "node:fs";
 import path from "node:path";
-import { after, before, describe, it } from "node:test";
+import { after, afterEach, before, describe, it } from "node:test";
 
 import ci from "ci-info";
 import nock from "nock";
@@ -104,7 +104,7 @@ describe( "StatusArchive", () => {
 
     } );
 
-    after( () => {
+    afterEach( () => {
       tidyArchiveDir();
     } );
 
@@ -168,7 +168,57 @@ describe( "StatusArchive", () => {
       );
     } );
 
+    it( "should not try to add an existing status to the archive", async() => {
+      const fetcher = new FetchStatuses(
+        testPassFQDN,
+        testPassUserId
+      );
+
+      const { nockDone } = await nockBack( "user-statuses.json" );
+
+      await fetcher.fetchData();
+
+      nockDone();
+
+      const archive = new StatusArchive(
+        testPassArchivePath
+      );
+
+      copyFileSync(
+        testExpectedStatusFilePath,
+        testActualStatusFilePath
+      );
+
+      const addedStatuses = await archive.addStatuses(
+        fetcher.fetchedStatusData
+      );
+
+      assert.equal(
+        addedStatuses,
+        testPassStatusCount - 1
+      );
+    } );
+
     it( "should output statuses in the expected format", async() => {
+
+      const fetcher = new FetchStatuses(
+        testPassFQDN,
+        testPassUserId
+      );
+
+      const { nockDone } = await nockBack( "user-statuses.json" );
+
+      await fetcher.fetchData();
+
+      nockDone();
+
+      const archive = new StatusArchive(
+        testPassArchivePath
+      );
+
+      await archive.addStatuses(
+        fetcher.fetchedStatusData
+      );
 
       assert.ok(
         lstatSync(

@@ -65,12 +65,20 @@ class StatusArchive {
       throw new TypeError( "New statuses must be an array" );
     }
 
+    await this.loadStatuses();
+
     let addedStatuses = 0;
 
     for ( const status of newStatuses ) {
+      const fileName = status.id + ".json";
+
+      if ( this.statuses.indexOf( fileName ) > -1 ) {
+        continue;
+      }
+
       const filePath = path.join(
         this.archivePath,
-        status.id + ".json"
+        fileName
       );
 
       await writeFile(
