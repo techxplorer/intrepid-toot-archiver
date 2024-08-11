@@ -10,6 +10,10 @@ import fs from "node:fs";
  */
 class PackageUtils {
 
+  /**
+   * The parsed pacage.json object.
+   * @type {object}
+   */
   appPackage = Object();
 
   /**

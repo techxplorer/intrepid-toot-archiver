@@ -11,11 +11,13 @@ class FetchStatuses {
 
   /**
    * An instance of a URL object representing the URL to use to fetch data.
+   * @type {URL}
    */
   urlToFetch = null;
 
   /**
    * The status data fetched using the URL.
+   * @type {Array}
    */
   fetchedStatusData = null;
 
