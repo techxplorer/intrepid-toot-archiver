@@ -28,7 +28,7 @@ const nockBack = nock.back;
 
 function tidyArchiveDir() {
   rimraf.sync(
-    testPassArchivePath + "/*",
+    testPassArchivePath + "/*.json",
     {
       preserveRoot: true,
       glob: true
