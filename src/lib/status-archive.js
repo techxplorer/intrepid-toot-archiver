@@ -29,11 +29,20 @@ class StatusArchive {
   cacheStale = true;
 
   /**
+   * Options to be used when writing files to the archive.
+   * @type {object}
+   */
+  writeFileOptions = {
+    flag: "wx"
+  };
+
+  /**
    * Manage the archive of statuses.
    * @param {string} archivePath The path to the status archive directory.
+   * @param {boolean} overwriteFlag Flag indicating if files should be overwritten.
    * @throws {TypeError} When the parameters are incorrect.
    */
-  constructor( archivePath ) {
+  constructor( archivePath, overwriteFlag = false ) {
 
     let syncStatus = null;
 
@@ -50,6 +59,12 @@ class StatusArchive {
     }
 
     this.archivePath = archivePath;
+
+    if ( overwriteFlag ) {
+      this.writeFileOptions = {
+        flag: "w"
+      };
+    }
 
   }
 
@@ -84,9 +99,7 @@ class StatusArchive {
       await writeFile(
         filePath,
         JSON.stringify( status, null, 2 ),
-        {
-          flag: "wx"
-        }
+        this.writeFileOptions
       );
 
       addedStatuses++;

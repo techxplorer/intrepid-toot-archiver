@@ -168,7 +168,80 @@ describe( "StatusArchive", () => {
       );
     } );
 
-    it( "should not try to add an existing status to the archive", async() => {
+    it( "should not overwrite files by default", async() => {
+      const fetcher = new FetchStatuses(
+        testPassFQDN,
+        testPassUserId
+      );
+
+      const { nockDone } = await nockBack( "user-statuses.json" );
+
+      await fetcher.fetchData();
+
+      nockDone();
+
+      const archive = new StatusArchive(
+        testPassArchivePath
+      );
+
+      const addedStatuses = await archive.addStatuses(
+        fetcher.fetchedStatusData
+      );
+
+      assert.equal(
+        addedStatuses,
+        testPassStatusCount
+      );
+
+      archive.cacheStale = false;
+
+      await assert.rejects(
+        async() => {
+          await archive.addStatuses(
+            fetcher.fetchedStatusData
+          );
+        }
+      );
+    } );
+
+    it( "should overwrite files by if the flag is set", async() => {
+      const fetcher = new FetchStatuses(
+        testPassFQDN,
+        testPassUserId
+      );
+
+      const { nockDone } = await nockBack( "user-statuses.json" );
+
+      await fetcher.fetchData();
+
+      nockDone();
+
+      const archive = new StatusArchive(
+        testPassArchivePath,
+        true
+      );
+
+      const addedStatuses = await archive.addStatuses(
+        fetcher.fetchedStatusData
+      );
+
+      assert.equal(
+        addedStatuses,
+        testPassStatusCount
+      );
+
+      archive.cacheStale = false;
+
+      await assert.doesNotReject(
+        async() => {
+          await archive.addStatuses(
+            fetcher.fetchedStatusData
+          );
+        }
+      );
+    } );
+
+    it( "should not try to add an existing status to the archive by default", async() => {
       const fetcher = new FetchStatuses(
         testPassFQDN,
         testPassUserId
