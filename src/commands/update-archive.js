@@ -11,6 +11,20 @@ import FetchStatuses from "../../src/lib/fetch-statuses.js";
  */
 class UpdateArchive {
 
+  allowOverwrite = false;
+
+  /**
+   * Update the archive of statuses.
+   * @param {boolean} force Overwrite any existing files in the archive.
+   */
+  constructor( force = false ) {
+
+    if ( force ) {
+      this.allowOverwrite = true;
+    }
+
+  }
+
   /**
    * Run the command to lookup user details.
    */
@@ -45,8 +59,13 @@ class UpdateArchive {
     await fetcher.fetchData();
 
     const archive = new StatusArchive(
-      archivePath
+      archivePath,
+      this.allowOverwrite
     );
+
+    if ( this.allowOverwrite ) {
+      console.log( chalk.yellow( "Warning: Overwriting existing statuses" ) );
+    }
 
     const addedStatuses = await archive.addStatuses(
       fetcher.fetchedStatusData

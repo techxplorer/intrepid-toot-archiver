@@ -37,6 +37,7 @@ async function run() {
     .version( appPackage.getVersion() )
     .description( appPackage.getDescription() )
     .showHelpAfterError( "(add --help for additional information)" )
+    .option( "-f, --force", "overwrite existing files")
     .addHelpText(
       "after",
       `\nMore info: ${ appPackage.getHomepage() }\nVersion: ${ appPackage.getVersion() }`
@@ -44,7 +45,7 @@ async function run() {
 
   // Add the lookup user command.
   program.command( "lookup-user" )
-    .description( "Lookup user details on a Mastodon host" )
+    .description( "lookup user details on a Mastodon host" )
     .action( async() => {
       const lookupUser = new LookupUser();
       await lookupUser.run();
@@ -52,9 +53,10 @@ async function run() {
 
   // Add the update-archive command.
   program.command( "update-archive" )
-    .description( "Download new statuses and update the archive" )
-    .action( async() => {
-      const updateArchive = new UpdateArchive();
+    .description( "download new statuses and update the archive" )
+    .action( async( ) => {
+      const options = program.opts();
+      const updateArchive = new UpdateArchive( options.force );
       await updateArchive.run();
     } );
 

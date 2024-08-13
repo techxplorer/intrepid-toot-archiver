@@ -87,7 +87,9 @@ class StatusArchive {
     for ( const status of newStatuses ) {
       const fileName = status.id + ".json";
 
-      if ( this.statuses.indexOf( fileName ) > -1 ) {
+      if (
+        this.writeFileOptions.flag === "wx" &&
+        this.statuses.indexOf( fileName ) > -1 ) {
         continue;
       }
 
