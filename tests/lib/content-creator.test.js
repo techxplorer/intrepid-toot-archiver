@@ -8,6 +8,7 @@ import ContentCreator from "../../src/lib/content-creator.js";
 
 const testContentTypeErrorOne = "The htmlContent parameter must be a string.";
 const testContentTypeErrorTwo = "The htmlContent parameter cannot be a zero length string.";
+const testFrontMatterTypeErrorOne = "The status parameter must be an object";
 
 const testStatusJsonFileName = "112793425453345288.json";
 const testExpectedStatusJsonFilePath = path.join(
@@ -15,10 +16,16 @@ const testExpectedStatusJsonFilePath = path.join(
   testStatusJsonFileName
 );
 
-const testStatusMdFileName = "112793425453345288.md";
-const testExpectedStatusMdFilePath = path.join(
+const testStatusTxtFileName = "112793425453345288.txt";
+const testExpectedStatusTxtFilePath = path.join(
   path.resolve( "tests/artefacts/statuses" ),
-  testStatusMdFileName
+  testStatusTxtFileName
+);
+
+const testStatusYamlFileName = "112793425453345288.yml";
+const testExpectedStatusYmlFilePath = path.join(
+  path.resolve( "tests/artefacts/statuses" ),
+  testStatusYamlFileName
 );
 
 const expectedStatusJson = JSON.parse(
@@ -27,9 +34,13 @@ const expectedStatusJson = JSON.parse(
   )
 );
 
-const expectedStatusMd = readFileSync(
-  testExpectedStatusMdFilePath
+const expectedStatusTxt = readFileSync(
+  testExpectedStatusTxtFilePath
 ).toString().trimEnd();
+
+const expectedStatusYml = readFileSync(
+  testExpectedStatusYmlFilePath
+).toString();
 
 describe( "ContentCreator", () => {
 
@@ -100,7 +111,121 @@ describe( "ContentCreator", () => {
 
       assert.equal(
         markdownContent,
-        expectedStatusMd
+        expectedStatusTxt
+      );
+    } );
+  } );
+
+  describe( "createFrontMatter", () => {
+    it( "should throw an error when the parameter is incorrect", () => {
+      const contentCreator = new ContentCreator();
+
+      assert.throws(
+        () => {
+          contentCreator.createFrontMatter();
+        },
+        {
+          name: "TypeError",
+          message: testFrontMatterTypeErrorOne
+        }
+      );
+
+      assert.throws(
+        () => {
+          contentCreator.createFrontMatter( "" );
+        },
+        {
+          name: "TypeError",
+          message: testFrontMatterTypeErrorOne
+        }
+      );
+
+      assert.throws(
+        () => {
+          contentCreator.createFrontMatter( 1234 );
+        },
+        {
+          name: "TypeError",
+          message: testFrontMatterTypeErrorOne
+        }
+      );
+    } );
+
+    it( "should not throw an error when the parameter is correct", () => {
+      const contentCreator = new ContentCreator();
+
+      assert.doesNotThrow(
+        () => {
+          contentCreator.createFrontMatter( expectedStatusJson );
+        }
+      );
+
+    } );
+
+    it( "should not throw an error when the satus object is missing a property", () => {
+      const contentCreator = new ContentCreator();
+
+      let testStatusJson = structuredClone( expectedStatusJson );
+      testStatusJson.created_at = undefined;
+
+      assert.throws(
+        () => {
+          contentCreator.createFrontMatter( testStatusJson );
+        },
+        {
+          name: "TypeError",
+          message: /created_at/
+        }
+      );
+
+      testStatusJson = structuredClone( expectedStatusJson );
+      testStatusJson.url = undefined;
+
+      assert.throws(
+        () => {
+          contentCreator.createFrontMatter( testStatusJson );
+        },
+        {
+          name: "TypeError",
+          message: /url/
+        }
+      );
+    } );
+
+    it( "should return the expected front matter", () => {
+      const contentCreator = new ContentCreator();
+      const actualYml = contentCreator.createFrontMatter(
+        expectedStatusJson
+      );
+
+      assert.equal(
+        actualYml,
+        expectedStatusYml
+      );
+
+    } );
+  } );
+
+  describe( "throwError", () => {
+    it( "should throw an error", () => {
+      const contentCreator = new ContentCreator();
+      assert.throws(
+        () => {
+          contentCreator.throwError();
+        }
+      );
+    } );
+
+    it( "should throw an error with the correct message", () => {
+      const contentCreator = new ContentCreator();
+      assert.throws(
+        () => {
+          contentCreator.throwError( "created_at" );
+        },
+        {
+          name: "TypeError",
+          message: /created_at/
+        }
       );
     } );
   } );

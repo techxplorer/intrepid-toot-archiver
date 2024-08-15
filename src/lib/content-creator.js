@@ -2,6 +2,7 @@
  * @file The defintition of the ContentCreator class.
  */
 import TurndownService from "turndown";
+import YAML from "yaml";
 
 /**
  * Create content from the statuses in the archive.
@@ -42,6 +43,54 @@ class ContentCreator {
     // replace any trailing spaces on each line.
     return this.turndownService.turndown( htmlContent ).replace( /[^\S\r\n]+$/gm, "" );
 
+  }
+
+  /**
+   * Create the front matter as a YAML string.
+   * @param {object} status The status object representing the content.
+   * @returns {string} The front matter as a YAML string.
+   * @throws {TypeError} If the status object doesn't contain the expected property.
+   */
+  createFrontMatter( status ) {
+
+    const frontMatter = {};
+
+    if ( typeof status !== "object" ) {
+      throw new TypeError( "The status parameter must be an object" );
+    }
+
+    if ( status.created_at === undefined ) {
+      this.throwError( "created_at" );
+    }
+
+    if ( status.url === undefined ) {
+      this.throwError( "url" );
+    }
+
+    frontMatter.date = status.created_at;
+
+    frontMatter.title = "Archived toot";
+
+    frontMatter.description = "An archived toot";
+
+    frontMatter.toot_url = status.url;
+
+    frontMatter.categories = [];
+
+    frontMatter.tags = [];
+
+    return YAML.stringify( frontMatter );
+
+  }
+
+  /**
+   * Make it easy to throw a consistent error message.
+   * @param {string} propertyName The name of the property that wasn't found.
+   */
+  throwError( propertyName ) {
+    throw new TypeError(
+      `Unable to get ${ propertyName } from the status object`
+    );
   }
 
 }
