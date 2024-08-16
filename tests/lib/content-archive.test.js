@@ -155,27 +155,23 @@ describe( "ContentArchive", () => {
       tidyArchiveDir();
     } );
 
-    afterEach( () => {
+    after( () => {
       tidyArchiveDir();
     } );
 
 
-    it( "should return 0 for an empty archive", async() => {
+    it( "should return the accurate count of content in the archive", async() => {
 
       const archive = new ContentArchive(
         testPassArchivePath
       );
 
-      const contentCount = await archive.loadContent();
+      let contentCount = await archive.loadContent();
 
       assert.equal(
         contentCount,
         0
       );
-
-    } );
-
-    it( "should return the accurate count of content in the archive", async() => {
 
       assert.ok(
         lstatSync(
@@ -194,11 +190,9 @@ describe( "ContentArchive", () => {
         )
       );
 
-      const archive = new ContentArchive(
-        testPassArchivePath
-      );
+      archive.cacheStale = true;
 
-      const contentCount = await archive.loadContent();
+      contentCount = await archive.loadContent();
 
       assert.equal(
         contentCount,
