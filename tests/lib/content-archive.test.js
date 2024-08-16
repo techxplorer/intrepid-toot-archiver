@@ -7,14 +7,17 @@ import ci from "ci-info";
 import nock from "nock";
 import { rimraf } from "rimraf";
 
-import FetchStatuses from "../../src/lib/fetch-statuses.js";
 import ContentArchive from "../../src/lib/content-archive.js";
+import FetchStatuses from "../../src/lib/fetch-statuses.js";
+import StatusArchive from "../../src/lib/status-archive.js";
+
 
 const testFailArchivePathOne = "";
 const testFailArchivePathMsgOne = "Archive path not found";
 const testFailArchivePathTwo = path.resolve( import.meta.dirname, "../../package.json" );
 const testFailArchivePathMsgTwo = "Archive path must be a directory";
 const testPassArchivePath = path.resolve( "tests/artefacts/content-archive" );
+const testPassStatusArchivePath = path.resolve( "tests/artefacts/content-status-archive" );
 
 const testContentFileName = "112793425453345288.md";
 const testActualContentsFilePath = path.join( testPassArchivePath, testContentFileName );
@@ -40,6 +43,19 @@ const testPassStatusCount = 20;
 function tidyArchiveDir() {
   rimraf.sync(
     testPassArchivePath + "/*.md",
+    {
+      preserveRoot: true,
+      glob: true
+    }
+  );
+}
+
+/**
+ * Helper function to tidy the status archive used in testing the content archive.
+ */
+function tidyStatusArchiveDir() {
+  rimraf.sync(
+    testPassStatusArchivePath + "/*.json",
     {
       preserveRoot: true,
       glob: true
@@ -202,9 +218,9 @@ describe( "ContentArchive", () => {
     } );
   } );
 
-  describe( "loadContent", async() => {
+  describe( "addContent", async() => {
 
-    before( () => {
+    before( async() => {
       nockBack.fixtures = nockArtefacts;
 
       if ( ci.isCI ) {
@@ -213,7 +229,30 @@ describe( "ContentArchive", () => {
         nockBack.setMode( "record" );
       }
 
+      const fetcher = new FetchStatuses(
+        testPassFQDN,
+        testPassUserId
+      );
+
+      const { nockDone } = await nockBack( "user-statuses.json" );
+
+      await fetcher.fetchData();
+
+      nockDone();
+
+      const archive = new StatusArchive(
+        testPassStatusArchivePath
+      );
+
+      await archive.addStatuses(
+        fetcher.fetchedStatusData
+      );
+
       tidyArchiveDir();
+    } );
+
+    after( () => {
+      tidyStatusArchiveDir();
     } );
 
     afterEach( () => {
@@ -254,24 +293,18 @@ describe( "ContentArchive", () => {
       );
     } );
 
-    it( "should add the expected number of statuses to the archive", async() => {
-      const fetcher = new FetchStatuses(
-        testPassFQDN,
-        testPassUserId
+    it( "should add the expected number of posts to the archive", async() => {
+      const statusArchive = new StatusArchive(
+        testPassStatusArchivePath
       );
-
-      const { nockDone } = await nockBack( "user-statuses.json" );
-
-      await fetcher.fetchData();
-
-      nockDone();
 
       const archive = new ContentArchive(
         testPassArchivePath
       );
 
       const addedStatuses = await archive.addContent(
-        fetcher.fetchedStatusData
+        await statusArchive.getStatuses(),
+        statusArchive.archivePath
       );
 
       assert.equal(
@@ -281,23 +314,17 @@ describe( "ContentArchive", () => {
     } );
 
     it( "should not overwrite files by default", async() => {
-      const fetcher = new FetchStatuses(
-        testPassFQDN,
-        testPassUserId
+      const statusArchive = new StatusArchive(
+        testPassStatusArchivePath
       );
-
-      const { nockDone } = await nockBack( "user-statuses.json" );
-
-      await fetcher.fetchData();
-
-      nockDone();
 
       const archive = new ContentArchive(
         testPassArchivePath
       );
 
       const addedStatuses = await archive.addContent(
-        fetcher.fetchedStatusData
+        await statusArchive.getStatuses(),
+        statusArchive.archivePath
       );
 
       assert.equal(
@@ -310,23 +337,17 @@ describe( "ContentArchive", () => {
       await assert.rejects(
         async() => {
           await archive.addContent(
-            fetcher.fetchedStatusData
+            await statusArchive.getStatuses(),
+            statusArchive.archivePath
           );
         }
       );
     } );
 
     it( "should overwrite files if the flag is set", async() => {
-      const fetcher = new FetchStatuses(
-        testPassFQDN,
-        testPassUserId
+      const statusArchive = new StatusArchive(
+        testPassStatusArchivePath
       );
-
-      const { nockDone } = await nockBack( "user-statuses.json" );
-
-      await fetcher.fetchData();
-
-      nockDone();
 
       const archive = new ContentArchive(
         testPassArchivePath,
@@ -334,7 +355,8 @@ describe( "ContentArchive", () => {
       );
 
       const addedStatuses = await archive.addContent(
-        fetcher.fetchedStatusData
+        await statusArchive.getStatuses(),
+        statusArchive.archivePath
       );
 
       assert.equal(
@@ -347,26 +369,16 @@ describe( "ContentArchive", () => {
       await assert.doesNotReject(
         async() => {
           await archive.addContent(
-            fetcher.fetchedStatusData
+            await statusArchive.getStatuses(),
+            statusArchive.archivePath
           );
         }
       );
     } );
 
     it( "should not try to add an existing status to the archive by default", async() => {
-      const fetcher = new FetchStatuses(
-        testPassFQDN,
-        testPassUserId
-      );
-
-      const { nockDone } = await nockBack( "user-statuses.json" );
-
-      await fetcher.fetchData();
-
-      nockDone();
-
-      const archive = new ContentArchive(
-        testPassArchivePath
+      const statusArchive = new StatusArchive(
+        testPassStatusArchivePath
       );
 
       copyFileSync(
@@ -374,8 +386,13 @@ describe( "ContentArchive", () => {
         testActualContentsFilePath
       );
 
+      const archive = new ContentArchive(
+        testPassArchivePath
+      );
+
       const addedStatuses = await archive.addContent(
-        fetcher.fetchedStatusData
+        await statusArchive.getStatuses(),
+        statusArchive.archivePath
       );
 
       assert.equal(
@@ -385,24 +402,17 @@ describe( "ContentArchive", () => {
     } );
 
     it( "should output content in the expected format", async() => {
-
-      const fetcher = new FetchStatuses(
-        testPassFQDN,
-        testPassUserId
+      const statusArchive = new StatusArchive(
+        testPassStatusArchivePath
       );
-
-      const { nockDone } = await nockBack( "user-statuses.json" );
-
-      await fetcher.fetchData();
-
-      nockDone();
 
       const archive = new ContentArchive(
         testPassArchivePath
       );
 
       await archive.addContent(
-        fetcher.fetchedStatusData
+        await statusArchive.getStatuses(),
+        statusArchive.archivePath
       );
 
       assert.ok(

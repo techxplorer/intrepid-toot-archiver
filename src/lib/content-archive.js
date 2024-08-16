@@ -2,7 +2,7 @@
  * @file The defintition of the ContentArchive class.
  */
 import { lstatSync } from "node:fs";
-import { readdir, writeFile } from "node:fs/promises";
+import { readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 import ContentCreator from "./content-creator.js";
@@ -72,11 +72,12 @@ class ContentArchive {
 
   /**
    * Add any missing contents to the archive.
-   * @param {Array} newStatuses A list of potential new statuses objects.
+   * @param {Array} newStatuses A list of potential new status file names.
+   * @param {string} statusArchivePath The path to the status archive.
    * @returns {number} The amount of content added to the archive.
    * @throws {TypeError} When the parameters are incorrect.
    */
-  async addContent( newStatuses ) {
+  async addContent( newStatuses, statusArchivePath ) {
 
     if ( !Array.isArray( newStatuses ) ) {
       throw new TypeError( "New statuses must be an array" );
@@ -88,18 +89,27 @@ class ContentArchive {
 
     let addedcontents = 0;
 
-    for ( const status of newStatuses ) {
-      const fileName = status.id + ".md";
+    for ( const statusFile of newStatuses ) {
+      const fileName = path.basename( statusFile, ".json" ) + ".md";
 
-      if (
-        this.writeFileOptions.flag === "wx" &&
-        this.contents.indexOf( fileName ) > -1 ) {
+      if ( this.writeFileOptions.flag === "wx" && this.contents.indexOf( fileName ) > -1 ) {
         continue;
       }
 
       const filePath = path.join(
         this.archivePath,
         fileName
+      );
+
+      const statusContent = await readFile(
+        path.join(
+          statusArchivePath,
+          statusFile
+        )
+      );
+
+      const status = JSON.parse(
+        statusContent.toString()
       );
 
       const newContent = [];
