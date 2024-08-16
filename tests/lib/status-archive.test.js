@@ -411,4 +411,67 @@ describe( "StatusArchive", () => {
 
     } );
   } );
+
+  describe( "getStatuses", async() => {
+
+    before( () => {
+      nockBack.fixtures = nockArtefacts;
+
+      if ( ci.isCI ) {
+        nockBack.setMode( "lockdown" );
+      } else {
+        nockBack.setMode( "record" );
+      }
+
+      tidyArchiveDir();
+
+    } );
+
+    after( () => {
+      tidyArchiveDir();
+    } );
+
+    it( "should return an array of statuses", async() => {
+      const archive = new StatusArchive(
+        testPassArchivePath
+      );
+
+      let statuses = await archive.getStatuses();
+
+      assert.ok(
+        Array.isArray( statuses )
+      );
+
+      assert.equal(
+        statuses.length,
+        0
+      );
+
+      const fetcher = new FetchStatuses(
+        testPassFQDN,
+        testPassUserId
+      );
+
+      const { nockDone } = await nockBack( "user-statuses.json" );
+
+      await fetcher.fetchData();
+
+      nockDone();
+
+      await archive.addStatuses(
+        fetcher.fetchedStatusData
+      );
+
+      statuses = await archive.getStatuses();
+
+      assert.ok(
+        Array.isArray( statuses )
+      );
+
+      assert.equal(
+        statuses.length,
+        testPassStatusCount
+      );
+    } );
+  } );
 } );

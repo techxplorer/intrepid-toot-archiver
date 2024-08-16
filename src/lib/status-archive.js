@@ -134,7 +134,7 @@ class StatusArchive {
   async loadStatuses() {
 
     if ( this.cacheStale === false ) {
-      return this.statuses;
+      return this.statuses.length;
     }
 
     this.statuses = Array();
@@ -147,6 +147,22 @@ class StatusArchive {
 
     this.cacheStale = false;
     return this.statuses.length;
+  }
+
+  /**
+   * Get the array of statuses in the archive.
+   * Uses the already loaded statuses, or loads them if required.
+   * @returns {Array} The array of statuses from the archive.
+   */
+  async getStatuses() {
+
+    if ( this.cacheStale === false ) {
+      return this.statuses;
+    }
+
+    await this.loadStatuses();
+
+    return this.statuses;
   }
 }
 
