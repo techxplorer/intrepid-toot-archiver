@@ -43,7 +43,7 @@
     "eslint-plugin-jsdoc": "^50.0.0",
     "globals": "^15.8.0",
     "jsdoc": "~4.0.3",
-    "nock": "^14.0.0-beta.9",
+    "nock": "^14.0.0-beta.11",
     "rimraf": "^6.0.1"
   }
 }
