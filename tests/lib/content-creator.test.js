@@ -3,6 +3,7 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 import { describe, it } from "node:test";
 
+import YAML from "yaml";
 
 import ContentCreator from "../../src/lib/content-creator.js";
 
@@ -190,11 +191,36 @@ describe( "ContentCreator", () => {
           message: /url/
         }
       );
+
+      testStatusJson = structuredClone( expectedStatusJson );
+      testStatusJson.tags = undefined;
+
+      assert.throws(
+        () => {
+          contentCreator.createFrontMatter( testStatusJson );
+        },
+        {
+          name: "TypeError",
+          message: /tags/
+        }
+      );
+
+      testStatusJson.tags = "";
+
+      assert.throws(
+        () => {
+          contentCreator.createFrontMatter( testStatusJson );
+        },
+        {
+          name: "TypeError",
+          message: /tags/
+        }
+      );
     } );
 
     it( "should return the expected front matter", () => {
       const contentCreator = new ContentCreator();
-      const actualYml = contentCreator.createFrontMatter(
+      let actualYml = contentCreator.createFrontMatter(
         expectedStatusJson
       );
 
@@ -203,6 +229,43 @@ describe( "ContentCreator", () => {
         expectedStatusYml
       );
 
+      let testStatusJson = structuredClone( expectedStatusJson );
+      testStatusJson.tags = [
+        {
+          "name": "microfiction",
+          "url": "https://theblower.au/tags/microfiction"
+        },
+        {
+          "name": "amwriting",
+          "url": "https://theblower.au/tags/amwriting"
+        },
+        {
+          "name": "love",
+          "url": "https://theblower.au/tags/love"
+        }
+      ];
+
+      const testTags = [
+        "microfiction",
+        "amwriting",
+        "love"
+      ];
+
+      actualYml = contentCreator.createFrontMatter(
+        testStatusJson
+      );
+
+      console.log( actualYml );
+
+      let testYaml = YAML.parse( actualYml );
+
+      console.log( testYaml );
+
+      for ( const tag of testTags ) {
+        assert.ok(
+          testYaml.tags.includes( tag )
+        );
+      }
     } );
   } );
 

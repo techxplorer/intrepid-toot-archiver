@@ -67,6 +67,10 @@ class ContentCreator {
       this.throwError( "url" );
     }
 
+    if ( status.tags === undefined || !Array.isArray( status.tags ) ) {
+      this.throwError( "tags" );
+    }
+
     frontMatter.date = status.created_at;
 
     frontMatter.title = "Archived toot";
@@ -78,6 +82,12 @@ class ContentCreator {
     frontMatter.categories = [];
 
     frontMatter.tags = [];
+
+    for ( const tag of status.tags ) {
+      if ( tag.name !== undefined ) {
+        frontMatter.tags.push( tag.name );
+      }
+    }
 
     return YAML.stringify( frontMatter );
 
