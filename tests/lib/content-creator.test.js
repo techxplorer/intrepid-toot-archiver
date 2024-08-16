@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import path from "node:path";
-import { before, describe, it } from "node:test";
+import { describe, it } from "node:test";
 
 
 import ContentCreator from "../../src/lib/content-creator.js";
