@@ -9,6 +9,7 @@ import prettyMS from "pretty-ms";
 import LookupUser from "../src/commands/lookup-user.js";
 import PackageUtils from "../src/utils/package-utils.js";
 import UpdateArchive from "../src/commands/update-archive.js";
+import UpdateContent from "../src/commands/update-content.js";
 
 const startTime = process.hrtime.bigint();
 
@@ -58,6 +59,15 @@ async function run() {
       const options = program.opts();
       const updateArchive = new UpdateArchive( options.force );
       await updateArchive.run();
+    } );
+
+  // Add the update content command.
+  program.command( "update-content" )
+    .description( "update content using archived statuses" )
+    .action( async() => {
+      const options = program.opts();
+      const updateContent = new UpdateContent( options.force );
+      await updateContent.run();
     } );
 
   // Parse the command line parameters.
