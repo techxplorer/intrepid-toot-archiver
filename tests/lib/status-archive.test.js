@@ -204,7 +204,7 @@ describe( "StatusArchive", () => {
       );
     } );
 
-    it( "should overwrite files by if the flag is set", async() => {
+    it( "should overwrite files if the flag is set", async() => {
       const fetcher = new FetchStatuses(
         testPassFQDN,
         testPassUserId
