@@ -115,13 +115,13 @@ class StatusArchive {
   }
 
   /**
-   * Get the list of statuses in the archive.
+   * Get the number of statuses in the archive.
    * @returns {number} The number of statuses in the archive.
    */
-  getStatusCount() {
+  async getStatusCount() {
 
     if ( this.cacheStale ) {
-      this.loadStatuses();
+      await this.loadStatuses();
     }
 
     return this.statuses.length;
@@ -146,7 +146,7 @@ class StatusArchive {
     this.statuses = this.statuses.filter( status => path.extname( status ) === ".json" );
 
     this.cacheStale = false;
-    return this.getStatusCount();
+    return this.statuses.length;
   }
 }
 

@@ -325,22 +325,6 @@ describe( "StatusArchive", () => {
   } );
 
   describe( "getStatusCount", async() => {
-    before( () => {
-      nockBack.fixtures = nockArtefacts;
-
-      if ( ci.isCI ) {
-        nockBack.setMode( "lockdown" );
-      } else {
-        nockBack.setMode( "record" );
-      }
-
-      tidyArchiveDir();
-
-    } );
-
-    after( () => {
-      tidyArchiveDir();
-    } );
 
     it( "should return an empty array for an empty archive", async() => {
 
@@ -351,7 +335,7 @@ describe( "StatusArchive", () => {
       archive.statuses = [];
       archive.cacheStale = false;
 
-      const statusCount = archive.getStatusCount();
+      const statusCount = await archive.getStatusCount();
 
       assert.equal(
         statusCount,
