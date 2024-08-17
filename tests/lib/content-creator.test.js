@@ -43,6 +43,10 @@ const expectedStatusYml = readFileSync(
   testExpectedStatusYmlFilePath
 ).toString();
 
+const testStatusUrl = "https://theblower.au/@geton/112793425453345288";
+const testInavlidStatusURL = testStatusUrl.replace( "https://", "" );
+const expectedLinkBack = `[Original post on the Fediverse](${ testStatusUrl })`;
+
 describe( "ContentCreator", () => {
 
   describe( "constructor", () => {
@@ -285,6 +289,61 @@ describe( "ContentCreator", () => {
           name: "TypeError",
           message: /created_at/
         }
+      );
+    } );
+  } );
+
+  describe( "makeLinkBack", () => {
+    it( "should throw an error when the URL is invalid", () => {
+      const contentCreator = new ContentCreator();
+
+      assert.throws(
+        () => {
+          contentCreator.makeLinkBack( "" );
+        },
+        {
+          name: "TypeError",
+          message: /A valid URL/
+        }
+      );
+
+      assert.throws(
+        () => {
+          contentCreator.makeLinkBack( "/en-US/docs" );
+        },
+        {
+          name: "TypeError",
+          message: /A valid URL/
+        }
+      );
+
+      assert.throws(
+        () => {
+          contentCreator.makeLinkBack( testInavlidStatusURL );
+        },
+        {
+          name: "TypeError",
+          message: /A valid URL/
+        }
+      );
+    } );
+
+    it( "should not throw an error when the URL is valid", () => {
+      const contentCreator = new ContentCreator();
+      assert.doesNotThrow(
+        () => {
+          contentCreator.makeLinkBack( testStatusUrl );
+        }
+      );
+    } );
+
+    it( "should return the expected Markdown", () => {
+      const contentCreator = new ContentCreator();
+      const linkBack = contentCreator.makeLinkBack( testStatusUrl );
+
+      assert.equal(
+        linkBack,
+        expectedLinkBack
       );
     } );
   } );

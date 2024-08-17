@@ -23,7 +23,7 @@
   "homepage": "https://github.com/techxplorer/intrepid-toot-archiver#readme",
   "license": "MIT",
   "engines": {
-    "node": ">=22.0.0"
+    "node": ">=22.1.0"
   },
   "dependencies": {
     "@inquirer/prompts": "^5.3.6",

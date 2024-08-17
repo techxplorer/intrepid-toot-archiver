@@ -117,6 +117,7 @@ class ContentArchive {
       newContent.push( contentCreator.createFrontMatter( status ) );
       newContent.push( "---" );
       newContent.push( contentCreator.convertContent( status.content ) );
+      newContent.push( contentCreator.makeLinkBack( status.url ) );
       newContent.push( "" );
 
       await writeFile(

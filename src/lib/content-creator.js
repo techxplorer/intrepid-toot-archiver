@@ -94,6 +94,20 @@ class ContentCreator {
   }
 
   /**
+   * Create the Markdown or a link back to the original status.
+   * @param {string} statusUrl The URL to the original status on the Fediverse.
+   * @throws {TypeError} When the statusUrl is not a valid URL.
+   * @returns {string} The link to the original status in Markdown format.
+   */
+  makeLinkBack( statusUrl ) {
+    if ( URL.parse( statusUrl ) === null ) {
+      throw new TypeError( "A valid URL is required" );
+    }
+
+    return `[Original post on the Fediverse](${ statusUrl })`;
+  }
+
+  /**
    * Make it easy to throw a consistent error message.
    * @param {string} propertyName The name of the property that wasn't found.
    */
