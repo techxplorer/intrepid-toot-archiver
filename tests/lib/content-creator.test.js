@@ -255,11 +255,7 @@ describe( "ContentCreator", () => {
         testStatusJson
       );
 
-      console.log( actualYml );
-
       let testYaml = YAML.parse( actualYml );
-
-      console.log( testYaml );
 
       for ( const tag of testTags ) {
         assert.ok(
