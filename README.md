@@ -13,6 +13,7 @@ generates such [Hugo][hugo], which is my preferred framework.
 The app has the following commands:
 
 | Command        | Description |
+| -------------- | ----------- |
 | lookup-user    | Lookup the details of a user on the Mastodon server |
 | update-archive | Download new statuses from the server |
 | update-content | Update the content archive |
@@ -23,6 +24,7 @@ The app has the following commands:
 The app has the following options:
 
 | Short option | Long option | Description |
+| ------------ | ----------- | ----------- |
 | -f           | --force     | Overwrite files in the status or content archive|
 
 ## Configuration ##
@@ -31,6 +33,7 @@ Configuration uses environment variables. They can be supplied by a .env file
 or via a shell script. The environment variables are:
 
 | Variable   | Description |
+| ---------- | ----------- |
 | ITA_HOST   | The name of the Mastodon host |
 | ITA_USERID | The unique user id of the user |
 | ITA_USERNAME | The username of the account on the host |
