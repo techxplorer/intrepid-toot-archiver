@@ -106,9 +106,12 @@ class MediaArchive {
   /**
    * Add any media attachments included in the status.
    * @param {object} status A status object.
+   * @returns {number} The number of media files added to the archive.
    * @throws {TypeError} When the status doesn't contain the expected properties.
    */
   async addMediaFromStatus( status ) {
+
+    let mediaCount = 0;
 
     if ( status.media_attachments === undefined ) {
       throw new TypeError( "Status is expected to have a media_attachments property" );
@@ -121,7 +124,10 @@ class MediaArchive {
     for ( const mediaAttachment of status.media_attachments ) {
       const mediaUrl = new URL( mediaAttachment.url );
       await this.addMedia( mediaUrl );
+      mediaCount++;
     }
+
+    return mediaCount;
 
   }
 

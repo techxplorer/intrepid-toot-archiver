@@ -439,7 +439,7 @@ describe( "MediaArchive", () => {
 
       const { nockDone } = await nockBack( "media-attachment.json" );
 
-      await archive.addMediaFromStatus( expectedStatusJson );
+      const mediaCount = await archive.addMediaFromStatus( expectedStatusJson );
 
       nockDone();
 
@@ -447,6 +447,11 @@ describe( "MediaArchive", () => {
 
       assert.equal(
         statusCount,
+        testPassMediaCount
+      );
+
+      assert.equal(
+        mediaCount,
         testPassMediaCount
       );
 
