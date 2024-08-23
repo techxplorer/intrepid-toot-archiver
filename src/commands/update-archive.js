@@ -3,8 +3,9 @@
  */
 import chalk from "chalk";
 
-import StatusArchive from "../../src/lib/status-archive.js";
-import FetchStatuses from "../../src/lib/fetch-statuses.js";
+import StatusArchive from "../lib/status-archive.js";
+import FetchStatuses from "../lib/fetch-statuses.js";
+import MediaArchive from "../lib/media-archive.js";
 
 /**
  * Command to fetch any new statuses and update the archive.
@@ -55,6 +56,12 @@ class UpdateArchive {
       throw new Error( "Expected the ITA_ARCHIVE_PATH environment variable" );
     }
 
+    const mediaArchivePath = process.env.ITA_MEDIA_ARCHIVE_PATH;
+
+    if ( mediaArchivePath === undefined ) {
+      throw new Error( "Expected the ITA_MEDIA_ARCHIVE_PATH environment variable" );
+    }
+
     const fetcher = new FetchStatuses(
       host,
       userId
@@ -62,9 +69,10 @@ class UpdateArchive {
 
     if ( this. debugOutput ) {
       console.log( chalk.bold.underline( "\nEnvironment variables" ) );
-      console.log( "Host: %s", process.env.ITA_HOST );
-      console.log( "User id: %s", process.env.ITA_USERID );
-      console.log( "Archive path: %s%s", process.env.ITA_ARCHIVE_PATH, "\n" );
+      console.log( "Host: %s", host );
+      console.log( "User id: %s", userId );
+      console.log( "Archive path: %s", archivePath );
+      console.log( "Media archive path: %s%s", mediaArchivePath, "\n" );
     }
 
     console.log( "Fetching new statuses..." );
@@ -84,8 +92,29 @@ class UpdateArchive {
       fetcher.fetchedStatusData
     );
 
+    const mediaArchive = new MediaArchive(
+      mediaArchivePath,
+      this.allowOverwrite
+    );
+
+    console.log( "Fetching new media..." );
+
+    if ( this.allowOverwrite ) {
+      console.log( chalk.yellow( "Warning: Overwriting existing media" ) );
+    }
+
+    let addedMedia = 0;
+
+    for ( const status of fetcher.fetchedStatusData ) {
+      const mediaCount = await mediaArchive.addMediaFromStatus( status );
+      addedMedia = addedMedia +  mediaCount;
+    }
+
     console.log( chalk.green( "Updated status archive" ) );
     console.log( `Number of statuses added: ${ addedStatuses }` );
+
+    console.log( chalk.green( "Updated media archive" ) );
+    console.log( `Number of media added: ${ addedMedia }` );
 
   }
 
