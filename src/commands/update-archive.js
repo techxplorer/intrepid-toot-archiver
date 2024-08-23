@@ -12,15 +12,21 @@ import FetchStatuses from "../../src/lib/fetch-statuses.js";
 class UpdateArchive {
 
   allowOverwrite = false;
+  debugOutput = false;
 
   /**
    * Update the archive of statuses.
    * @param {boolean} force Overwrite any existing files in the archive.
+   * @param {boolean} debug Output configuration variables.
    */
-  constructor( force = false ) {
+  constructor( force = false, debug = false ) {
 
     if ( force ) {
       this.allowOverwrite = true;
+    }
+
+    if ( debug ) {
+      this.debugOutput = true;
     }
 
   }
@@ -53,6 +59,13 @@ class UpdateArchive {
       host,
       userId
     );
+
+    if ( this. debugOutput ) {
+      console.log( chalk.bold.underline( "\nEnvironment variables" ) );
+      console.log( "Host: %s", process.env.ITA_HOST );
+      console.log( "User id: %s", process.env.ITA_USERID );
+      console.log( "Archive path: %s%s", process.env.ITA_ARCHIVE_PATH, "\n" );
+    }
 
     console.log( "Fetching new statuses..." );
 

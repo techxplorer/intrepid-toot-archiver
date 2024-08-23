@@ -38,7 +38,8 @@ async function run() {
     .version( appPackage.getVersion() )
     .description( appPackage.getDescription() )
     .showHelpAfterError( "(add --help for additional information)" )
-    .option( "-f, --force", "overwrite existing files")
+    .option( "-f, --force", "overwrite existing files" )
+    .option( "-d, --debug", "output debug information")
     .addHelpText(
       "after",
       `\nMore info: ${ appPackage.getHomepage() }\nVersion: ${ appPackage.getVersion() }`
@@ -57,7 +58,7 @@ async function run() {
     .description( "download new statuses and update the archive" )
     .action( async( ) => {
       const options = program.opts();
-      const updateArchive = new UpdateArchive( options.force );
+      const updateArchive = new UpdateArchive( options.force, options.debug );
       await updateArchive.run();
     } );
 
@@ -66,7 +67,7 @@ async function run() {
     .description( "update content using archived statuses" )
     .action( async() => {
       const options = program.opts();
-      const updateContent = new UpdateContent( options.force );
+      const updateContent = new UpdateContent( options.force, options.debug );
       await updateContent.run();
     } );
 

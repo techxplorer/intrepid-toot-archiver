@@ -12,14 +12,22 @@ import ContentArchive from "../../src/lib/content-archive.js";
  */
 class UpdateContent {
 
+  allowOverwrite = false;
+  debugOutput = false;
+
   /**
-   * Update the archive of statuses.
-   * @param {boolean} force Overwrite any existing files in the archive.
+   * Update the content archive.
+   * @param {boolean} force Overwrite any existing content in the archive.
+   * @param {boolean} debug Output configuration variables.
    */
-  constructor( force = false ) {
+  constructor( force = false, debug = false ) {
 
     if ( force ) {
       this.allowOverwrite = true;
+    }
+
+    if ( debug ) {
+      this.debugOutput = true;
     }
 
   }
@@ -40,6 +48,12 @@ class UpdateContent {
 
     if ( contentArchivePath === undefined ) {
       throw new Error( "Expected the ITA_CONTENT_ARCHIVE_PATH environment variable" );
+    }
+
+    if ( this. debugOutput ) {
+      console.log( chalk.bold.underline( "\nEnvironment variables" ) );
+      console.log( "Status archive path: %s", process.env.ITA_ARCHIVE_PATH );
+      console.log( "Content archive path: %s%s", process.env.ITA_ARCHIVE_PATH, "\n" );
     }
 
     const statusArchive = new StatusArchive(
