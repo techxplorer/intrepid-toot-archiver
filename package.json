@@ -10,7 +10,8 @@
   "scripts": {
     "test": "node --test",
     "lint": "eslint .",
-    "doc": "jsdoc -c jsdoc.config.json"
+    "doc": "jsdoc -c jsdoc.config.json",
+    "coverage": "node --test --experimental-test-coverage"
   },
   "repository": {
     "type": "git",
