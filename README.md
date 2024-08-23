@@ -25,7 +25,8 @@ The app has the following options:
 
 | Short option | Long option | Description |
 | ------------ | ----------- | ----------- |
-| -f           | --force     | Overwrite files in the status or content archive|
+| -f           | --force     | Overwrite files in the status or content archive |
+| -d           | --debug     | Output environment variable content |
 
 ## Configuration ##
 
@@ -38,6 +39,7 @@ or via a shell script. The environment variables are:
 | ITA_USERID | The unique user id of the user |
 | ITA_USERNAME | The username of the account on the host |
 | ITA_ARCHIVE_PATH | The full path to the status archive |
+| ITA_MEDIA_ARCHIVE_PATH | The full path to the media archive |
 | ITA_CONTENT_ARCHIVE_PATH | The full path to the content archive |
 
 ## Archives ##
@@ -55,13 +57,12 @@ The `update-content` command will create one Markdown file for each archived sta
 not in the content archive. The `--force` option will overwrite any existing
 Markdown files.
 
-## Roadmap ##
+## Road map ##
 
-The following items are on my roadmap:
+The following items are on my road map:
 
-1. Add media attachments to the status archive
-2. Filter the creation of content by tag
-3. Add any other functionality as required
+1. Filter the creation of content by tag
+2. Add any other functionality as required
 
 ## Rationale ##
 
