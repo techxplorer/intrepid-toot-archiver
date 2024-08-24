@@ -3,7 +3,6 @@ import { lstatSync, readFileSync, copyFileSync } from "node:fs";
 import path from "node:path";
 import { after, afterEach, before, describe, it } from "node:test";
 
-import ci from "ci-info";
 import nock from "nock";
 import { rimraf } from "rimraf";
 
@@ -222,12 +221,7 @@ describe( "ContentArchive", () => {
 
     before( async() => {
       nockBack.fixtures = nockArtefacts;
-
-      if ( ci.isCI ) {
-        nockBack.setMode( "lockdown" );
-      } else {
-        nockBack.setMode( "record" );
-      }
+      nockBack.setMode( "lockdown" );
 
       const fetcher = new FetchStatuses(
         testPassFQDN,

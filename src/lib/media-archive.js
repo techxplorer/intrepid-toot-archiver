@@ -182,7 +182,7 @@ class MediaArchive {
   async getMedia() {
 
     if ( this.cacheStale === false ) {
-      return this.statuses;
+      return this.media;
     }
 
     await this.loadMedia();

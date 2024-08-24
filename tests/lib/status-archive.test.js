@@ -3,7 +3,6 @@ import { lstatSync, readFileSync, copyFileSync } from "node:fs";
 import path from "node:path";
 import { after, afterEach, before, describe, it } from "node:test";
 
-import ci from "ci-info";
 import nock from "nock";
 import { rimraf } from "rimraf";
 
@@ -93,12 +92,7 @@ describe( "StatusArchive", () => {
 
     before( () => {
       nockBack.fixtures = nockArtefacts;
-
-      if ( ci.isCI ) {
-        nockBack.setMode( "lockdown" );
-      } else {
-        nockBack.setMode( "record" );
-      }
+      nockBack.setMode( "lockdown" );
 
       tidyArchiveDir();
 
@@ -326,7 +320,19 @@ describe( "StatusArchive", () => {
 
   describe( "getStatusCount", async() => {
 
-    it( "should return an empty array for an empty archive", async() => {
+    before( () => {
+      nockBack.fixtures = nockArtefacts;
+      nockBack.setMode( "lockdown" );
+
+      tidyArchiveDir();
+
+    } );
+
+    after( () => {
+      tidyArchiveDir();
+    } );
+
+    it( "should return zero for an empty archive", async() => {
 
       const archive = new StatusArchive(
         testPassArchivePath
@@ -343,18 +349,62 @@ describe( "StatusArchive", () => {
       );
 
     } );
+
+    it( "should not return zero for an archive with statuses", async() => {
+
+      const archive = new StatusArchive(
+        testPassArchivePath
+      );
+
+      let statusCount = await archive.getStatusCount();
+
+      assert.equal(
+        statusCount,
+        0
+      );
+
+      const fetcher = new FetchStatuses(
+        testPassFQDN,
+        testPassUserId
+      );
+
+      const { nockDone } = await nockBack( "user-statuses.json" );
+
+      await fetcher.fetchData();
+
+      nockDone();
+
+      await archive.addStatuses(
+        fetcher.fetchedStatusData
+      );
+
+      statusCount = await archive.getStatusCount();
+
+      assert.equal(
+        statusCount,
+        testPassStatusCount
+      );
+
+      assert.ok(
+        archive.cacheStale === false
+      );
+
+      statusCount = await archive.getStatusCount();
+
+      assert.equal(
+        statusCount,
+        testPassStatusCount
+      );
+
+
+    } );
   } );
 
   describe( "loadStatuses", async() => {
 
     before( () => {
       nockBack.fixtures = nockArtefacts;
-
-      if ( ci.isCI ) {
-        nockBack.setMode( "lockdown" );
-      } else {
-        nockBack.setMode( "record" );
-      }
+      nockBack.setMode( "lockdown" );
 
       tidyArchiveDir();
 
@@ -416,12 +466,7 @@ describe( "StatusArchive", () => {
 
     before( () => {
       nockBack.fixtures = nockArtefacts;
-
-      if ( ci.isCI ) {
-        nockBack.setMode( "lockdown" );
-      } else {
-        nockBack.setMode( "record" );
-      }
+      nockBack.setMode( "lockdown" );
 
       tidyArchiveDir();
 

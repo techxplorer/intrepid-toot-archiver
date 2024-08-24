@@ -2,7 +2,6 @@ import assert from "node:assert/strict";
 import { before, describe, it } from "node:test";
 import path from "node:path";
 
-import ci from "ci-info";
 import isURL from "validator/lib/isURL.js";
 import nock from "nock";
 
@@ -16,7 +15,11 @@ const testPassUserName = "@geton";
 const testFailUserName = "geton";
 const testUserNameMessage =  "A valid username is required";
 
-const testFetchURL = "https://theblower.au/api/v1/accounts/lookup?acct=@geton";
+const testFetchUrlHost = "https://theblower.au";
+const testFetchUrlPath = "/api/v1/accounts/lookup";
+const testFetchUrlQuery = "?acct=@geton";
+
+const testFetchURL = testFetchUrlHost + testFetchUrlPath + testFetchUrlQuery;
 const testUserId = "109308203429082969";
 
 const nockArtefacts = path.resolve( "tests/artefacts/nock" );
@@ -103,12 +106,25 @@ describe( "FetchUserDetails", () => {
   describe( "fetchData", async() => {
     before( () => {
       nockBack.fixtures = nockArtefacts;
+      nockBack.setMode( "lockdown" );
+    } );
 
-      if ( ci.isCI ) {
-        nockBack.setMode( "lockdown" );
-      } else {
-        nockBack.setMode( "record" );
-      }
+    it( "should throw an error when the request fails", async() => {
+      const fetcher = new FetchUserDetails(
+        testPassFQDN,
+        testPassUserName
+      );
+
+      nock( testFetchUrlHost )
+        .get( testFetchUrlPath + testFetchUrlQuery )
+        .reply( 404 );
+
+      await assert.rejects(
+        async() => {
+          await fetcher.fetchData();
+        }
+      );
+
     } );
 
     it( "should successfully fetch the user data JSON object", async() => {
@@ -145,12 +161,7 @@ describe( "FetchUserDetails", () => {
   describe( "getUserId", async() => {
     before( () => {
       nockBack.fixtures = nockArtefacts;
-
-      if ( ci.isCI ) {
-        nockBack.setMode( "lockdown" );
-      } else {
-        nockBack.setMode( "record" );
-      }
+      nockBack.setMode( "lockdown" );
     } );
 
     it( "should get the user id from the server", async() => {
@@ -183,13 +194,38 @@ describe( "FetchUserDetails", () => {
 
       const { nockDone } = await nockBack( "user-data.json" );
 
-      const userId = await fetcher.getUserId();
+      let userId = await fetcher.getUserId();
 
       nockDone();
+
+      userId = await fetcher.getUserId();
 
       assert.equal(
         userId,
         testUserId
+      );
+
+    } );
+
+    it( "should throw an error when the user Id cannot be found", async() => {
+
+      const fetcher = new FetchUserDetails(
+        testPassFQDN,
+        testPassUserName
+      );
+
+      const { nockDone } = await nockBack( "user-data.json" );
+
+      await fetcher.getUserId();
+
+      nockDone();
+
+      fetcher.fetchedUserData.id = undefined;
+
+      await assert.rejects(
+        async() => {
+          await fetcher.getUserId();
+        }
       );
 
     } );
