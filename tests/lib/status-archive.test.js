@@ -338,7 +338,7 @@ describe( "StatusArchive", () => {
         testPassArchivePath
       );
 
-      archive.statuses = [];
+      archive.contents = [];
       archive.cacheStale = false;
 
       const statusCount = await archive.getStatusCount();
@@ -455,7 +455,7 @@ describe( "StatusArchive", () => {
       );
 
       assert.notEqual(
-        archive.statuses.indexOf( testStatusFileName ),
+        archive.contents.indexOf( testStatusFileName ),
         -1
       );
 

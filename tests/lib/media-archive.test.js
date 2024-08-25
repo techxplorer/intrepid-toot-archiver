@@ -102,7 +102,7 @@ describe( "MediaArchive", () => {
         testPassArchivePath
       );
 
-      archive.media = [];
+      archive.contents = [];
       archive.cacheStale = false;
 
       const statusCount = await archive.getMediaCount();
@@ -348,7 +348,7 @@ describe( "MediaArchive", () => {
       );
 
       assert.notEqual(
-        archive.media.indexOf( testMediaFileName ),
+        archive.contents.indexOf( testMediaFileName ),
         -1
       );
 
@@ -399,7 +399,7 @@ describe( "MediaArchive", () => {
       );
 
       assert.notEqual(
-        archive.media.indexOf( testMediaFileName ),
+        archive.contents.indexOf( testMediaFileName ),
         -1
       );
 

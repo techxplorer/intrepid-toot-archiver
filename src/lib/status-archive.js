@@ -1,72 +1,15 @@
 /**
  * @file The defintition of the StatusArchive class.
  */
-import { lstatSync } from "node:fs";
 import { readdir, writeFile } from "node:fs/promises";
 import path from "node:path";
+
+import Archive from "./archive.js";
 
 /**
  * Manage an archive of statuses.
  */
-class StatusArchive {
-
-  /**
-   * Path to the archive directory.
-   * @type {string}
-   */
-  archivePath = null;
-
-  /**
-   * An array of statuses in the archive.
-   * @type {Array}
-   */
-  statuses = Array();
-
-  /**
-   * A flag to indicate if the status cache is stale.
-   * @type {boolean}
-   */
-  cacheStale = true;
-
-  /**
-   * Options to be used when writing files to the archive.
-   * @type {object}
-   */
-  writeFileOptions = {
-    flag: "wx"
-  };
-
-  /**
-   * Manage the archive of statuses.
-   * @param {string} archivePath The path to the status archive directory.
-   * @param {boolean} overwriteFlag Flag indicating if files should be overwritten.
-   * @throws {TypeError} When the parameters are incorrect.
-   */
-  constructor( archivePath, overwriteFlag = false ) {
-
-    let syncStatus = null;
-
-    try {
-      syncStatus = lstatSync( archivePath );
-    // eslint-disable-next-line no-unused-vars
-    } catch ( err ) {
-      throw new TypeError( "Archive path not found" );
-
-    }
-
-    if ( !syncStatus.isDirectory() ) {
-      throw new TypeError( "Archive path must be a directory" );
-    }
-
-    this.archivePath = archivePath;
-
-    if ( overwriteFlag ) {
-      this.writeFileOptions = {
-        flag: "w"
-      };
-    }
-
-  }
+class StatusArchive extends Archive {
 
   /**
    * Add any missing statuses to the archive.
@@ -89,7 +32,7 @@ class StatusArchive {
 
       if (
         this.writeFileOptions.flag === "wx" &&
-        this.statuses.indexOf( fileName ) > -1 ) {
+        this.contents.indexOf( fileName ) > -1 ) {
         continue;
       }
 
@@ -124,7 +67,7 @@ class StatusArchive {
       await this.loadStatuses();
     }
 
-    return this.statuses.length;
+    return this.contents.length;
   }
 
   /**
@@ -134,19 +77,19 @@ class StatusArchive {
   async loadStatuses() {
 
     if ( this.cacheStale === false ) {
-      return this.statuses.length;
+      return this.contents.length;
     }
 
-    this.statuses = Array();
+    this.contents = Array();
 
-    this.statuses = await readdir(
+    this.contents = await readdir(
       this.archivePath
     );
 
-    this.statuses = this.statuses.filter( status => path.extname( status ) === ".json" );
+    this.contents = this.contents.filter( status => path.extname( status ) === ".json" );
 
     this.cacheStale = false;
-    return this.statuses.length;
+    return this.contents.length;
   }
 
   /**
@@ -157,12 +100,12 @@ class StatusArchive {
   async getStatuses() {
 
     if ( this.cacheStale === false ) {
-      return this.statuses;
+      return this.contents;
     }
 
     await this.loadStatuses();
 
-    return this.statuses;
+    return this.contents;
   }
 }
 
