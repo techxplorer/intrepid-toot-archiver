@@ -1,7 +1,7 @@
 /**
  * @file The defintition of the StatusArchive class.
  */
-import { readdir, writeFile } from "node:fs/promises";
+import { writeFile } from "node:fs/promises";
 import path from "node:path";
 
 import Archive from "./archive.js";
@@ -10,6 +10,17 @@ import Archive from "./archive.js";
  * Manage an archive of statuses.
  */
 class StatusArchive extends Archive {
+
+  /**
+   * Manage the Status Archive.
+   * @param {string} archivePath The path to the content archive directory.
+   * @param {boolean} overwriteFlag Flag indicating if files should be overwritten.
+   * @throws {TypeError} When the parameters are incorrect.
+   */
+  constructor( archivePath, overwriteFlag = false ) {
+    super( archivePath, overwriteFlag );
+    this.fileExtension = ".json";
+  }
 
   /**
    * Add any missing statuses to the archive.
@@ -63,11 +74,7 @@ class StatusArchive extends Archive {
    */
   async getStatusCount() {
 
-    if ( this.cacheStale ) {
-      await this.loadStatuses();
-    }
-
-    return this.contents.length;
+    return await this.getContentsCount();
   }
 
   /**
@@ -76,20 +83,7 @@ class StatusArchive extends Archive {
    */
   async loadStatuses() {
 
-    if ( this.cacheStale === false ) {
-      return this.contents.length;
-    }
-
-    this.contents = Array();
-
-    this.contents = await readdir(
-      this.archivePath
-    );
-
-    this.contents = this.contents.filter( status => path.extname( status ) === ".json" );
-
-    this.cacheStale = false;
-    return this.contents.length;
+    return await this.loadContents();
   }
 
   /**
@@ -99,13 +93,7 @@ class StatusArchive extends Archive {
    */
   async getStatuses() {
 
-    if ( this.cacheStale === false ) {
-      return this.contents;
-    }
-
-    await this.loadStatuses();
-
-    return this.contents;
+    return await this.getContents();
   }
 }
 

@@ -3,6 +3,8 @@
  */
 
 import { lstatSync } from "node:fs";
+import { readdir } from "node:fs/promises";
+import path from "node:path";
 
 /**
  * Base class for all of the archives to reduce code duplications.
@@ -36,6 +38,12 @@ class Archive {
   };
 
   /**
+   * The file extension of content in the archive.
+   * @type {string}
+   */
+  fileExtension = undefined;
+
+  /**
    * Manage the archive of contents.
    * @param {string} archivePath The path to the content archive directory.
    * @param {boolean} overwriteFlag Flag indicating if files should be overwritten.
@@ -65,6 +73,63 @@ class Archive {
       };
     }
 
+  }
+
+  /**
+   * Build the list of content in the archive if necessary or use the cached list.
+   * @returns {number} The number of statuses in the archive.
+   */
+  async loadContents() {
+
+    if ( this.fileExtension === undefined ) {
+      throw new TypeError( "The fileExt property is required" );
+    }
+
+    if ( this.cacheStale === false ) {
+      return this.contents.length;
+    }
+
+    this.contents = Array();
+
+    this.contents = await readdir(
+      this.archivePath
+    );
+
+    this.contents = this.contents.filter(
+      contentFile => path.extname( contentFile ) === this.fileExtension
+    );
+
+    this.cacheStale = false;
+    return this.contents.length;
+  }
+
+  /**
+   * Get the number of content items in the archive.
+   * @returns {number} The number of content items in the archive.
+   */
+  async getContentsCount() {
+
+    if ( this.cacheStale ) {
+      await this.loadContents();
+    }
+
+    return this.contents.length;
+  }
+
+  /**
+   * Get the array of content in the archive.
+   * Uses the already loaded content list, or loads them if required.
+   * @returns {Array} The array of statuses from the archive.
+   */
+  async getContents() {
+
+    if ( this.cacheStale === false ) {
+      return this.contents;
+    }
+
+    await this.loadContents();
+
+    return this.contents;
   }
 
 }

@@ -1,7 +1,7 @@
 /**
  * @file The defintition of the MediaArchive class.
  */
-import { readdir, writeFile } from "node:fs/promises";
+import { writeFile } from "node:fs/promises";
 import path from "node:path";
 
 import Archive from "./archive.js";
@@ -12,16 +12,23 @@ import Archive from "./archive.js";
 class MediaArchive extends Archive {
 
   /**
+   * Manage the Media Archive.
+   * @param {string} archivePath The path to the content archive directory.
+   * @param {boolean} overwriteFlag Flag indicating if files should be overwritten.
+   * @throws {TypeError} When the parameters are incorrect.
+   */
+  constructor( archivePath, overwriteFlag = false ) {
+    super( archivePath, overwriteFlag );
+    this.fileExtension = ".jpeg";
+  }
+
+  /**
    * Get the number of media files in the archive.
    * @returns {number} The number of statuses in the archive.
    */
   async getMediaCount() {
 
-    if ( this.cacheStale ) {
-      await this.loadMedia();
-    }
-
-    return this.contents.length;
+    return await this.getContentsCount();
   }
 
   /**
@@ -30,20 +37,8 @@ class MediaArchive extends Archive {
    */
   async loadMedia() {
 
-    if ( this.cacheStale === false ) {
-      return this.contents.length;
-    }
+    return await this.loadContents();
 
-    this.contents = Array();
-
-    this.contents = await readdir(
-      this.archivePath
-    );
-
-    this.contents = this.contents.filter( media => path.extname( media ) === ".jpeg" );
-
-    this.cacheStale = false;
-    return this.contents.length;
   }
 
   /**
@@ -124,13 +119,7 @@ class MediaArchive extends Archive {
    */
   async getMedia() {
 
-    if ( this.cacheStale === false ) {
-      return this.contents;
-    }
-
-    await this.loadMedia();
-
-    return this.contents;
+    return await this.getContents();
   }
 
 }

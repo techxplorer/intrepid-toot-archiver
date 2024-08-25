@@ -2,7 +2,7 @@
  * @file The defintition of the ContentArchive class.
  */
 
-import { readdir, readFile, writeFile } from "node:fs/promises";
+import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 import Archive from "./archive.js";
@@ -12,6 +12,17 @@ import ContentCreator from "./content-creator.js";
  * Manage an archive of contents.
  */
 class ContentArchive extends Archive {
+
+  /**
+   * Manage the Content Archive.
+   * @param {string} archivePath The path to the content archive directory.
+   * @param {boolean} overwriteFlag Flag indicating if files should be overwritten.
+   * @throws {TypeError} When the parameters are incorrect.
+   */
+  constructor( archivePath, overwriteFlag = false ) {
+    super( archivePath, overwriteFlag );
+    this.fileExtension = ".md";
+  }
 
   /**
    * Add any missing contents to the archive.
@@ -85,11 +96,7 @@ class ContentArchive extends Archive {
    */
   async getContentCount() {
 
-    if ( this.cacheStale ) {
-      await this.loadContent();
-    }
-
-    return this.contents.length;
+    return await this.getContentsCount();
   }
 
   /**
@@ -98,21 +105,17 @@ class ContentArchive extends Archive {
    */
   async loadContent() {
 
-    if ( this.cacheStale === false ) {
-      return this.contents;
-    }
+    return await this.loadContents();
+  }
 
-    this.contents = Array();
+  /**
+   * Get the array of content in the archive.
+   * Uses the already loaded content list, or loads them if required.
+   * @returns {Array} The array of statuses from the archive.
+   */
+  async getContent() {
 
-    this.contents = await readdir(
-      this.archivePath
-    );
-
-    this.contents = this.contents.filter( content => path.extname( content ) === ".md" );
-
-    this.cacheStale = false;
-
-    return this.contents.length;
+    return await this.getContents();
   }
 }
 
