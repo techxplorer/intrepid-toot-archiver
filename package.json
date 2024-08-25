@@ -1,6 +1,6 @@
 {
   "name": "intrepid-toot-archiver",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A CLI app to make an archive of toots",
   "main": "index.js",
   "bin": {
@@ -9,6 +9,7 @@
   "type": "module",
   "scripts": {
     "test": "node --test",
+    "coverage": "node --test --experimental-test-coverage",
     "lint": "eslint .",
     "doc": "jsdoc -c jsdoc.config.json",
     "coverage": "node --test --experimental-test-coverage"
@@ -38,7 +39,6 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.8.0",
-    "ci-info": "^4.0.0",
     "eslint": "^9.8.0",
     "eslint-config-jquery": "^3.0.2",
     "eslint-plugin-jsdoc": "^50.0.0",

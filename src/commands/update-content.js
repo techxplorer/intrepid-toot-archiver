@@ -69,14 +69,14 @@ class UpdateContent {
       console.log( chalk.yellow( "Warning: Overwriting existing content" ) );
     }
 
-    const statusCount = await statusArchive.loadStatuses();
+    const statusCount = await statusArchive.loadContents();
 
     if ( statusCount === 0 ) {
       console.log( chalk.red( "Error: Status archive is empty" ) );
       process.exit( 1 );
     }
 
-    const contentCount = await contentArchive.loadContent();
+    const contentCount = await contentArchive.loadContents();
 
     console.log( `Number of statuses in status archive: ${ statusCount }` );
 

@@ -3,10 +3,8 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 import { after, afterEach, before, describe, it } from "node:test";
 
-import ci from "ci-info";
 import nock from "nock";
 import { rimraf } from "rimraf";
-
 
 const testFailArchivePathOne = "";
 const testFailArchivePathMsgOne = "Archive path not found";
@@ -16,12 +14,17 @@ const testPassArchivePath = path.resolve( "tests/artefacts/media-archive" );
 
 const testFailMediaUrl = "";
 const testFailMediaUrlMsg = "Media URL must be a valid URL object";
+const testFetchUrlHost = "https://static.theblower.au";
+const testFetchUrlPath = "/media_attachments/files/112/546/982/645/822/223/original/";
+const testMediaFileName = "dfb3792535a960dd.jpeg";
 const testPassMediaUrl = new URL(
-  "https://static.theblower.au/media_attachments/files/112/546/982/645/822/223/original/dfb3792535a960dd.jpeg"
+  testFetchUrlHost +
+  testFetchUrlPath +
+  testMediaFileName
 );
 
 const testPassMediaCount = 1;
-const testMediaFileName = "dfb3792535a960dd.jpeg";
+
 
 const testStatusFileName = "112546982904162819.json";
 const testExpectedStatusFilePath = path.join(
@@ -91,7 +94,7 @@ describe( "MediaArchive", () => {
     } );
   } );
 
-  describe( "getMediaCount", async() => {
+  describe( "getContentsCount", async() => {
 
     it( "should return an empty array for an empty archive", async() => {
 
@@ -99,10 +102,10 @@ describe( "MediaArchive", () => {
         testPassArchivePath
       );
 
-      archive.media = [];
+      archive.contents = [];
       archive.cacheStale = false;
 
-      const statusCount = await archive.getMediaCount();
+      const statusCount = await archive.getContentsCount();
 
       assert.equal(
         statusCount,
@@ -116,12 +119,7 @@ describe( "MediaArchive", () => {
 
     before( () => {
       nockBack.fixtures = nockArtefacts;
-
-      if ( ci.isCI ) {
-        nockBack.setMode( "lockdown" );
-      } else {
-        nockBack.setMode( "record" );
-      }
+      nockBack.setMode( "lockdown" );
 
       tidyArchiveDir();
 
@@ -155,13 +153,29 @@ describe( "MediaArchive", () => {
 
     } );
 
+    it( "should throw an error if the media cannot be fetched", async() => {
+      const archive = new MediaArchive(
+        testPassArchivePath
+      );
+
+      nock( testFetchUrlHost )
+        .get( testFetchUrlPath + testMediaFileName )
+        .reply( 404 );
+
+      await assert.rejects(
+        async() => {
+          await archive.addMedia( testPassMediaUrl );
+        }
+      );
+    } );
+
     it( "should fetch a media attachment and add it to the archive", async() => {
 
       const archive = new MediaArchive(
         testPassArchivePath
       );
 
-      let statusCount = await archive.getMediaCount();
+      let statusCount = await archive.getContentsCount();
 
       assert.equal(
         statusCount,
@@ -174,7 +188,7 @@ describe( "MediaArchive", () => {
 
       nockDone();
 
-      statusCount = await archive.getMediaCount();
+      statusCount = await archive.getContentsCount();
 
       assert.equal(
         statusCount,
@@ -189,7 +203,7 @@ describe( "MediaArchive", () => {
         testPassArchivePath
       );
 
-      let statusCount = await archive.getMediaCount();
+      let statusCount = await archive.getContentsCount();
 
       assert.equal(
         statusCount,
@@ -200,7 +214,7 @@ describe( "MediaArchive", () => {
 
       await archive.addMedia( testPassMediaUrl );
 
-      statusCount = await archive.getMediaCount();
+      statusCount = await archive.getContentsCount();
 
       assert.equal(
         statusCount,
@@ -232,7 +246,7 @@ describe( "MediaArchive", () => {
         true
       );
 
-      let statusCount = await archive.getMediaCount();
+      let statusCount = await archive.getContentsCount();
 
       assert.equal(
         statusCount,
@@ -255,7 +269,7 @@ describe( "MediaArchive", () => {
 
       nockDone();
 
-      statusCount = await archive.getMediaCount();
+      statusCount = await archive.getContentsCount();
 
       assert.equal(
         statusCount,
@@ -264,16 +278,11 @@ describe( "MediaArchive", () => {
     } );
   } );
 
-  describe( "getMedia", async() => {
+  describe( "getContents", async() => {
 
     before( () => {
       nockBack.fixtures = nockArtefacts;
-
-      if ( ci.isCI ) {
-        nockBack.setMode( "lockdown" );
-      } else {
-        nockBack.setMode( "record" );
-      }
+      nockBack.setMode( "lockdown" );
 
       tidyArchiveDir();
 
@@ -292,7 +301,7 @@ describe( "MediaArchive", () => {
         testPassArchivePath
       );
 
-      const media = await archive.getMedia();
+      const media = await archive.getContents();
 
       assert.ok(
         Array.isArray( media )
@@ -310,7 +319,7 @@ describe( "MediaArchive", () => {
         testPassArchivePath
       );
 
-      let media = await archive.getMedia();
+      let media = await archive.getContents();
 
       assert.ok(
         Array.isArray( media )
@@ -327,7 +336,7 @@ describe( "MediaArchive", () => {
 
       nockDone();
 
-      media = await archive.getMedia();
+      media = await archive.getContents();
 
       assert.ok(
         Array.isArray( media )
@@ -339,7 +348,58 @@ describe( "MediaArchive", () => {
       );
 
       assert.notEqual(
-        archive.media.indexOf( testMediaFileName ),
+        archive.contents.indexOf( testMediaFileName ),
+        -1
+      );
+
+      assert.notEqual(
+        media.indexOf( testMediaFileName ),
+        -1
+      );
+
+    } );
+
+    it( "should return the cached array with elements for an archive with media", async() => {
+      const archive = new MediaArchive(
+        testPassArchivePath
+      );
+
+      let media = await archive.getContents();
+
+      assert.ok(
+        Array.isArray( media )
+      );
+
+      assert.equal(
+        media.length,
+        0
+      );
+
+      const { nockDone } = await nockBack( "media-attachment.json" );
+
+      await archive.addMedia( testPassMediaUrl );
+
+      nockDone();
+
+      media = await archive.getContents();
+
+      assert.ok(
+        archive.cacheStale === false
+      );
+
+      media = await archive.getContents();
+
+      assert.ok(
+        Array.isArray( media )
+      );
+
+      assert.equal(
+        media.length,
+        testPassMediaCount
+      );
+
+      assert.notEqual(
+        archive.contents.indexOf( testMediaFileName ),
         -1
       );
 
@@ -356,12 +416,7 @@ describe( "MediaArchive", () => {
 
     before( () => {
       nockBack.fixtures = nockArtefacts;
-
-      if ( ci.isCI ) {
-        nockBack.setMode( "lockdown" );
-      } else {
-        nockBack.setMode( "record" );
-      }
+      nockBack.setMode( "lockdown" );
 
       tidyArchiveDir();
 
@@ -430,7 +485,7 @@ describe( "MediaArchive", () => {
         testPassArchivePath
       );
 
-      let statusCount = await archive.getMediaCount();
+      let statusCount = await archive.getContentsCount();
 
       assert.equal(
         statusCount,
@@ -443,7 +498,7 @@ describe( "MediaArchive", () => {
 
       nockDone();
 
-      statusCount = await archive.getMediaCount();
+      statusCount = await archive.getContentsCount();
 
       assert.equal(
         statusCount,

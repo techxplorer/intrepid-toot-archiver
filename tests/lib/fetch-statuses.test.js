@@ -2,7 +2,6 @@ import assert from "node:assert/strict";
 import { before, describe, it } from "node:test";
 import path from "node:path";
 
-import ci from "ci-info";
 import isURL from "validator/lib/isURL.js";
 import nock from "nock";
 
@@ -20,7 +19,10 @@ const testUserIdMessage = "A numeric userId is required";
 const testSingleStatusId = "112793425453345288";
 const testFetchedStatusCount = 20;
 
-const testFetchURL = `https://${ testPassFQDN }/api/v1/accounts/${ testPassUserId }/statuses?exclude_replies=true&exclude_reblogs=true`;
+const testFetchUrlHost =  `https://${ testPassFQDN }`;
+const testFetchUrlPath = `/api/v1/accounts/${ testPassUserId }/statuses`;
+const testFetchUrlQuery = "?exclude_replies=true&exclude_reblogs=true";
+const testFetchURL = testFetchUrlHost + testFetchUrlPath + testFetchUrlQuery;
 
 const nockArtefacts = path.resolve( "tests/artefacts/nock" );
 const nockBack = nock.back;
@@ -119,12 +121,25 @@ describe( "FetchStatuses", () => {
   describe( "fetchData", async() => {
     before( () => {
       nockBack.fixtures = nockArtefacts;
+      nockBack.setMode( "lockdown" );
+    } );
 
-      if ( ci.isCI ) {
-        nockBack.setMode( "lockdown" );
-      } else {
-        nockBack.setMode( "record" );
-      }
+    it( "should throw an error when the request fails", async() => {
+      const fetcher = new FetchStatuses(
+        testPassFQDN,
+        testPassUserId
+      );
+
+      nock( testFetchUrlHost )
+        .get( testFetchUrlPath + testFetchUrlQuery )
+        .reply( 404 );
+
+      await assert.rejects(
+        async() => {
+          await fetcher.fetchData();
+        }
+      );
+
     } );
 
     it( "should successfully fetch the user data JSON object", async() => {

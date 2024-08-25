@@ -3,7 +3,6 @@ import { lstatSync, readFileSync, copyFileSync } from "node:fs";
 import path from "node:path";
 import { after, afterEach, before, describe, it } from "node:test";
 
-import ci from "ci-info";
 import nock from "nock";
 import { rimraf } from "rimraf";
 
@@ -104,7 +103,7 @@ describe( "ContentArchive", () => {
     } );
   } );
 
-  describe( "getContentCount", async() => {
+  describe( "getContentsCount", async() => {
 
     before( () => {
       tidyArchiveDir();
@@ -124,7 +123,7 @@ describe( "ContentArchive", () => {
       archive.contents = [];
       archive.cacheStale = false;
 
-      const contentCount = await archive.getContentCount();
+      const contentCount = await archive.getContentsCount();
 
       assert.equal(
         contentCount,
@@ -156,7 +155,7 @@ describe( "ContentArchive", () => {
         testPassArchivePath
       );
 
-      const contentCount = await archive.getContentCount();
+      const contentCount = await archive.getContentsCount();
 
       assert.equal(
         contentCount,
@@ -165,7 +164,7 @@ describe( "ContentArchive", () => {
     } );
   } );
 
-  describe( "loadContent", async() => {
+  describe( "loadContents", async() => {
 
     before( () => {
       tidyArchiveDir();
@@ -182,7 +181,7 @@ describe( "ContentArchive", () => {
         testPassArchivePath
       );
 
-      let contentCount = await archive.loadContent();
+      let contentCount = await archive.loadContents();
 
       assert.equal(
         contentCount,
@@ -208,7 +207,7 @@ describe( "ContentArchive", () => {
 
       archive.cacheStale = true;
 
-      contentCount = await archive.loadContent();
+      contentCount = await archive.loadContents();
 
       assert.equal(
         contentCount,
@@ -222,12 +221,7 @@ describe( "ContentArchive", () => {
 
     before( async() => {
       nockBack.fixtures = nockArtefacts;
-
-      if ( ci.isCI ) {
-        nockBack.setMode( "lockdown" );
-      } else {
-        nockBack.setMode( "record" );
-      }
+      nockBack.setMode( "lockdown" );
 
       const fetcher = new FetchStatuses(
         testPassFQDN,
@@ -303,7 +297,7 @@ describe( "ContentArchive", () => {
       );
 
       const addedStatuses = await archive.addContent(
-        await statusArchive.getStatuses(),
+        await statusArchive.getContents(),
         statusArchive.archivePath
       );
 
@@ -323,7 +317,7 @@ describe( "ContentArchive", () => {
       );
 
       const addedStatuses = await archive.addContent(
-        await statusArchive.getStatuses(),
+        await statusArchive.getContents(),
         statusArchive.archivePath
       );
 
@@ -337,7 +331,7 @@ describe( "ContentArchive", () => {
       await assert.rejects(
         async() => {
           await archive.addContent(
-            await statusArchive.getStatuses(),
+            await statusArchive.getContents(),
             statusArchive.archivePath
           );
         }
@@ -355,7 +349,7 @@ describe( "ContentArchive", () => {
       );
 
       const addedStatuses = await archive.addContent(
-        await statusArchive.getStatuses(),
+        await statusArchive.getContents(),
         statusArchive.archivePath
       );
 
@@ -369,7 +363,7 @@ describe( "ContentArchive", () => {
       await assert.doesNotReject(
         async() => {
           await archive.addContent(
-            await statusArchive.getStatuses(),
+            await statusArchive.getContents(),
             statusArchive.archivePath
           );
         }
@@ -391,7 +385,7 @@ describe( "ContentArchive", () => {
       );
 
       const addedStatuses = await archive.addContent(
-        await statusArchive.getStatuses(),
+        await statusArchive.getContents(),
         statusArchive.archivePath
       );
 
@@ -411,7 +405,7 @@ describe( "ContentArchive", () => {
       );
 
       await archive.addContent(
-        await statusArchive.getStatuses(),
+        await statusArchive.getContents(),
         statusArchive.archivePath
       );
 

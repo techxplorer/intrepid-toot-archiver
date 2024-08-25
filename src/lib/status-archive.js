@@ -1,71 +1,25 @@
 /**
  * @file The defintition of the StatusArchive class.
  */
-import { lstatSync } from "node:fs";
-import { readdir, writeFile } from "node:fs/promises";
+import { writeFile } from "node:fs/promises";
 import path from "node:path";
+
+import Archive from "./archive.js";
 
 /**
  * Manage an archive of statuses.
  */
-class StatusArchive {
+class StatusArchive extends Archive {
 
   /**
-   * Path to the archive directory.
-   * @type {string}
-   */
-  archivePath = null;
-
-  /**
-   * An array of statuses in the archive.
-   * @type {Array}
-   */
-  statuses = Array();
-
-  /**
-   * A flag to indicate if the status cache is stale.
-   * @type {boolean}
-   */
-  cacheStale = true;
-
-  /**
-   * Options to be used when writing files to the archive.
-   * @type {object}
-   */
-  writeFileOptions = {
-    flag: "wx"
-  };
-
-  /**
-   * Manage the archive of statuses.
-   * @param {string} archivePath The path to the status archive directory.
+   * Manage the Status Archive.
+   * @param {string} archivePath The path to the content archive directory.
    * @param {boolean} overwriteFlag Flag indicating if files should be overwritten.
    * @throws {TypeError} When the parameters are incorrect.
    */
   constructor( archivePath, overwriteFlag = false ) {
-
-    let syncStatus = null;
-
-    try {
-      syncStatus = lstatSync( archivePath );
-    // eslint-disable-next-line no-unused-vars
-    } catch ( err ) {
-      throw new TypeError( "Archive path not found" );
-
-    }
-
-    if ( !syncStatus.isDirectory() ) {
-      throw new TypeError( "Archive path must be a directory" );
-    }
-
-    this.archivePath = archivePath;
-
-    if ( overwriteFlag ) {
-      this.writeFileOptions = {
-        flag: "w"
-      };
-    }
-
+    super( archivePath, overwriteFlag );
+    this.fileExtension = ".json";
   }
 
   /**
@@ -80,7 +34,7 @@ class StatusArchive {
       throw new TypeError( "New statuses must be an array" );
     }
 
-    await this.loadStatuses();
+    await this.loadContents();
 
     let addedStatuses = 0;
 
@@ -89,7 +43,7 @@ class StatusArchive {
 
       if (
         this.writeFileOptions.flag === "wx" &&
-        this.statuses.indexOf( fileName ) > -1 ) {
+        this.contents.indexOf( fileName ) > -1 ) {
         continue;
       }
 
@@ -114,56 +68,6 @@ class StatusArchive {
 
   }
 
-  /**
-   * Get the number of statuses in the archive.
-   * @returns {number} The number of statuses in the archive.
-   */
-  async getStatusCount() {
-
-    if ( this.cacheStale ) {
-      await this.loadStatuses();
-    }
-
-    return this.statuses.length;
-  }
-
-  /**
-   * Get a list of statuses in the archive.
-   * @returns {number} The number of statuses in the archive.
-   */
-  async loadStatuses() {
-
-    if ( this.cacheStale === false ) {
-      return this.statuses.length;
-    }
-
-    this.statuses = Array();
-
-    this.statuses = await readdir(
-      this.archivePath
-    );
-
-    this.statuses = this.statuses.filter( status => path.extname( status ) === ".json" );
-
-    this.cacheStale = false;
-    return this.statuses.length;
-  }
-
-  /**
-   * Get the array of statuses in the archive.
-   * Uses the already loaded statuses, or loads them if required.
-   * @returns {Array} The array of statuses from the archive.
-   */
-  async getStatuses() {
-
-    if ( this.cacheStale === false ) {
-      return this.statuses;
-    }
-
-    await this.loadStatuses();
-
-    return this.statuses;
-  }
 }
 
 export default StatusArchive;

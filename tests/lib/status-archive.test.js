@@ -3,7 +3,6 @@ import { lstatSync, readFileSync, copyFileSync } from "node:fs";
 import path from "node:path";
 import { after, afterEach, before, describe, it } from "node:test";
 
-import ci from "ci-info";
 import nock from "nock";
 import { rimraf } from "rimraf";
 
@@ -93,12 +92,7 @@ describe( "StatusArchive", () => {
 
     before( () => {
       nockBack.fixtures = nockArtefacts;
-
-      if ( ci.isCI ) {
-        nockBack.setMode( "lockdown" );
-      } else {
-        nockBack.setMode( "record" );
-      }
+      nockBack.setMode( "lockdown" );
 
       tidyArchiveDir();
 
@@ -324,23 +318,84 @@ describe( "StatusArchive", () => {
     } );
   } );
 
-  describe( "getStatusCount", async() => {
+  describe( "getContentsCount", async() => {
 
-    it( "should return an empty array for an empty archive", async() => {
+    before( () => {
+      nockBack.fixtures = nockArtefacts;
+      nockBack.setMode( "lockdown" );
+
+      tidyArchiveDir();
+
+    } );
+
+    after( () => {
+      tidyArchiveDir();
+    } );
+
+    it( "should return zero for an empty archive", async() => {
 
       const archive = new StatusArchive(
         testPassArchivePath
       );
 
-      archive.statuses = [];
+      archive.contents = [];
       archive.cacheStale = false;
 
-      const statusCount = await archive.getStatusCount();
+      const statusCount = await archive.getContentsCount();
 
       assert.equal(
         statusCount,
         0
       );
+
+    } );
+
+    it( "should not return zero for an archive with statuses", async() => {
+
+      const archive = new StatusArchive(
+        testPassArchivePath
+      );
+
+      let statusCount = await archive.getContentsCount();
+
+      assert.equal(
+        statusCount,
+        0
+      );
+
+      const fetcher = new FetchStatuses(
+        testPassFQDN,
+        testPassUserId
+      );
+
+      const { nockDone } = await nockBack( "user-statuses.json" );
+
+      await fetcher.fetchData();
+
+      nockDone();
+
+      await archive.addStatuses(
+        fetcher.fetchedStatusData
+      );
+
+      statusCount = await archive.getContentsCount();
+
+      assert.equal(
+        statusCount,
+        testPassStatusCount
+      );
+
+      assert.ok(
+        archive.cacheStale === false
+      );
+
+      statusCount = await archive.getContentsCount();
+
+      assert.equal(
+        statusCount,
+        testPassStatusCount
+      );
+
 
     } );
   } );
@@ -349,12 +404,7 @@ describe( "StatusArchive", () => {
 
     before( () => {
       nockBack.fixtures = nockArtefacts;
-
-      if ( ci.isCI ) {
-        nockBack.setMode( "lockdown" );
-      } else {
-        nockBack.setMode( "record" );
-      }
+      nockBack.setMode( "lockdown" );
 
       tidyArchiveDir();
 
@@ -370,7 +420,7 @@ describe( "StatusArchive", () => {
         testPassArchivePath
       );
 
-      let statusCount = await archive.loadStatuses();
+      let statusCount = await archive.loadContents();
 
       assert.equal(
         statusCount,
@@ -397,7 +447,7 @@ describe( "StatusArchive", () => {
         testPassStatusCount
       );
 
-      statusCount = await archive.loadStatuses();
+      statusCount = await archive.loadContents();
 
       assert.equal(
         statusCount,
@@ -405,7 +455,7 @@ describe( "StatusArchive", () => {
       );
 
       assert.notEqual(
-        archive.statuses.indexOf( testStatusFileName ),
+        archive.contents.indexOf( testStatusFileName ),
         -1
       );
 
@@ -416,12 +466,7 @@ describe( "StatusArchive", () => {
 
     before( () => {
       nockBack.fixtures = nockArtefacts;
-
-      if ( ci.isCI ) {
-        nockBack.setMode( "lockdown" );
-      } else {
-        nockBack.setMode( "record" );
-      }
+      nockBack.setMode( "lockdown" );
 
       tidyArchiveDir();
 
@@ -436,7 +481,7 @@ describe( "StatusArchive", () => {
         testPassArchivePath
       );
 
-      let statuses = await archive.getStatuses();
+      let statuses = await archive.getContents();
 
       assert.ok(
         Array.isArray( statuses )
@@ -462,7 +507,7 @@ describe( "StatusArchive", () => {
         fetcher.fetchedStatusData
       );
 
-      statuses = await archive.getStatuses();
+      statuses = await archive.getContents();
 
       assert.ok(
         Array.isArray( statuses )

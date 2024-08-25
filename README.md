@@ -1,5 +1,9 @@
 # Intrepid Toot Archiver #
 
+[![GitHub License](https://img.shields.io/github/license/techxplorer/intrepid-toot-archiver?style=flat-square)](https://github.com/techxplorer/intrepid-toot-archiver/blob/master/LICENSE)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/techxplorer/intrepid-toot-archiver/node.js.yml?branch=master&style=flat-square)
+![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/techxplorer/intrepid-toot-archiver/master)
+
 The Intrepid Toot Archiver is a small CLI app that I use to create and archive
 of my public toots (toots / posts) from a [Mastodon][mastodon] server on the
 [fediverse][fedi]. Specifically my accounts at [theblower.au][theblower].
