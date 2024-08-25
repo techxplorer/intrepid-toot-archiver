@@ -34,7 +34,7 @@ class StatusArchive extends Archive {
       throw new TypeError( "New statuses must be an array" );
     }
 
-    await this.loadStatuses();
+    await this.loadContents();
 
     let addedStatuses = 0;
 
@@ -68,33 +68,6 @@ class StatusArchive extends Archive {
 
   }
 
-  /**
-   * Get the number of statuses in the archive.
-   * @returns {number} The number of statuses in the archive.
-   */
-  async getStatusCount() {
-
-    return await this.getContentsCount();
-  }
-
-  /**
-   * Get a list of statuses in the archive.
-   * @returns {number} The number of statuses in the archive.
-   */
-  async loadStatuses() {
-
-    return await this.loadContents();
-  }
-
-  /**
-   * Get the array of statuses in the archive.
-   * Uses the already loaded statuses, or loads them if required.
-   * @returns {Array} The array of statuses from the archive.
-   */
-  async getStatuses() {
-
-    return await this.getContents();
-  }
 }
 
 export default StatusArchive;

@@ -23,25 +23,6 @@ class MediaArchive extends Archive {
   }
 
   /**
-   * Get the number of media files in the archive.
-   * @returns {number} The number of statuses in the archive.
-   */
-  async getMediaCount() {
-
-    return await this.getContentsCount();
-  }
-
-  /**
-   * Get a list of media files in the archive.
-   * @returns {number} The number of statuses in the archive.
-   */
-  async loadMedia() {
-
-    return await this.loadContents();
-
-  }
-
-  /**
    * Add any media attachments included in the status.
    * @param {object} status A status object.
    * @returns {number} The number of media files added to the archive.
@@ -82,7 +63,7 @@ class MediaArchive extends Archive {
 
     const mediaFileName = path.basename( mediaUrl.pathname );
 
-    await this.loadMedia();
+    await this.loadContents();
 
     if (
       this.writeFileOptions.flag === "wx" &&
@@ -110,16 +91,6 @@ class MediaArchive extends Archive {
     }
 
     this.cacheStale = true;
-  }
-
-  /**
-   * Get the array of media in the archive.
-   * Uses the already loaded media list, or loads them if required.
-   * @returns {Array} The array of statuses from the archive.
-   */
-  async getMedia() {
-
-    return await this.getContents();
   }
 
 }

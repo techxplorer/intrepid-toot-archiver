@@ -94,7 +94,7 @@ describe( "MediaArchive", () => {
     } );
   } );
 
-  describe( "getMediaCount", async() => {
+  describe( "getContentsCount", async() => {
 
     it( "should return an empty array for an empty archive", async() => {
 
@@ -105,7 +105,7 @@ describe( "MediaArchive", () => {
       archive.contents = [];
       archive.cacheStale = false;
 
-      const statusCount = await archive.getMediaCount();
+      const statusCount = await archive.getContentsCount();
 
       assert.equal(
         statusCount,
@@ -175,7 +175,7 @@ describe( "MediaArchive", () => {
         testPassArchivePath
       );
 
-      let statusCount = await archive.getMediaCount();
+      let statusCount = await archive.getContentsCount();
 
       assert.equal(
         statusCount,
@@ -188,7 +188,7 @@ describe( "MediaArchive", () => {
 
       nockDone();
 
-      statusCount = await archive.getMediaCount();
+      statusCount = await archive.getContentsCount();
 
       assert.equal(
         statusCount,
@@ -203,7 +203,7 @@ describe( "MediaArchive", () => {
         testPassArchivePath
       );
 
-      let statusCount = await archive.getMediaCount();
+      let statusCount = await archive.getContentsCount();
 
       assert.equal(
         statusCount,
@@ -214,7 +214,7 @@ describe( "MediaArchive", () => {
 
       await archive.addMedia( testPassMediaUrl );
 
-      statusCount = await archive.getMediaCount();
+      statusCount = await archive.getContentsCount();
 
       assert.equal(
         statusCount,
@@ -246,7 +246,7 @@ describe( "MediaArchive", () => {
         true
       );
 
-      let statusCount = await archive.getMediaCount();
+      let statusCount = await archive.getContentsCount();
 
       assert.equal(
         statusCount,
@@ -269,7 +269,7 @@ describe( "MediaArchive", () => {
 
       nockDone();
 
-      statusCount = await archive.getMediaCount();
+      statusCount = await archive.getContentsCount();
 
       assert.equal(
         statusCount,
@@ -278,7 +278,7 @@ describe( "MediaArchive", () => {
     } );
   } );
 
-  describe( "getMedia", async() => {
+  describe( "getContents", async() => {
 
     before( () => {
       nockBack.fixtures = nockArtefacts;
@@ -301,7 +301,7 @@ describe( "MediaArchive", () => {
         testPassArchivePath
       );
 
-      const media = await archive.getMedia();
+      const media = await archive.getContents();
 
       assert.ok(
         Array.isArray( media )
@@ -319,7 +319,7 @@ describe( "MediaArchive", () => {
         testPassArchivePath
       );
 
-      let media = await archive.getMedia();
+      let media = await archive.getContents();
 
       assert.ok(
         Array.isArray( media )
@@ -336,7 +336,7 @@ describe( "MediaArchive", () => {
 
       nockDone();
 
-      media = await archive.getMedia();
+      media = await archive.getContents();
 
       assert.ok(
         Array.isArray( media )
@@ -364,7 +364,7 @@ describe( "MediaArchive", () => {
         testPassArchivePath
       );
 
-      let media = await archive.getMedia();
+      let media = await archive.getContents();
 
       assert.ok(
         Array.isArray( media )
@@ -381,13 +381,13 @@ describe( "MediaArchive", () => {
 
       nockDone();
 
-      media = await archive.getMedia();
+      media = await archive.getContents();
 
       assert.ok(
         archive.cacheStale === false
       );
 
-      media = await archive.getMedia();
+      media = await archive.getContents();
 
       assert.ok(
         Array.isArray( media )
@@ -485,7 +485,7 @@ describe( "MediaArchive", () => {
         testPassArchivePath
       );
 
-      let statusCount = await archive.getMediaCount();
+      let statusCount = await archive.getContentsCount();
 
       assert.equal(
         statusCount,
@@ -498,7 +498,7 @@ describe( "MediaArchive", () => {
 
       nockDone();
 
-      statusCount = await archive.getMediaCount();
+      statusCount = await archive.getContentsCount();
 
       assert.equal(
         statusCount,

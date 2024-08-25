@@ -39,7 +39,7 @@ class ContentArchive extends Archive {
 
     const contentCreator = new ContentCreator();
 
-    await this.loadContent();
+    await this.loadContents();
 
     let addedcontents = 0;
 
@@ -88,34 +88,6 @@ class ContentArchive extends Archive {
 
     return addedcontents;
 
-  }
-
-  /**
-   * Get the number of content items in the archive.
-   * @returns {number} The number of content items in the archive.
-   */
-  async getContentCount() {
-
-    return await this.getContentsCount();
-  }
-
-  /**
-   * Get a list of contents in the archive.
-   * @returns {number} The number of contents in the archive.
-   */
-  async loadContent() {
-
-    return await this.loadContents();
-  }
-
-  /**
-   * Get the array of content in the archive.
-   * Uses the already loaded content list, or loads them if required.
-   * @returns {Array} The array of statuses from the archive.
-   */
-  async getContent() {
-
-    return await this.getContents();
   }
 }
 

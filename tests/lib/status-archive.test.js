@@ -318,7 +318,7 @@ describe( "StatusArchive", () => {
     } );
   } );
 
-  describe( "getStatusCount", async() => {
+  describe( "getContentsCount", async() => {
 
     before( () => {
       nockBack.fixtures = nockArtefacts;
@@ -341,7 +341,7 @@ describe( "StatusArchive", () => {
       archive.contents = [];
       archive.cacheStale = false;
 
-      const statusCount = await archive.getStatusCount();
+      const statusCount = await archive.getContentsCount();
 
       assert.equal(
         statusCount,
@@ -356,7 +356,7 @@ describe( "StatusArchive", () => {
         testPassArchivePath
       );
 
-      let statusCount = await archive.getStatusCount();
+      let statusCount = await archive.getContentsCount();
 
       assert.equal(
         statusCount,
@@ -378,7 +378,7 @@ describe( "StatusArchive", () => {
         fetcher.fetchedStatusData
       );
 
-      statusCount = await archive.getStatusCount();
+      statusCount = await archive.getContentsCount();
 
       assert.equal(
         statusCount,
@@ -389,7 +389,7 @@ describe( "StatusArchive", () => {
         archive.cacheStale === false
       );
 
-      statusCount = await archive.getStatusCount();
+      statusCount = await archive.getContentsCount();
 
       assert.equal(
         statusCount,
@@ -420,7 +420,7 @@ describe( "StatusArchive", () => {
         testPassArchivePath
       );
 
-      let statusCount = await archive.loadStatuses();
+      let statusCount = await archive.loadContents();
 
       assert.equal(
         statusCount,
@@ -447,7 +447,7 @@ describe( "StatusArchive", () => {
         testPassStatusCount
       );
 
-      statusCount = await archive.loadStatuses();
+      statusCount = await archive.loadContents();
 
       assert.equal(
         statusCount,
@@ -481,7 +481,7 @@ describe( "StatusArchive", () => {
         testPassArchivePath
       );
 
-      let statuses = await archive.getStatuses();
+      let statuses = await archive.getContents();
 
       assert.ok(
         Array.isArray( statuses )
@@ -507,7 +507,7 @@ describe( "StatusArchive", () => {
         fetcher.fetchedStatusData
       );
 
-      statuses = await archive.getStatuses();
+      statuses = await archive.getContents();
 
       assert.ok(
         Array.isArray( statuses )
