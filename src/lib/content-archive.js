@@ -14,6 +14,12 @@ import ContentCreator from "./content-creator.js";
 class ContentArchive extends Archive {
 
   /**
+   * Instance of the ContentCreator class to create content from the status.
+   * @type {ContentCreator}
+   */
+  contentCreator = null;
+
+  /**
    * Manage the Content Archive.
    * @param {string} archivePath The path to the content archive directory.
    * @param {boolean} overwriteFlag Flag indicating if files should be overwritten.
@@ -22,6 +28,7 @@ class ContentArchive extends Archive {
   constructor( archivePath, overwriteFlag = false ) {
     super( archivePath, overwriteFlag );
     this.fileExtension = ".md";
+    this.contentCreator = new ContentCreator();
   }
 
   /**
@@ -36,8 +43,6 @@ class ContentArchive extends Archive {
     if ( !Array.isArray( newStatuses ) ) {
       throw new TypeError( "New statuses must be an array" );
     }
-
-    const contentCreator = new ContentCreator();
 
     await this.loadContents();
 
@@ -68,10 +73,10 @@ class ContentArchive extends Archive {
 
       const newContent = [];
       newContent.push( "---" );
-      newContent.push( contentCreator.createFrontMatter( status ) );
+      newContent.push( this.contentCreator.createFrontMatter( status ) );
       newContent.push( "---" );
-      newContent.push( contentCreator.convertContent( status.content ) );
-      newContent.push( contentCreator.makeLinkBack( status.url ) );
+      newContent.push( this.contentCreator.convertContent( status.content ) );
+      newContent.push( this.contentCreator.makeLinkBack( status.url ) );
       newContent.push( "" );
 
       await writeFile(
