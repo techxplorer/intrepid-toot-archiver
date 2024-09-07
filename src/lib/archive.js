@@ -91,13 +91,34 @@ class Archive {
 
     this.contents = Array();
 
-    this.contents = await readdir(
-      this.archivePath
-    );
+    if ( this.fileExtension !== false ) {
 
-    this.contents = this.contents.filter(
-      contentFile => path.extname( contentFile ) === this.fileExtension
-    );
+      this.contents = await readdir(
+        this.archivePath
+      );
+
+      this.contents = this.contents.filter(
+        contentFile => path.extname( contentFile ) === this.fileExtension
+      );
+
+    } else {
+
+      this.contents = await readdir(
+        this.archivePath,
+        {
+          withFileTypes: true
+        }
+      );
+
+      this.contents = this.contents
+        .filter( ( contentDir ) => {
+          return contentDir.isDirectory();
+        } )
+        .map( ( contentDir ) => {
+          return contentDir.name;
+        } );
+
+    }
 
     this.cacheStale = false;
     return this.contents.length;
