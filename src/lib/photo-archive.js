@@ -29,6 +29,9 @@ class ContentArchive extends Archive {
     super( archivePath, overwriteFlag );
     this.fileExtension = false;
     this.contentCreator = new ContentCreator();
+
+    // To keep things simple, always prohibit prevent file overwriting
+    this.writeFileOptions.flag = "wx";
   }
 
   /**
