@@ -9,7 +9,7 @@ import Archive from "./archive.js";
 import ContentCreator from "./content-creator.js";
 
 /**
- * Manage an archive of contents.
+ * Manage an archive of text content.
  */
 class ContentArchive extends Archive {
 
@@ -42,6 +42,10 @@ class ContentArchive extends Archive {
 
     if ( !Array.isArray( newStatuses ) ) {
       throw new TypeError( "New statuses must be an array" );
+    }
+
+    if ( typeof statusArchivePath !== "string" ) {
+      throw new TypeError( "The statusArchivePath parameter must be a string" );
     }
 
     await this.loadContents();

@@ -10,13 +10,13 @@ import ContentArchive from "../../src/lib/content-archive.js";
 import FetchStatuses from "../../src/lib/fetch-statuses.js";
 import StatusArchive from "../../src/lib/status-archive.js";
 
-
 const testFailArchivePathOne = "";
 const testFailArchivePathMsgOne = "Archive path not found";
 const testFailArchivePathTwo = path.resolve( import.meta.dirname, "../../package.json" );
 const testFailArchivePathMsgTwo = "Archive path must be a directory";
 const testPassArchivePath = path.resolve( "tests/artefacts/content-archive" );
 const testPassStatusArchivePath = path.resolve( "tests/artefacts/content-status-archive" );
+const testFailStatusArchivePathMsg = "The statusArchivePath parameter must be a string";
 
 const testContentFileName = "112793425453345288.md";
 const testActualContentsFilePath = path.join( testPassArchivePath, testContentFileName );
@@ -272,7 +272,7 @@ describe( "ContentArchive", () => {
       );
     } );
 
-    it( "should not throw a TypeError when the new statuses is not an array", async() => {
+    it( "should not throw a TypeError when all parameters are correct", async() => {
 
       const archive = new ContentArchive(
         testPassArchivePath
@@ -281,8 +281,42 @@ describe( "ContentArchive", () => {
       await assert.doesNotReject(
         async() => {
           await archive.addContent(
-            testPassStatusArray
+            testPassStatusArray,
+            testPassStatusArchivePath
           );
+        }
+      );
+    } );
+
+    it( "should throw a TypeError when the new status archive path is not a string", async() => {
+
+      const archive = new ContentArchive(
+        testPassArchivePath
+      );
+
+      await assert.rejects(
+        async() => {
+          await archive.addContent(
+            testPassStatusArray,
+            undefined
+          );
+        },
+        {
+          name: "TypeError",
+          message: testFailStatusArchivePathMsg
+        }
+      );
+
+      await assert.rejects(
+        async() => {
+          await archive.addContent(
+            testPassStatusArray,
+            1234
+          );
+        },
+        {
+          name: "TypeError",
+          message: testFailStatusArchivePathMsg
         }
       );
     } );
