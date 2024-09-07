@@ -21,6 +21,7 @@ The app has the following commands:
 | lookup-user    | Lookup the details of a user on the Mastodon server |
 | update-archive | Download new statuses from the server |
 | update-content | Update the content archive |
+| update-photos  | Update the content archive with photo posts |
 | help           | Display brief help for a command |
 
 ## Options ##
@@ -60,6 +61,12 @@ The content archive is a directory of Markdown files. Each file represents one s
 The `update-content` command will create one Markdown file for each archived status
 not in the content archive. The `--force` option will overwrite any existing
 Markdown files.
+
+## Posts and photo posts ##
+
+Using the `update-content` command creates one Markdown file for every status.
+In contrast, the `update-photos` command creates a directory for each status that
+contains an index.md file and the attached media.
 
 ## Road map ##
 
