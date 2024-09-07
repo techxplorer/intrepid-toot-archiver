@@ -10,6 +10,7 @@ import LookupUser from "../src/commands/lookup-user.js";
 import PackageUtils from "../src/utils/package-utils.js";
 import UpdateArchive from "../src/commands/update-archive.js";
 import UpdateContent from "../src/commands/update-content.js";
+import UpdatePhotos from "../src/commands/update-photos.js";
 
 const startTime = process.hrtime.bigint();
 
@@ -68,6 +69,15 @@ async function run() {
     .action( async() => {
       const options = program.opts();
       const updateContent = new UpdateContent( options.force, options.debug );
+      await updateContent.run();
+    } );
+
+  // Add the update photos command.
+  program.command( "update-photos" )
+    .description( "update photos using archived statuses" )
+    .action( async() => {
+      const options = program.opts();
+      const updateContent = new UpdatePhotos( options.force, options.debug );
       await updateContent.run();
     } );
 

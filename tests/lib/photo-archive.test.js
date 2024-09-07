@@ -1,25 +1,29 @@
 import assert from "node:assert/strict";
-import { lstatSync, readFileSync, copyFileSync } from "node:fs";
+import { lstatSync, copyFileSync, mkdirSync } from "node:fs";
 import path from "node:path";
 import { after, afterEach, before, describe, it } from "node:test";
 
 import nock from "nock";
 import { rimraf } from "rimraf";
 
-import ContentArchive from "../../src/lib/content-archive.js";
-import FetchStatuses from "../../src/lib/fetch-statuses.js";
-import StatusArchive from "../../src/lib/status-archive.js";
+import PhotoArchive from "../../src/lib/photo-archive.js";
+import MediaArchive from "../../src/lib/media-archive.js";
 
 const testFailArchivePathOne = "";
 const testFailArchivePathMsgOne = "Archive path not found";
 const testFailArchivePathTwo = path.resolve( import.meta.dirname, "../../package.json" );
 const testFailArchivePathMsgTwo = "Archive path must be a directory";
-const testPassArchivePath = path.resolve( "tests/artefacts/content-archive" );
-const testPassStatusArchivePath = path.resolve( "tests/artefacts/content-status-archive" );
+const testPassArchivePath = path.resolve( "tests/artefacts/photo-archive" );
+
 const testFailStatusArchivePathMsg = "The statusArchivePath parameter must be a string";
 
-const testContentFileName = "112793425453345288.md";
-const testActualContentsFilePath = path.join( testPassArchivePath, testContentFileName );
+const testContentFileName = "112546982904162819.md";
+const testContentDirName = path.basename( testContentFileName, ".md" );
+const testActualContentsFilePath = path.join(
+  testPassArchivePath,
+  testContentDirName,
+  "index.md"
+);
 const testExpectedContentsFilePath = path.join(
   path.resolve( "tests/artefacts/contents" ),
   testContentFileName
@@ -28,33 +32,38 @@ const testExpectedContentsFilePath = path.join(
 const testFailStatusArray = null;
 const testFailStatusArrayMsg = "New statuses must be an array";
 const testPassStatusArray = [];
+const testPassStatusArchivePath = path.resolve( "tests/artefacts/statuses" );
 
-const nockArtefacts = path.resolve( "tests/artefacts/nock" );
-const nockBack = nock.back;
+const testPassMediaArchive = path.resolve( "tests/artefacts/photo-media-archive" );
+const testFailMediaArchivePathMsg = "The mediaArchivePath parameter must be a string";
 
-const testPassFQDN = "theblower.au";
-const testPassUserId = "109308203429082969";
-const testPassStatusCount = 20;
+const testFetchUrlHost = "https://static.theblower.au";
+const testFetchUrlPath = "/media_attachments/files/112/546/982/645/822/223/original/";
+const testMediaFileName = "dfb3792535a960dd.jpeg";
+const testPassMediaUrl = new URL(
+  testFetchUrlHost +
+  testFetchUrlPath +
+  testMediaFileName
+);
+
+const testNewStatuses = [
+  "112546982904162819.json"
+];
 
 /**
  * Helper function to tidy the archive directory.
  */
 function tidyArchiveDir() {
   rimraf.sync(
-    testPassArchivePath + "/*.md",
+    testPassArchivePath + "/**/*",
     {
       preserveRoot: true,
       glob: true
     }
   );
-}
 
-/**
- * Helper function to tidy the status archive used in testing the content archive.
- */
-function tidyStatusArchiveDir() {
   rimraf.sync(
-    testPassStatusArchivePath + "/*.json",
+    testPassMediaArchive + "/*.jpeg",
     {
       preserveRoot: true,
       glob: true
@@ -62,12 +71,16 @@ function tidyStatusArchiveDir() {
   );
 }
 
-describe( "ContentArchive", () => {
+const nockArtefacts = path.resolve( "tests/artefacts/nock" );
+const nockBack = nock.back;
+
+describe( "PhotoArchive", () => {
+
   describe( "constructor", () => {
     it( "should throw a TypeError when the Archive path cannot be found", () => {
       assert.throws(
         () => {
-          new ContentArchive(
+          new PhotoArchive(
             testFailArchivePathOne
           );
         },
@@ -81,7 +94,7 @@ describe( "ContentArchive", () => {
     it( "should throw a TypeError when the Archive path is not a directory", () => {
       assert.throws(
         () => {
-          new ContentArchive(
+          new PhotoArchive(
             testFailArchivePathTwo
           );
         },
@@ -95,7 +108,7 @@ describe( "ContentArchive", () => {
     it( "should not throw an error when the parameters are valid", () => {
       assert.doesNotThrow(
         () => {
-          new ContentArchive(
+          new PhotoArchive(
             testPassArchivePath
           );
         }
@@ -116,7 +129,7 @@ describe( "ContentArchive", () => {
 
     it( "should return 0 for an empty archive", async() => {
 
-      const archive = new ContentArchive(
+      const archive = new PhotoArchive(
         testPassArchivePath
       );
 
@@ -140,6 +153,12 @@ describe( "ContentArchive", () => {
         )
       );
 
+      mkdirSync(
+        path.dirname(
+          testActualContentsFilePath
+        )
+      );
+
       copyFileSync(
         testExpectedContentsFilePath,
         testActualContentsFilePath
@@ -151,7 +170,7 @@ describe( "ContentArchive", () => {
         )
       );
 
-      const archive = new ContentArchive(
+      const archive = new PhotoArchive(
         testPassArchivePath
       );
 
@@ -177,7 +196,7 @@ describe( "ContentArchive", () => {
 
     it( "should return the accurate count of content in the archive", async() => {
 
-      const archive = new ContentArchive(
+      const archive = new PhotoArchive(
         testPassArchivePath
       );
 
@@ -191,6 +210,12 @@ describe( "ContentArchive", () => {
       assert.ok(
         lstatSync(
           testExpectedContentsFilePath
+        )
+      );
+
+      mkdirSync(
+        path.dirname(
+          testActualContentsFilePath
         )
       );
 
@@ -219,43 +244,25 @@ describe( "ContentArchive", () => {
 
   describe( "addContent", async() => {
 
-    before( async() => {
+    before( () => {
       nockBack.fixtures = nockArtefacts;
       nockBack.setMode( "lockdown" );
 
-      const fetcher = new FetchStatuses(
-        testPassFQDN,
-        testPassUserId
-      );
-
-      const { nockDone } = await nockBack( "user-statuses.json" );
-
-      await fetcher.fetchData();
-
-      nockDone();
-
-      const archive = new StatusArchive(
-        testPassStatusArchivePath
-      );
-
-      await archive.addStatuses(
-        fetcher.fetchedStatusData
-      );
-
       tidyArchiveDir();
-    } );
 
-    after( () => {
-      tidyStatusArchiveDir();
     } );
 
     afterEach( () => {
       tidyArchiveDir();
     } );
 
+    after( () => {
+      tidyArchiveDir();
+    } );
+
     it( "should throw a TypeError when the new statuses is not an array", async() => {
 
-      const archive = new ContentArchive(
+      const archive = new PhotoArchive(
         testPassArchivePath
       );
 
@@ -272,25 +279,9 @@ describe( "ContentArchive", () => {
       );
     } );
 
-    it( "should not throw a TypeError when all parameters are correct", async() => {
+    it( "should throw a TypeError when the status archive path is not a string", async() => {
 
-      const archive = new ContentArchive(
-        testPassArchivePath
-      );
-
-      await assert.doesNotReject(
-        async() => {
-          await archive.addContent(
-            testPassStatusArray,
-            testPassStatusArchivePath
-          );
-        }
-      );
-    } );
-
-    it( "should throw a TypeError when the new status archive path is not a string", async() => {
-
-      const archive = new ContentArchive(
+      const archive = new PhotoArchive(
         testPassArchivePath
       );
 
@@ -321,150 +312,99 @@ describe( "ContentArchive", () => {
       );
     } );
 
-    it( "should add the expected number of posts to the archive", async() => {
-      const statusArchive = new StatusArchive(
-        testPassStatusArchivePath
-      );
+    it( "should throw a TypeError when the media archive path is not a string", async() => {
 
-      const archive = new ContentArchive(
+      const archive = new PhotoArchive(
         testPassArchivePath
       );
-
-      const addedStatuses = await archive.addContent(
-        await statusArchive.getContents(),
-        statusArchive.archivePath
-      );
-
-      assert.equal(
-        addedStatuses,
-        testPassStatusCount
-      );
-    } );
-
-    it( "should not overwrite files by default", async() => {
-      const statusArchive = new StatusArchive(
-        testPassStatusArchivePath
-      );
-
-      const archive = new ContentArchive(
-        testPassArchivePath
-      );
-
-      const addedStatuses = await archive.addContent(
-        await statusArchive.getContents(),
-        statusArchive.archivePath
-      );
-
-      assert.equal(
-        addedStatuses,
-        testPassStatusCount
-      );
-
-      archive.cacheStale = false;
 
       await assert.rejects(
         async() => {
           await archive.addContent(
-            await statusArchive.getContents(),
-            statusArchive.archivePath
+            testPassStatusArray,
+            testPassStatusArchivePath,
+            undefined
           );
+        },
+        {
+          name: "TypeError",
+          message: testFailMediaArchivePathMsg
+        }
+      );
+
+      await assert.rejects(
+        async() => {
+          await archive.addContent(
+            testPassStatusArray,
+            testPassStatusArchivePath,
+            1234
+          );
+        },
+        {
+          name: "TypeError",
+          message: testFailMediaArchivePathMsg
         }
       );
     } );
 
-    it( "should overwrite files if the flag is set", async() => {
-      const statusArchive = new StatusArchive(
-        testPassStatusArchivePath
-      );
+    it( "should not throw a TypeError when all parameters are correct", async() => {
 
-      const archive = new ContentArchive(
-        testPassArchivePath,
-        true
+      const archive = new PhotoArchive(
+        testPassArchivePath
       );
-
-      const addedStatuses = await archive.addContent(
-        await statusArchive.getContents(),
-        statusArchive.archivePath
-      );
-
-      assert.equal(
-        addedStatuses,
-        testPassStatusCount
-      );
-
-      archive.cacheStale = false;
 
       await assert.doesNotReject(
         async() => {
           await archive.addContent(
-            await statusArchive.getContents(),
-            statusArchive.archivePath
+            testPassStatusArray,
+            testPassStatusArchivePath,
+            testPassMediaArchive
           );
         }
       );
     } );
 
-    it( "should not try to add an existing status to the archive by default", async() => {
-      const statusArchive = new StatusArchive(
-        testPassStatusArchivePath
+    it( "should add the expected number of photos to the archive", async() => {
+
+      // setup the media archive first
+      const mediaArchive = new MediaArchive(
+        testPassMediaArchive
       );
 
-      copyFileSync(
-        testExpectedContentsFilePath,
-        testActualContentsFilePath
+      let statusCount = await mediaArchive.getContentsCount();
+
+      assert.equal(
+        statusCount,
+        0
       );
 
-      const archive = new ContentArchive(
+      const { nockDone } = await nockBack( "media-attachment.json" );
+
+      const addedMedia = await mediaArchive.addMedia( testPassMediaUrl );
+
+      nockDone();
+
+      assert.equal(
+        addedMedia,
+        1
+      );
+
+      const photoArchive = new PhotoArchive(
         testPassArchivePath
       );
 
-      const addedStatuses = await archive.addContent(
-        await statusArchive.getContents(),
-        statusArchive.archivePath
+      const photoCount = await photoArchive.addContent(
+        testNewStatuses,
+        testPassStatusArchivePath,
+        testPassMediaArchive
       );
 
       assert.equal(
-        addedStatuses,
-        testPassStatusCount - 1
+        photoCount,
+        1
       );
+
     } );
-
-    it( "should output content in the expected format", async() => {
-      const statusArchive = new StatusArchive(
-        testPassStatusArchivePath
-      );
-
-      const archive = new ContentArchive(
-        testPassArchivePath
-      );
-
-      await archive.addContent(
-        await statusArchive.getContents(),
-        statusArchive.archivePath
-      );
-
-      assert.ok(
-        lstatSync(
-          testExpectedContentsFilePath
-        )
-      );
-
-      assert.ok(
-        lstatSync(
-          testActualContentsFilePath
-        )
-      );
-
-      const actualStatus = readFileSync( testActualContentsFilePath ).toString();
-
-      const expectedStatus = readFileSync( testExpectedContentsFilePath ).toString();
-
-      assert.deepEqual(
-        actualStatus,
-        expectedStatus
-      );
-    } );
-
   } );
 
 } );

@@ -184,9 +184,14 @@ describe( "MediaArchive", () => {
 
       const { nockDone } = await nockBack( "media-attachment.json" );
 
-      await archive.addMedia( testPassMediaUrl );
+      const addedMedia = await archive.addMedia( testPassMediaUrl );
 
       nockDone();
+
+      assert.equal(
+        addedMedia,
+        testPassMediaCount
+      );
 
       statusCount = await archive.getContentsCount();
 
@@ -255,7 +260,12 @@ describe( "MediaArchive", () => {
 
       const { nockDone } = await nockBack( "media-attachment.json" );
 
-      await archive.addMedia( testPassMediaUrl );
+      const addedMedia = await archive.addMedia( testPassMediaUrl );
+
+      assert.equal(
+        addedMedia,
+        testPassMediaCount
+      );
 
       await assert.doesNotReject(
         async() => {

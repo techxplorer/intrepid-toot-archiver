@@ -4,13 +4,13 @@
 import chalk from "chalk";
 
 
-import StatusArchive from "../../src/lib/status-archive.js";
-import ContentArchive from "../../src/lib/content-archive.js";
+import StatusArchive from "../lib/status-archive.js";
+import PhotoArchive from "../lib/photo-archive.js";
 
 /**
  * Command to update the content uses statuses from the archive.
  */
-class UpdateContent {
+class UpdatePhotos {
 
   allowOverwrite = false;
   debugOutput = false;
@@ -50,24 +50,32 @@ class UpdateContent {
       throw new Error( "Expected the ITA_CONTENT_ARCHIVE_PATH environment variable" );
     }
 
+    const mediaArchivePath = process.env.ITA_MEDIA_ARCHIVE_PATH;
+
+    if ( mediaArchivePath === undefined ) {
+      throw new Error( "Expected the ITA_MEDIA_ARCHIVE_PATH environment variable" );
+    }
+
     if ( this. debugOutput ) {
       console.log( chalk.bold.underline( "\nEnvironment variables" ) );
       console.log( "Status archive path: %s", process.env.ITA_ARCHIVE_PATH );
       console.log( "Content archive path: %s%s", process.env.ITA_ARCHIVE_PATH, "\n" );
+      console.log( "Media archive path: %s%s", process.env.ITA_ARCHIVE_PATH, "\n" );
     }
 
     const statusArchive = new StatusArchive(
       statusArchivePath
     );
 
-    const contentArchive = new ContentArchive(
+    if ( this.allowOverwrite ) {
+      console.log( chalk.yellow( "Warning: Overwriting content is not supported" ) );
+      this.allowOverwrite = false;
+    }
+
+    const photoArchive = new PhotoArchive(
       contentArchivePath,
       this.allowOverwrite
     );
-
-    if ( this.allowOverwrite ) {
-      console.log( chalk.yellow( "Warning: Overwriting existing content" ) );
-    }
 
     const statusCount = await statusArchive.loadContents();
 
@@ -76,15 +84,16 @@ class UpdateContent {
       process.exit( 1 );
     }
 
-    const contentCount = await contentArchive.loadContents();
+    const contentCount = await photoArchive.loadContents();
 
     console.log( `Number of statuses in status archive: ${ statusCount }` );
 
-    console.log( `Number of posts in content archive: ${ contentCount }` );
+    console.log( `Number of posts in photo archive: ${ contentCount }` );
 
-    const addedContent = await contentArchive.addContent(
+    const addedContent = await photoArchive.addContent(
       statusArchive.contents,
-      statusArchivePath
+      statusArchivePath,
+      mediaArchivePath
     );
 
     console.log( chalk.green( "Updated content archive" ) );
@@ -92,4 +101,4 @@ class UpdateContent {
   }
 }
 
-export default UpdateContent;
+export default UpdatePhotos;

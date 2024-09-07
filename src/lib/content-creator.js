@@ -48,12 +48,17 @@ class ContentCreator {
   /**
    * Create the front matter as a YAML string.
    * @param {object} status The status object representing the content.
+   * @param {Array} categories A list of default categories.
    * @returns {string} The front matter as a YAML string.
    * @throws {TypeError} If the status object doesn't contain the expected property.
    */
-  createFrontMatter( status ) {
+  createFrontMatter( status, categories = [] ) {
 
     const frontMatter = {};
+
+    if ( !Array.isArray( categories ) ) {
+      throw new TypeError( "The categories parameter must be an array" );
+    }
 
     if ( typeof status !== "object" ) {
       throw new TypeError( "The status parameter must be an object" );
@@ -79,7 +84,7 @@ class ContentCreator {
 
     frontMatter.toot_url = status.url;
 
-    frontMatter.categories = [];
+    frontMatter.categories = categories;
 
     frontMatter.tags = [];
 

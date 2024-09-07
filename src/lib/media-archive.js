@@ -42,8 +42,7 @@ class MediaArchive extends Archive {
 
     for ( const mediaAttachment of status.media_attachments ) {
       const mediaUrl = new URL( mediaAttachment.url );
-      await this.addMedia( mediaUrl );
-      mediaCount++;
+      mediaCount += await this.addMedia( mediaUrl );
     }
 
     return mediaCount;
@@ -54,6 +53,7 @@ class MediaArchive extends Archive {
    * Add a media file to the archive.
    * @param {URL} mediaUrl The full URL to the media file to download.
    * @throws {TypeError} When the parameters are incorrect.
+   * @returns {number} The number of media files added to the archive.
    */
   async addMedia( mediaUrl ) {
 
@@ -68,7 +68,7 @@ class MediaArchive extends Archive {
     if (
       this.writeFileOptions.flag === "wx" &&
       this.contents.indexOf( mediaFileName ) > -1 ) {
-      return;
+      return 0;
     }
 
     try {
@@ -91,6 +91,8 @@ class MediaArchive extends Archive {
     }
 
     this.cacheStale = true;
+
+    return 1;
   }
 
 }
