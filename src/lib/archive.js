@@ -153,6 +153,41 @@ class Archive {
     return this.contents;
   }
 
+  /**
+   * Check to see if a status has a tag.
+   * @param {object} status An object representing a status.
+   * @param {string} tag The tag that the status must have.
+   * @returns {boolean} True, if the status has the tag, otherwise false.
+   * @throws {TypeError} When the parameters are incorrect.
+   */
+  statusHasTag( status, tag ) {
+
+    if ( typeof status !== "object" ) {
+      throw new TypeError( "The status parameter must be an object" );
+    }
+
+    if ( typeof tag !== "string" ) {
+      throw new TypeError( "The tag parameter must be a string" );
+    }
+
+    if ( status.tags === undefined ) {
+      throw new TypeError( "The status is expected to have a 'tags' property" );
+    }
+
+    if ( !Array.isArray( status.tags ) ) {
+      throw new TypeError( "The tags property is expected to be an array" );
+    }
+
+    for ( const statusTag of status.tags ) {
+      if ( statusTag.name === tag ) {
+        return true;
+      }
+    }
+
+    return false;
+
+  }
+
 }
 
 export default Archive;
