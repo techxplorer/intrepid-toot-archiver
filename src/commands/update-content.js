@@ -14,13 +14,15 @@ class UpdateContent {
 
   allowOverwrite = false;
   debugOutput = false;
+  statusTagFilter = false;
 
   /**
    * Update the content archive.
    * @param {boolean} force Overwrite any existing content in the archive.
    * @param {boolean} debug Output configuration variables.
+   * @param {string|false} statusTagFilter Only add statuses with this tag.
    */
-  constructor( force = false, debug = false ) {
+  constructor( force = false, debug = false, statusTagFilter = false ) {
 
     if ( force ) {
       this.allowOverwrite = true;
@@ -28,6 +30,10 @@ class UpdateContent {
 
     if ( debug ) {
       this.debugOutput = true;
+    }
+
+    if ( statusTagFilter !== false ) {
+      this.statusTagFilter = statusTagFilter;
     }
 
   }
@@ -62,7 +68,8 @@ class UpdateContent {
 
     const contentArchive = new ContentArchive(
       contentArchivePath,
-      this.allowOverwrite
+      this.allowOverwrite,
+      this.statusTagFilter
     );
 
     if ( this.allowOverwrite ) {

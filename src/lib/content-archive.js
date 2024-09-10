@@ -23,10 +23,11 @@ class ContentArchive extends Archive {
    * Manage the Content Archive.
    * @param {string} archivePath The path to the content archive directory.
    * @param {boolean} overwriteFlag Flag indicating if files should be overwritten.
+   * @param {string} statusFilter An optional tag used to filter the list of statuses.
    * @throws {TypeError} When the parameters are incorrect.
    */
-  constructor( archivePath, overwriteFlag = false ) {
-    super( archivePath, overwriteFlag );
+  constructor( archivePath, overwriteFlag = false, statusFilter = false ) {
+    super( archivePath, overwriteFlag, statusFilter );
     this.fileExtension = ".md";
     this.contentCreator = new ContentCreator();
   }
@@ -74,6 +75,12 @@ class ContentArchive extends Archive {
       const status = JSON.parse(
         statusContent.toString()
       );
+
+      if ( this.statusFilter !== false ) {
+        if ( this.statusHasTag( status, this.statusFilter ) === false ) {
+          continue;
+        }
+      }
 
       const newContent = [];
       newContent.push( "---" );

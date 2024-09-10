@@ -405,6 +405,50 @@ describe( "PhotoArchive", () => {
       );
 
     } );
+
+    it( "should only add content that matches the hashtag", async() => {
+
+      // setup the media archive first
+      const mediaArchive = new MediaArchive(
+        testPassMediaArchive
+      );
+
+      let statusCount = await mediaArchive.getContentsCount();
+
+      assert.equal(
+        statusCount,
+        0
+      );
+
+      const { nockDone } = await nockBack( "media-attachment.json" );
+
+      const addedMedia = await mediaArchive.addMedia( testPassMediaUrl );
+
+      nockDone();
+
+      assert.equal(
+        addedMedia,
+        1
+      );
+
+      const photoArchive = new PhotoArchive(
+        testPassArchivePath,
+        false,
+        "testHashTag"
+      );
+
+      const photoCount = await photoArchive.addContent(
+        testNewStatuses,
+        testPassStatusArchivePath,
+        testPassMediaArchive
+      );
+
+      assert.equal(
+        photoCount,
+        0
+      );
+
+    } );
   } );
 
 } );

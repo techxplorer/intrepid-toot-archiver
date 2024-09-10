@@ -44,12 +44,19 @@ class Archive {
   fileExtension = undefined;
 
   /**
+   * The tag used to filter the list of statuses.
+   * @type {string}
+   */
+  statusFilter = false;
+
+  /**
    * Manage the archive of contents.
    * @param {string} archivePath The path to the content archive directory.
    * @param {boolean} overwriteFlag Flag indicating if files should be overwritten.
+   * @param {string} statusFilter An optional tag used to filter the list of statuses.
    * @throws {TypeError} When the parameters are incorrect.
    */
-  constructor( archivePath, overwriteFlag = false ) {
+  constructor( archivePath, overwriteFlag = false, statusFilter = false ) {
 
     let syncStatus = null;
 
@@ -72,6 +79,8 @@ class Archive {
         flag: "w"
       };
     }
+
+    this.statusFilter = statusFilter;
 
   }
 
