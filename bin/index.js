@@ -72,7 +72,7 @@ async function run() {
       const updateContent = new UpdateContent(
         options.force,
         options.debug,
-        options.filter
+        options.tag
       );
       await updateContent.run();
     } );
@@ -85,7 +85,7 @@ async function run() {
       const updateContent = new UpdatePhotos(
         options.force,
         options.debug,
-        options.filter
+        options.tag
       );
       await updateContent.run();
     } );

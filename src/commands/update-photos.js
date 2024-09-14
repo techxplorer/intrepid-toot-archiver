@@ -65,8 +65,9 @@ class UpdatePhotos {
     if ( this. debugOutput ) {
       console.log( chalk.bold.underline( "\nEnvironment variables" ) );
       console.log( "Status archive path: %s", process.env.ITA_ARCHIVE_PATH );
-      console.log( "Content archive path: %s%s", process.env.ITA_ARCHIVE_PATH, "\n" );
-      console.log( "Media archive path: %s%s", process.env.ITA_ARCHIVE_PATH, "\n" );
+      console.log( "Content archive path: %s", process.env.ITA_ARCHIVE_PATH );
+      console.log( "Media archive path: %s", process.env.ITA_ARCHIVE_PATH );
+      console.log( "Tag used to filter posts: %s%s", this.statusTagFilter, "\n" );
     }
 
     const statusArchive = new StatusArchive(
