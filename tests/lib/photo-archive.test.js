@@ -406,6 +406,59 @@ describe( "PhotoArchive", () => {
 
     } );
 
+    it( "should not overwrite photos already in the archive", async() => {
+
+      // setup the media archive first
+      const mediaArchive = new MediaArchive(
+        testPassMediaArchive
+      );
+
+      let statusCount = await mediaArchive.getContentsCount();
+
+      assert.equal(
+        statusCount,
+        0
+      );
+
+      const { nockDone } = await nockBack( "media-attachment.json" );
+
+      const addedMedia = await mediaArchive.addMedia( testPassMediaUrl );
+
+      nockDone();
+
+      assert.equal(
+        addedMedia,
+        1
+      );
+
+      const photoArchive = new PhotoArchive(
+        testPassArchivePath
+      );
+
+      let photoCount = await photoArchive.addContent(
+        testNewStatuses,
+        testPassStatusArchivePath,
+        testPassMediaArchive
+      );
+
+      assert.equal(
+        photoCount,
+        1
+      );
+
+      photoCount = await photoArchive.addContent(
+        testNewStatuses,
+        testPassStatusArchivePath,
+        testPassMediaArchive
+      );
+
+      assert.equal(
+        photoCount,
+        0
+      );
+
+    } );
+
     it( "should only add content that matches the hashtag", async() => {
 
       // setup the media archive first
