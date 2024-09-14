@@ -30,8 +30,9 @@ The app has the following options:
 
 | Short option | Long option | Description |
 | ------------ | ----------- | ----------- |
-| -f           | --force     | Overwrite files in the status or content archive |
 | -d           | --debug     | Output environment variable content |
+| -f           | --force     | Overwrite files in the status or content archive |
+| -t           | --tag <tag> | Only add new statuses with the matching tag |
 
 ## Configuration ##
 
@@ -72,8 +73,7 @@ contains an index.md file and the attached media.
 
 The following items are on my road map:
 
-1. Filter the creation of content by tag
-2. Add any other functionality as required
+1. Add any other functionality as required
 
 ## Rationale ##
 
