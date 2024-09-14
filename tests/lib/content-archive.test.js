@@ -36,6 +36,8 @@ const testPassFQDN = "theblower.au";
 const testPassUserId = "109308203429082969";
 const testPassStatusCount = 20;
 
+const testStatusHashTag = "happybirthday";
+
 /**
  * Helper function to tidy the archive directory.
  */
@@ -463,6 +465,30 @@ describe( "ContentArchive", () => {
         actualStatus,
         expectedStatus
       );
+    } );
+
+    it( "should only add content that has the tag", async() => {
+
+      const statusArchive = new StatusArchive(
+        testPassStatusArchivePath
+      );
+
+      const archive = new ContentArchive(
+        testPassArchivePath,
+        false,
+        testStatusHashTag
+      );
+
+      const addedStatuses = await archive.addContent(
+        await statusArchive.getContents(),
+        statusArchive.archivePath
+      );
+
+      assert.equal(
+        addedStatuses,
+        1
+      );
+
     } );
 
   } );

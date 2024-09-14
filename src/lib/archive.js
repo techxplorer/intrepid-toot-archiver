@@ -44,12 +44,19 @@ class Archive {
   fileExtension = undefined;
 
   /**
+   * The tag used to filter the list of statuses.
+   * @type {string}
+   */
+  statusFilter = false;
+
+  /**
    * Manage the archive of contents.
    * @param {string} archivePath The path to the content archive directory.
    * @param {boolean} overwriteFlag Flag indicating if files should be overwritten.
+   * @param {string} statusFilter An optional tag used to filter the list of statuses.
    * @throws {TypeError} When the parameters are incorrect.
    */
-  constructor( archivePath, overwriteFlag = false ) {
+  constructor( archivePath, overwriteFlag = false, statusFilter = false ) {
 
     let syncStatus = null;
 
@@ -72,6 +79,8 @@ class Archive {
         flag: "w"
       };
     }
+
+    this.statusFilter = statusFilter;
 
   }
 
@@ -151,6 +160,41 @@ class Archive {
     await this.loadContents();
 
     return this.contents;
+  }
+
+  /**
+   * Check to see if a status has a tag.
+   * @param {object} status An object representing a status.
+   * @param {string} tag The tag that the status must have.
+   * @returns {boolean} True, if the status has the tag, otherwise false.
+   * @throws {TypeError} When the parameters are incorrect.
+   */
+  statusHasTag( status, tag ) {
+
+    if ( typeof status !== "object" ) {
+      throw new TypeError( "The status parameter must be an object" );
+    }
+
+    if ( typeof tag !== "string" ) {
+      throw new TypeError( "The tag parameter must be a string" );
+    }
+
+    if ( status.tags === undefined ) {
+      throw new TypeError( "The status is expected to have a 'tags' property" );
+    }
+
+    if ( !Array.isArray( status.tags ) ) {
+      throw new TypeError( "The tags property is expected to be an array" );
+    }
+
+    for ( const statusTag of status.tags ) {
+      if ( statusTag.name === tag ) {
+        return true;
+      }
+    }
+
+    return false;
+
   }
 
 }

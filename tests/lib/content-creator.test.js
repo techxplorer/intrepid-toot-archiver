@@ -9,7 +9,6 @@ import ContentCreator from "../../src/lib/content-creator.js";
 
 const testContentTypeErrorOne = "The htmlContent parameter must be a string.";
 const testContentTypeErrorTwo = "The htmlContent parameter cannot be a zero length string.";
-const testFrontMatterTypeErrorOne = "The status parameter must be an object";
 
 const testStatusJsonFileName = "112793425453345288.json";
 const testExpectedStatusJsonFilePath = path.join(
@@ -131,7 +130,7 @@ describe( "ContentCreator", () => {
         },
         {
           name: "TypeError",
-          message: testFrontMatterTypeErrorOne
+          message: /status parameter/
         }
       );
 
@@ -141,7 +140,7 @@ describe( "ContentCreator", () => {
         },
         {
           name: "TypeError",
-          message: testFrontMatterTypeErrorOne
+          message: /status parameter/
         }
       );
 
@@ -151,7 +150,20 @@ describe( "ContentCreator", () => {
         },
         {
           name: "TypeError",
-          message: testFrontMatterTypeErrorOne
+          message: /status parameter/
+        }
+      );
+
+      assert.throws(
+        () => {
+          contentCreator.createFrontMatter(
+            expectedStatusJson,
+            1234
+          );
+        },
+        {
+          name: "TypeError",
+          message: /categories parameter/
         }
       );
     } );

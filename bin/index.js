@@ -40,7 +40,8 @@ async function run() {
     .description( appPackage.getDescription() )
     .showHelpAfterError( "(add --help for additional information)" )
     .option( "-f, --force", "overwrite existing files" )
-    .option( "-d, --debug", "output debug information")
+    .option( "-d, --debug", "output debug information" )
+    .option( "-t, --tag <tag>", "include only statuses with this tag")
     .addHelpText(
       "after",
       `\nMore info: ${ appPackage.getHomepage() }\nVersion: ${ appPackage.getVersion() }`
@@ -68,7 +69,11 @@ async function run() {
     .description( "update content using archived statuses" )
     .action( async() => {
       const options = program.opts();
-      const updateContent = new UpdateContent( options.force, options.debug );
+      const updateContent = new UpdateContent(
+        options.force,
+        options.debug,
+        options.tag
+      );
       await updateContent.run();
     } );
 
@@ -77,7 +82,11 @@ async function run() {
     .description( "update photos using archived statuses" )
     .action( async() => {
       const options = program.opts();
-      const updateContent = new UpdatePhotos( options.force, options.debug );
+      const updateContent = new UpdatePhotos(
+        options.force,
+        options.debug,
+        options.tag
+      );
       await updateContent.run();
     } );
 
