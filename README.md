@@ -56,14 +56,20 @@ The status archive is a directory of JSON files. Each file represents one status
 The `update-archive` command downloads the most recent statuses and adds any new
 ones to the archive. The `--force` option will overwrite any existing status files.
 
-## Content archive ##
+### Media archive ###
+
+A directory of the media files (images) that are part of the statuses in the
+status archive. Populating the media archive occurs during the update of the
+status archive.
+
+### Content archive ###
 
 The content archive is a directory of Markdown files. Each file represents one status.
 The `update-content` command will create one Markdown file for each archived status
 not in the content archive. The `--force` option will overwrite any existing
 Markdown files.
 
-## Posts and photo posts ##
+### Posts and photo posts ###
 
 Using the `update-content` command creates one Markdown file for every status.
 In contrast, the `update-photos` command creates a directory for each status that
