@@ -46,6 +46,20 @@ const testStatusUrl = "https://theblower.au/@geton/112793425453345288";
 const testInavlidStatusURL = testStatusUrl.replace( "https://", "" );
 const expectedLinkBack = `[Original post on the Fediverse](${ testStatusUrl })`;
 
+/* eslint-disable max-len, no-useless-escape */
+const testLongContent = `Hello Blowerians!
+
+There's been an uptick in reported posts lately, for probably obvious reasons.
+
+1\. Criticism of any nation's actions is not considered racism by us.
+2\. With that in mind, please be careful with your wording, and do not use general racial terms when talking about the actions of governments.
+3\. We expect all \*public\* posts that appear on the Local feed to meet a fairly conservative PG-13 standard. This is not just "adult" content, but also violence/gore.`;
+
+const expectedTitle = "Hello Blowerians! There's been an uptick in reported posts lately…";
+
+const expectedDescr = "Hello Blowerians! There's been an uptick in reported posts lately, for probably obvious reasons…";
+/* eslint-enable max-len, no-useless-escape */
+
 describe( "ContentCreator", () => {
 
   describe( "constructor", () => {
@@ -358,5 +372,93 @@ describe( "ContentCreator", () => {
         expectedLinkBack
       );
     } );
+  } );
+
+  describe( "makeTitle", () => {
+
+    it( "should throw an error when the parameter is incorrect", () => {
+      const contentCreator = new ContentCreator();
+
+      assert.throws(
+        () => {
+          contentCreator.makeTitle();
+        },
+        {
+          name: "TypeError",
+          message: /is required/
+        }
+      );
+
+      assert.throws(
+        () => {
+          contentCreator.makeTitle( 1234 );
+        },
+        {
+          name: "TypeError",
+          message: /must be a string/
+        }
+      );
+
+      assert.doesNotThrow(
+        () => {
+          contentCreator.makeTitle( testLongContent );
+        }
+      );
+
+    } );
+
+    it( "should make the expected title", () => {
+      const contentCreator = new ContentCreator();
+      const testTitle = contentCreator.makeTitle( testLongContent );
+      assert.equal(
+        testTitle,
+        expectedTitle
+      );
+    } );
+
+  } );
+
+  describe( "makeDescription", () => {
+
+    it( "should throw an error when the parameter is incorrect", () => {
+      const contentCreator = new ContentCreator();
+
+      assert.throws(
+        () => {
+          contentCreator.makeDescription();
+        },
+        {
+          name: "TypeError",
+          message: /is required/
+        }
+      );
+
+      assert.throws(
+        () => {
+          contentCreator.makeDescription( 1234 );
+        },
+        {
+          name: "TypeError",
+          message: /must be a string/
+        }
+      );
+
+      assert.doesNotThrow(
+        () => {
+          contentCreator.makeDescription( testLongContent );
+        }
+      );
+
+    } );
+
+    it( "should make the expected description", () => {
+      const contentCreator = new ContentCreator();
+      const testDescr = contentCreator.makeDescription( testLongContent );
+      assert.equal(
+        testDescr,
+        expectedDescr
+      );
+    } );
+
   } );
 } );

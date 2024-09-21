@@ -16,11 +16,49 @@ class ContentCreator {
   turndownService = null;
 
   /**
+   * The maximum number of words to have in a title.
+   * @type {number}
+   */
+  maxTitleLen = 10;
+
+  /**
+   * An instance of the Intl.Segmenter used to make titles.
+   * @type {Intl.Segmeter}
+   */
+  titleSegmenter = null;
+
+  /**
+   * The maximum number of sentences to have in a description.
+   * @type {number}
+   */
+  maxDescrLen = 2;
+
+  /**
+   * An instance of the Intl.Segmenter used to make descriptions.
+   * @type {Intl.Segmeter}
+   */
+  descriptionSegmenter = null;
+
+  /**
    * Construct a new ContentCreator and initialise dependencies.
    */
   constructor() {
 
     this.turndownService = new TurndownService();
+
+    this.titleSegmenter = new Intl.Segmenter(
+      "en-au",
+      {
+        granularity: "word"
+      }
+    );
+
+    this.descriptionSegmenter = new Intl.Segmenter(
+      "en-au",
+      {
+        granularity: "sentence"
+      }
+    );
 
   }
 
@@ -78,9 +116,11 @@ class ContentCreator {
 
     frontMatter.date = status.created_at;
 
-    frontMatter.title = "Archived toot";
+    // TODO: be more efficient with status content and turn it down only once.
 
-    frontMatter.description = "An archived toot";
+    frontMatter.title = this.makeTitle( this.convertContent( status.content ) );
+
+    frontMatter.description = this.makeDescription( this.convertContent( status.content ) );
 
     frontMatter.toot_url = status.url;
 
@@ -94,7 +134,12 @@ class ContentCreator {
       }
     }
 
-    return YAML.stringify( frontMatter );
+    return YAML.stringify(
+      frontMatter,
+      {
+        lineWidth: 0
+      }
+    );
 
   }
 
@@ -110,6 +155,131 @@ class ContentCreator {
     }
 
     return `[Original post on the Fediverse](${ statusUrl })`;
+  }
+
+  /**
+   * Use the first words to make a post title.
+   * @param {string} markdownContent The content in Markdown format.
+   * @throws {TypeError} If the parameter is incorrect.
+   * @returns {string} The title of the content using the first words.
+   */
+  makeTitle( markdownContent ) {
+
+    if ( markdownContent === undefined ) {
+      throw new TypeError( "The markdownContent parameter is required" );
+    }
+
+    if ( typeof markdownContent !== "string" ) {
+      throw new TypeError( "The markdownContent parameter must be a string" );
+    }
+
+    let content = markdownContent.replaceAll(
+      "\n",
+      " "
+    );
+
+    content = content.replaceAll(
+      "  ",
+      " "
+    );
+
+    const segments = this.titleSegmenter.segment( content );
+
+    let count = 0;
+    let titleSegments = [];
+    let title = "";
+
+    if ( segments.length <= this.maxTitleLen ) {
+      return "Archived Toot";
+    }
+
+    for ( const segment of segments ) {
+
+      if ( count === this.maxTitleLen ) {
+        break;
+      }
+
+      titleSegments.push(
+        segment
+      );
+
+      if ( segment.isWordLike === true ) {
+        count++;
+      }
+
+    }
+
+    for ( const segment of titleSegments ) {
+      title += segment.segment;
+    }
+
+    title += "\u2026";
+
+    return title;
+
+  }
+
+  /**
+   * Use the first sentences to make a post description.
+   * @param {string} markdownContent The content in Markdown format.
+   * @throws {TypeError} If the parameter is incorrect.
+   * @returns {string} The description of the content using the first sentences.
+   */
+  makeDescription( markdownContent ) {
+
+    if ( markdownContent === undefined ) {
+      throw new TypeError( "The markdownContent parameter is required" );
+    }
+
+    if ( typeof markdownContent !== "string" ) {
+      throw new TypeError( "The markdownContent parameter must be a string" );
+    }
+
+    let content = markdownContent.replaceAll(
+      "\n",
+      " "
+    );
+
+    content = content.replaceAll(
+      "  ",
+      " "
+    );
+
+    const segments = this.descriptionSegmenter.segment( content );
+
+    let count = 0;
+    let descrSegments = [];
+    let descr = "";
+
+    if ( segments.length <= this.maxDescrLen ) {
+      return "Archived Toot";
+    }
+
+    for ( const segment of segments ) {
+
+      if ( count === this.maxDescrLen ) {
+        break;
+      }
+
+      descrSegments.push(
+        segment
+      );
+
+      count++;
+
+    }
+
+    for ( const segment of descrSegments ) {
+      descr += segment.segment;
+    }
+
+    descr = descr.trim();
+    descr = descr.substring( 0, descr.length - 1 );
+
+    descr += "\u2026";
+
+    return descr;
+
   }
 
   /**
