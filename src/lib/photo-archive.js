@@ -101,7 +101,7 @@ class ContentArchive extends Archive {
 
       const newContent = [];
       newContent.push( "---" );
-      newContent.push( this.contentCreator.createFrontMatter( status, defaultCategories ) );
+      newContent.push( this.contentCreator.makeFrontMatter( status, defaultCategories ) );
       newContent.push( "---" );
       newContent.push( this.contentCreator.convertContent( status.content ) );
       newContent.push( this.contentCreator.makeLinkBack( status.url ) );

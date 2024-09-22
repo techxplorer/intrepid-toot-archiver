@@ -134,13 +134,13 @@ describe( "ContentCreator", () => {
     } );
   } );
 
-  describe( "createFrontMatter", () => {
+  describe( "makeFrontMatter", () => {
     it( "should throw an error when the parameter is incorrect", () => {
       const contentCreator = new ContentCreator();
 
       assert.throws(
         () => {
-          contentCreator.createFrontMatter();
+          contentCreator.makeFrontMatter();
         },
         {
           name: "TypeError",
@@ -150,7 +150,7 @@ describe( "ContentCreator", () => {
 
       assert.throws(
         () => {
-          contentCreator.createFrontMatter( "" );
+          contentCreator.makeFrontMatter( "" );
         },
         {
           name: "TypeError",
@@ -160,7 +160,7 @@ describe( "ContentCreator", () => {
 
       assert.throws(
         () => {
-          contentCreator.createFrontMatter( 1234 );
+          contentCreator.makeFrontMatter( 1234 );
         },
         {
           name: "TypeError",
@@ -170,7 +170,7 @@ describe( "ContentCreator", () => {
 
       assert.throws(
         () => {
-          contentCreator.createFrontMatter(
+          contentCreator.makeFrontMatter(
             expectedStatusJson,
             1234
           );
@@ -187,7 +187,7 @@ describe( "ContentCreator", () => {
 
       assert.doesNotThrow(
         () => {
-          contentCreator.createFrontMatter( expectedStatusJson );
+          contentCreator.makeFrontMatter( expectedStatusJson );
         }
       );
 
@@ -201,7 +201,7 @@ describe( "ContentCreator", () => {
 
       assert.throws(
         () => {
-          contentCreator.createFrontMatter( testStatusJson );
+          contentCreator.makeFrontMatter( testStatusJson );
         },
         {
           name: "TypeError",
@@ -214,7 +214,7 @@ describe( "ContentCreator", () => {
 
       assert.throws(
         () => {
-          contentCreator.createFrontMatter( testStatusJson );
+          contentCreator.makeFrontMatter( testStatusJson );
         },
         {
           name: "TypeError",
@@ -227,7 +227,7 @@ describe( "ContentCreator", () => {
 
       assert.throws(
         () => {
-          contentCreator.createFrontMatter( testStatusJson );
+          contentCreator.makeFrontMatter( testStatusJson );
         },
         {
           name: "TypeError",
@@ -239,7 +239,7 @@ describe( "ContentCreator", () => {
 
       assert.throws(
         () => {
-          contentCreator.createFrontMatter( testStatusJson );
+          contentCreator.makeFrontMatter( testStatusJson );
         },
         {
           name: "TypeError",
@@ -250,7 +250,7 @@ describe( "ContentCreator", () => {
 
     it( "should return the expected front matter", () => {
       const contentCreator = new ContentCreator();
-      let actualYml = contentCreator.createFrontMatter(
+      let actualYml = contentCreator.makeFrontMatter(
         expectedStatusJson
       );
 
@@ -281,7 +281,7 @@ describe( "ContentCreator", () => {
         "love"
       ];
 
-      actualYml = contentCreator.createFrontMatter(
+      actualYml = contentCreator.makeFrontMatter(
         testStatusJson
       );
 

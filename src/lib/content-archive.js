@@ -84,7 +84,7 @@ class ContentArchive extends Archive {
 
       const newContent = [];
       newContent.push( "---" );
-      newContent.push( this.contentCreator.createFrontMatter( status ) );
+      newContent.push( this.contentCreator.makeFrontMatter( status ) );
       newContent.push( "---" );
       newContent.push( this.contentCreator.convertContent( status.content ) );
       newContent.push( this.contentCreator.makeLinkBack( status.url ) );

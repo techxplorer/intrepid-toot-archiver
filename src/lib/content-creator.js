@@ -90,7 +90,7 @@ class ContentCreator {
    * @returns {string} The front matter as a YAML string.
    * @throws {TypeError} If the status object doesn't contain the expected property.
    */
-  createFrontMatter( status, categories = [] ) {
+  makeFrontMatter( status, categories = [] ) {
 
     const frontMatter = {};
 
