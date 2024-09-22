@@ -189,10 +189,6 @@ class ContentCreator {
     let titleSegments = [];
     let title = "";
 
-    if ( segments.length <= this.maxTitleLen ) {
-      return "Archived Toot";
-    }
-
     for ( const segment of segments ) {
 
       if ( count === this.maxTitleLen ) {
@@ -250,10 +246,6 @@ class ContentCreator {
     let count = 0;
     let descrSegments = [];
     let descr = "";
-
-    if ( segments.length <= this.maxDescrLen ) {
-      return "Archived Toot";
-    }
 
     for ( const segment of segments ) {
 
