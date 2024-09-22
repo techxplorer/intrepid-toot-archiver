@@ -39,7 +39,7 @@ class UpdateContent {
   }
 
   /**
-   * Run the command to lookup user details.
+   * Run the command to update the content using saved statuses.
    */
   async run() {
     console.log( chalk.bold( "Updating content archive..." ) );
