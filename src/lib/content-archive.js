@@ -86,7 +86,7 @@ class ContentArchive extends Archive {
       newContent.push( "---" );
       newContent.push( this.contentCreator.makeFrontMatter( status ) );
       newContent.push( "---" );
-      newContent.push( this.contentCreator.convertContent( status.content ) );
+      newContent.push( this.contentCreator.makeMarkdownContent( status ) );
       newContent.push( this.contentCreator.makeLinkBack( status.url ) );
       newContent.push( "" );
 

@@ -40,6 +40,12 @@ class ContentCreator {
   descriptionSegmenter = null;
 
   /**
+   * A map of converted content to act as a cache.
+   * @type {Map}
+   */
+  contentCache = null;
+
+  /**
    * Construct a new ContentCreator and initialise dependencies.
    */
   constructor() {
@@ -59,6 +65,8 @@ class ContentCreator {
         granularity: "sentence"
       }
     );
+
+    this.contentCache = new Map();
 
   }
 
@@ -81,6 +89,35 @@ class ContentCreator {
     // replace any trailing spaces on each line.
     return this.turndownService.turndown( htmlContent ).replace( /[^\S\r\n]+$/gm, "" );
 
+  }
+
+  /**
+   * Make the Markdown version of the content of the status.
+   * @param {object} status The status object.
+   * @returns {string} The content of the status as Markdown.
+   * @throws {TypeError} If the required status properties are missing.
+   */
+  makeMarkdownContent( status ) {
+
+    if ( typeof status !== "object" ) {
+      throw new TypeError( "The status parameter must be an object" );
+    }
+
+    if ( status.content === undefined ) {
+      this.throwError( "content" );
+    }
+
+    if ( status.id === undefined ) {
+      this.throwError( "id" );
+    }
+
+    if ( this.contentCache.has( status.id ) ) {
+      return this.contentCache.get( status.id );
+    }
+
+    const content = this.convertContent( status.content );
+    this.contentCache.set( status.id, content );
+    return content;
   }
 
   /**
@@ -116,11 +153,13 @@ class ContentCreator {
 
     frontMatter.date = status.created_at;
 
-    // TODO: be more efficient with status content and turn it down only once.
+    frontMatter.title = this.makeTitle(
+      this.makeMarkdownContent( status )
+    );
 
-    frontMatter.title = this.makeTitle( this.convertContent( status.content ) );
-
-    frontMatter.description = this.makeDescription( this.convertContent( status.content ) );
+    frontMatter.description = this.makeDescription(
+      this.makeMarkdownContent( status )
+    );
 
     frontMatter.toot_url = status.url;
 
