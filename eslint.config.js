@@ -66,11 +66,27 @@ const rulesConfig = {
   }
 };
 
+const noConsoleConfig = {
+  files: [
+    "src/**/*.js",
+    "tests/**/*.js"
+  ],
+  ignores: [
+    "src/commands/*.js"
+  ],
+  rules: {
+    "no-console": [
+      "warn"
+    ]
+  }
+};
+
 const config = [
   ignoresConfig,
   filesConfig,
   rulesConfig,
   globalsConfig,
+  noConsoleConfig,
   pluginJs.configs.recommended,
   jqueryConfig,
   ...jsdocConfig
