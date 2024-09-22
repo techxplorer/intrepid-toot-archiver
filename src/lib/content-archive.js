@@ -10,6 +10,7 @@ import ContentCreator from "./content-creator.js";
 
 /**
  * Manage an archive of text content.
+ * @augments Archive
  */
 class ContentArchive extends Archive {
 

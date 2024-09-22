@@ -8,6 +8,7 @@ import Archive from "./archive.js";
 
 /**
  * Manage an archive of media attachments.
+ * @augments Archive
  */
 class MediaArchive extends Archive {
 

@@ -8,6 +8,7 @@ import Archive from "./archive.js";
 
 /**
  * Manage an archive of statuses.
+ * @augments Archive
  */
 class StatusArchive extends Archive {
 

@@ -10,8 +10,9 @@ import ContentCreator from "./content-creator.js";
 
 /**
  * Manage an archive of photo content.
+ * @augments Archive
  */
-class ContentArchive extends Archive {
+class PhotoArchive extends Archive {
 
   /**
    * Instance of the ContentCreator class to create content from the status.
@@ -140,4 +141,4 @@ class ContentArchive extends Archive {
 
 }
 
-export default ContentArchive;
+export default PhotoArchive;
