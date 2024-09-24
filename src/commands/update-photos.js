@@ -3,9 +3,9 @@
  */
 import chalk from "chalk";
 
-
-import StatusArchive from "../lib/status-archive.js";
 import PhotoArchive from "../lib/photo-archive.js";
+import StatusArchive from "../lib/status-archive.js";
+import TagReplacer from "../../src/lib/tag-replacer.js";
 
 /**
  * Command to update the content uses statuses from the archive.
@@ -15,6 +15,7 @@ class UpdatePhotos {
   allowOverwrite = false;
   debugOutput = false;
   statusTagFilter = false;
+  tagReplacer = null;
 
   /**
    * Update the photo archive.
@@ -62,11 +63,18 @@ class UpdatePhotos {
       throw new Error( "Expected the ITA_MEDIA_ARCHIVE_PATH environment variable" );
     }
 
+    const tagMapYamlPath = process.env.ITA_TAG_MAP_YAML_PATH;
+
+    if ( tagMapYamlPath !== undefined ) {
+      this.tagReplacer = new TagReplacer( tagMapYamlPath );
+    }
+
     if ( this. debugOutput ) {
       console.log( chalk.bold.underline( "\nEnvironment variables" ) );
       console.log( "Status archive path: %s", process.env.ITA_ARCHIVE_PATH );
       console.log( "Content archive path: %s", process.env.ITA_ARCHIVE_PATH );
       console.log( "Media archive path: %s", process.env.ITA_ARCHIVE_PATH );
+      console.log( "Tag map YAML file path: %s", tagMapYamlPath );
       console.log( "Tag used to filter posts: %s%s", this.statusTagFilter, "\n" );
     }
 
