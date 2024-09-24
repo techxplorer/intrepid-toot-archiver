@@ -6,9 +6,7 @@ import { describe, it } from "node:test";
 import YAML from "yaml";
 
 import ContentCreator from "../../src/lib/content-creator.js";
-
-const testContentTypeErrorOne = "The htmlContent parameter must be a string.";
-const testContentTypeErrorTwo = "The htmlContent parameter cannot be a zero length string.";
+import TagReplacer from "../../src/lib/tag-replacer.js";
 
 const testStatusJsonFileName = "112793425453345288.json";
 const testExpectedStatusJsonFilePath = path.join(
@@ -45,6 +43,7 @@ const expectedStatusYml = readFileSync(
 const testStatusUrl = "https://theblower.au/@geton/112793425453345288";
 const testInavlidStatusURL = testStatusUrl.replace( "https://", "" );
 const expectedLinkBack = `[Original post on the Fediverse](${ testStatusUrl })`;
+const testTagMappingYml = path.resolve( "tests/artefacts/tag-replacer/tag-mapping.yml" );
 
 /* eslint-disable max-len, no-useless-escape */
 const testLongContent = `Hello Blowerians!
@@ -69,40 +68,103 @@ describe( "ContentCreator", () => {
           new ContentCreator();
         }
       );
+
+      assert.doesNotThrow(
+        () => {
+          new ContentCreator( null );
+        }
+      );
+
+      assert.doesNotThrow(
+        () => {
+          new ContentCreator( new TagReplacer( testTagMappingYml ) );
+        }
+      );
     } );
   } );
 
-  describe( "convertContent", () => {
-    it( "should throw a TypeError of the parameter is not a string.", () => {
+  describe( "makeMarkdownContent", () => {
+    it( "should throw a TypeError of the parameter is not correct", () => {
       const contentCreator = new ContentCreator();
 
+      const testStatusJson = structuredClone( expectedStatusJson );
+
       assert.throws(
         () => {
-          contentCreator.convertContent();
+          contentCreator.makeMarkdownContent();
         },
         {
           name: "TypeError",
-          message: testContentTypeErrorOne
+          message: /must be an object/
         }
       );
 
       assert.throws(
         () => {
-          contentCreator.convertContent( 1234 );
+          contentCreator.makeMarkdownContent( 1234 );
         },
         {
           name: "TypeError",
-          message: testContentTypeErrorOne
+          message: /must be an object/
         }
       );
 
       assert.throws(
         () => {
-          contentCreator.convertContent( "" );
+          contentCreator.makeMarkdownContent( "" );
         },
         {
           name: "TypeError",
-          message: testContentTypeErrorTwo
+          message: /must be an object/
+        }
+      );
+
+      testStatusJson.content = 1234;
+
+      assert.throws(
+        () => {
+          contentCreator.makeMarkdownContent( testStatusJson );
+        },
+        {
+          name: "TypeError",
+          message: /must be a string/
+        }
+      );
+
+      testStatusJson.content = "";
+
+      assert.throws(
+        () => {
+          contentCreator.makeMarkdownContent( testStatusJson );
+        },
+        {
+          name: "TypeError",
+          message: /cannot be a zero length string/
+        }
+      );
+
+      testStatusJson.content = undefined;
+
+      assert.throws(
+        () => {
+          contentCreator.makeMarkdownContent( testStatusJson );
+        },
+        {
+          name: "TypeError",
+          message: /content/
+        }
+      );
+
+      testStatusJson.content = "test content";
+      testStatusJson.id = undefined;
+
+      assert.throws(
+        () => {
+          contentCreator.makeMarkdownContent( testStatusJson );
+        },
+        {
+          name: "TypeError",
+          message: /id/
         }
       );
     } );
@@ -112,20 +174,14 @@ describe( "ContentCreator", () => {
 
       assert.doesNotThrow(
         () => {
-          contentCreator.convertContent( "12345" );
-        }
-      );
-
-      assert.doesNotThrow(
-        () => {
-          contentCreator.convertContent( expectedStatusJson.content );
+          contentCreator.makeMarkdownContent( expectedStatusJson );
         }
       );
     } );
 
     it( "should return the expected markdown from the HTML content.", () => {
       const contentCreator = new ContentCreator();
-      const markdownContent = contentCreator.convertContent( expectedStatusJson.content );
+      const markdownContent = contentCreator.makeMarkdownContent( expectedStatusJson );
 
       assert.equal(
         markdownContent,
@@ -193,7 +249,7 @@ describe( "ContentCreator", () => {
 
     } );
 
-    it( "should not throw an error when the satus object is missing a property", () => {
+    it( "should throw an error when the satus object is missing a property", () => {
       const contentCreator = new ContentCreator();
 
       let testStatusJson = structuredClone( expectedStatusJson );
@@ -249,7 +305,7 @@ describe( "ContentCreator", () => {
     } );
 
     it( "should return the expected front matter", () => {
-      const contentCreator = new ContentCreator();
+      const contentCreator = new ContentCreator( new TagReplacer( testTagMappingYml ) );
       let actualYml = contentCreator.makeFrontMatter(
         expectedStatusJson
       );
