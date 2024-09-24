@@ -4,6 +4,8 @@
 import TurndownService from "turndown";
 import YAML from "yaml";
 
+import TagReplacer from "./tag-replacer.js";
+
 /**
  * Create content from the statuses in the archive.
  */
@@ -46,9 +48,16 @@ class ContentCreator {
   contentCache = null;
 
   /**
-   * Construct a new ContentCreator and initialise dependencies.
+   * An instance of the TagReplacer class.
+   * @type {TagReplacer}
    */
-  constructor() {
+  tagReplacer = null;
+
+  /**
+   * Construct a new ContentCreator and initialise dependencies.
+   * @param {TagReplacer} tagReplacer An optional instance of the TagReplacer class.
+   */
+  constructor( tagReplacer = null ) {
 
     this.turndownService = new TurndownService();
 
@@ -67,6 +76,10 @@ class ContentCreator {
     );
 
     this.contentCache = new Map();
+
+    if ( tagReplacer !== null && tagReplacer instanceof TagReplacer ) {
+      this.tagReplacer = tagReplacer;
+    }
 
   }
 
@@ -171,6 +184,10 @@ class ContentCreator {
       if ( tag.name !== undefined ) {
         frontMatter.tags.push( tag.name );
       }
+    }
+
+    if ( this.tagReplacer !== null ) {
+      frontMatter.tags = this.tagReplacer.replaceTags( frontMatter.tags );
     }
 
     return YAML.stringify(
