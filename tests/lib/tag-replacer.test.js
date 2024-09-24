@@ -129,6 +129,33 @@ describe( "TagReplacer", () => {
 
     } );
 
+    it( "should not crash of the replacer is empty", () => {
+
+      const tagReplacer = new TagReplacer( testPassPath );
+      tagReplacer.tagMappings = {};
+
+      const actualTagList = tagReplacer.replaceTags( testTagList );
+
+      assert.deepEqual(
+        actualTagList,
+        actualTagList
+      );
+
+    } );
+
+    it( "should not crash of the list of tags is empty", () => {
+
+      const tagReplacer = new TagReplacer( testPassPath );
+
+      const actualTagList = tagReplacer.replaceTags( [] );
+
+      assert.deepEqual(
+        actualTagList,
+        []
+      );
+
+    } );
+
   } );
 
 } );
