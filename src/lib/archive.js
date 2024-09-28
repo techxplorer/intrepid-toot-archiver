@@ -197,6 +197,34 @@ class Archive {
 
   }
 
+  /**
+   * Check to see if a status has a media.
+   * @param {object} status An object representing a status.
+   * @returns {boolean} True, if the status has the tag, otherwise false.
+   * @throws {TypeError} When the parameters are incorrect.
+   */
+  statusHasMedia( status ) {
+
+    if ( typeof status !== "object" ) {
+      throw new TypeError( "The status parameter must be an object" );
+    }
+
+    if ( status.media_attachments === undefined ) {
+      return false;
+    }
+
+    if ( !Array.isArray( status.media_attachments ) ) {
+      return false;
+    }
+
+    if ( status.media_attachments.length === 0 ) {
+      return false;
+    }
+
+    return true;
+
+  }
+
 }
 
 export default Archive;

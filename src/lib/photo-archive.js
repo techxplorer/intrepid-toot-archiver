@@ -102,6 +102,10 @@ class PhotoArchive extends Archive {
         }
       }
 
+      if ( !this.statusHasMedia( status ) ) {
+        continue;
+      }
+
       const newContent = [];
       newContent.push( "---" );
       newContent.push( this.contentCreator.makeFrontMatter( status, defaultCategories ) );

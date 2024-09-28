@@ -194,4 +194,67 @@ describe( "Archive", () => {
     } );
   } );
 
+  describe( "statusHasMedia", () => {
+    it( "should throw an error if the parameters are incorrect", () => {
+      const archive = new Archive(
+        testPassArchivePath
+      );
+
+      assert.throws( () => {
+        archive.statusHasMedia(
+          undefined
+        );
+      },
+      {
+        name: "TypeError",
+        message: /status parameter/
+      } );
+    } );
+
+  } );
+
+  it( "should return false if the status doesn't have any media", () => {
+    const archive = new Archive(
+      testPassArchivePath
+    );
+
+    assert.ok(
+      archive.statusHasMedia( {} ) === false
+    );
+
+    assert.ok(
+      archive.statusHasMedia( {
+        media_attachments: undefined
+      } ) === false
+    );
+
+    assert.ok(
+      archive.statusHasMedia( {
+        media_attachments: ""
+      } ) === false
+    );
+
+    assert.ok(
+      archive.statusHasMedia( {
+        media_attachments: []
+      } ) === false
+    );
+  } );
+
+  it( "should return true if the status does had media", () => {
+    const archive = new Archive(
+      testPassArchivePath
+    );
+
+    const testStatus = JSON.parse(
+      readFileSync(
+        testStatusFile
+      )
+    );
+
+    assert.ok(
+      archive.statusHasMedia( testStatus ) === true
+    );
+  } );
+
 } );
