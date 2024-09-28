@@ -90,7 +90,8 @@ class UpdatePhotos {
     const photoArchive = new PhotoArchive(
       contentArchivePath,
       this.allowOverwrite,
-      this.statusTagFilter
+      this.statusTagFilter,
+      this.tagReplacer
     );
 
     const statusCount = await statusArchive.loadContents();

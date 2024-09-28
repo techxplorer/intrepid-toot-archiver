@@ -106,7 +106,7 @@ class PhotoArchive extends Archive {
       newContent.push( "---" );
       newContent.push( this.contentCreator.makeFrontMatter( status, defaultCategories ) );
       newContent.push( "---" );
-      newContent.push( this.contentCreator.convertContent( status.content ) );
+      newContent.push( this.contentCreator.makeMarkdownContent( status ) );
       newContent.push( this.contentCreator.makeLinkBack( status.url ) );
       newContent.push( "" );
 
