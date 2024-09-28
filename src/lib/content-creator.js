@@ -54,6 +54,24 @@ class ContentCreator {
   tagReplacer = null;
 
   /**
+   * Regular expression to remove tag links in the body of the content.
+   * @type {RegExp}
+   */
+  tagLinkRegEx = /\[(#[\w\s\d]+)\]\((https?:\/\/[\w\d./?=#@]+)\)\s?/gm;
+
+  /**
+   * Regular expression to remove trailing spaces in the body of the content.
+   * @type {RegExp}
+   */
+  trailingSpaceRegEx = /[^\S\r\n]+$/gm;
+
+  /**
+   * Regular expression to remove multiple blank lines.
+   * @type {RegExp}
+   */
+  multiBlankLines = /\n(?:[^\S\n]*\n)+/g;
+
+  /**
    * Construct a new ContentCreator and initialise dependencies.
    * @param {TagReplacer} tagReplacer An optional instance of the TagReplacer class.
    */
@@ -99,8 +117,10 @@ class ContentCreator {
       throw new TypeError( "The htmlContent parameter cannot be a zero length string." );
     }
 
-    // replace any trailing spaces on each line.
-    return this.turndownService.turndown( htmlContent ).replace( /[^\S\r\n]+$/gm, "" );
+    return this.turndownService.turndown( htmlContent )
+      .replace( this.trailingSpaceRegEx, "" ) // Replace any trailing spaces on each line.
+      .replace( this.tagLinkRegEx, "" ) // Remove links to tags in the content.
+      .replace( this.multiBlankLines, "\n" ); // Remove multiple blank lines.
 
   }
 
@@ -195,7 +215,7 @@ class ContentCreator {
       {
         lineWidth: 0
       }
-    );
+    ).trim();
 
   }
 
