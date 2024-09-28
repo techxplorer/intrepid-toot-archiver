@@ -65,11 +65,6 @@ class ContentCreator {
    */
   trailingSpaceRegEx = /[^\S\r\n]+$/gm;
 
-  /**
-   * Regular expression to remove multiple blank lines.
-   * @type {RegExp}
-   */
-  multiBlankLines = /\n(?:[^\S\n]*\n)+/g;
 
   /**
    * Construct a new ContentCreator and initialise dependencies.
@@ -119,8 +114,7 @@ class ContentCreator {
 
     return this.turndownService.turndown( htmlContent )
       .replace( this.trailingSpaceRegEx, "" ) // Replace any trailing spaces on each line.
-      .replace( this.tagLinkRegEx, "" ) // Remove links to tags in the content.
-      .replace( this.multiBlankLines, "\n" ); // Remove multiple blank lines.
+      .replace( this.tagLinkRegEx, "" ); // Remove links to tags in the content.
 
   }
 

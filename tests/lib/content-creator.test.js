@@ -34,11 +34,11 @@ const expectedStatusJson = JSON.parse(
 
 const expectedStatusTxt = readFileSync(
   testExpectedStatusTxtFilePath
-).toString().trimEnd();
+).toString().trim();
 
 const expectedStatusYml = readFileSync(
   testExpectedStatusYmlFilePath
-).toString();
+).toString().trim();
 
 const testStatusUrl = "https://theblower.au/@geton/112793425453345288";
 const testInavlidStatusURL = testStatusUrl.replace( "https://", "" );
