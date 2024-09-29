@@ -4,8 +4,8 @@
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/techxplorer/intrepid-toot-archiver/node.js.yml?branch=master&style=flat-square)
 ![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/techxplorer/intrepid-toot-archiver/master)
 
-The Intrepid Toot Archiver is a small CLI app that I use to create and archive
-of my public toots (toots / posts) from a [Mastodon][mastodon] server on the
+The Intrepid Toot Archiver is a small CLI app that I use to create and manage an
+archive of my public toots (toots / posts) from a [Mastodon][mastodon] server on the
 [fediverse][fedi]. Specifically my accounts at [theblower.au][theblower].
 
 Archived statuses are the source of content for the content archive. The content
@@ -22,6 +22,7 @@ The app has the following commands:
 | update-archive | Download new statuses from the server |
 | update-content | Update the content archive |
 | update-photos  | Update the content archive with photo posts |
+| delete-status  | Delete a status and related media from the archive |
 | help           | Display brief help for a command |
 
 ## Options ##
@@ -42,11 +43,12 @@ or via a shell script. The environment variables are:
 | Variable   | Description |
 | ---------- | ----------- |
 | ITA_HOST   | The name of the Mastodon host |
-| ITA_USERID | The unique user id of the user |
+| ITA_USERID | The unique ID of the user |
 | ITA_USERNAME | The username of the account on the host |
 | ITA_ARCHIVE_PATH | The full path to the status archive |
 | ITA_MEDIA_ARCHIVE_PATH | The full path to the media archive |
 | ITA_CONTENT_ARCHIVE_PATH | The full path to the content archive |
+| ITA_TAG_MAP_YAML_PATH | The full path to a YAML file containing a tag mapping (optional) |
 
 ## Archives ##
 
