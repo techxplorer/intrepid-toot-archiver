@@ -6,6 +6,7 @@ import chalk from "chalk";
 
 import StatusArchive from "../../src/lib/status-archive.js";
 import ContentArchive from "../../src/lib/content-archive.js";
+import TagReplacer from "../../src/lib/tag-replacer.js";
 
 /**
  * Command to update the content uses statuses from the archive.
@@ -15,6 +16,7 @@ class UpdateContent {
   allowOverwrite = false;
   debugOutput = false;
   statusTagFilter = false;
+  tagReplacer = null;
 
   /**
    * Update the content archive.
@@ -39,7 +41,7 @@ class UpdateContent {
   }
 
   /**
-   * Run the command to lookup user details.
+   * Run the command to update the content using saved statuses.
    */
   async run() {
     console.log( chalk.bold( "Updating content archive..." ) );
@@ -56,10 +58,17 @@ class UpdateContent {
       throw new Error( "Expected the ITA_CONTENT_ARCHIVE_PATH environment variable" );
     }
 
-    if ( this. debugOutput ) {
+    const tagMapYamlPath = process.env.ITA_TAG_MAP_YAML_PATH;
+
+    if ( tagMapYamlPath !== undefined ) {
+      this.tagReplacer = new TagReplacer( tagMapYamlPath );
+    }
+
+    if ( this.debugOutput ) {
       console.log( chalk.bold.underline( "\nEnvironment variables" ) );
       console.log( "Status archive path: %s", process.env.ITA_ARCHIVE_PATH );
       console.log( "Content archive path: %s", process.env.ITA_ARCHIVE_PATH );
+      console.log( "Tag map YAML file path: %s", tagMapYamlPath );
       console.log( "Tag used to filter posts: %s%s", this.statusTagFilter, "\n" );
     }
 
@@ -70,7 +79,8 @@ class UpdateContent {
     const contentArchive = new ContentArchive(
       contentArchivePath,
       this.allowOverwrite,
-      this.statusTagFilter
+      this.statusTagFilter,
+      this.tagReplacer
     );
 
     if ( this.allowOverwrite ) {

@@ -495,23 +495,23 @@ describe( "MediaArchive", () => {
         testPassArchivePath
       );
 
-      let statusCount = await archive.getContentsCount();
+      let mediaCount = await archive.getContentsCount();
 
       assert.equal(
-        statusCount,
+        mediaCount,
         0
       );
 
       const { nockDone } = await nockBack( "media-attachment.json" );
 
-      const mediaCount = await archive.addMediaFromStatus( expectedStatusJson );
+      const newMediaCount = await archive.addMediaFromStatus( expectedStatusJson );
 
       nockDone();
 
-      statusCount = await archive.getContentsCount();
+      mediaCount = await archive.getContentsCount();
 
       assert.equal(
-        statusCount,
+        newMediaCount,
         testPassMediaCount
       );
 
@@ -524,4 +524,53 @@ describe( "MediaArchive", () => {
 
   } );
 
+  describe( "deleteContent", async() => {
+
+    before( () => {
+      nockBack.fixtures = nockArtefacts;
+      nockBack.setMode( "lockdown" );
+
+      tidyArchiveDir();
+
+    } );
+
+    afterEach( () => {
+      tidyArchiveDir();
+    } );
+
+    after( () => {
+      tidyArchiveDir();
+    } );
+
+    it( "should delete content", async() => {
+
+      const expectedStatusJson = JSON.parse(
+        readFileSync(
+          testExpectedStatusFilePath
+        )
+      );
+
+      const archive = new MediaArchive(
+        testPassArchivePath
+      );
+
+      const { nockDone } = await nockBack( "media-attachment.json" );
+
+      const newMediaCount = await archive.addMediaFromStatus( expectedStatusJson );
+
+      nockDone();
+
+      assert.equal(
+        newMediaCount,
+        testPassMediaCount
+      );
+
+      const deleted = await archive.deleteContent(
+        path.basename( testMediaFileName, ".jpeg" )
+      );
+
+      assert.ok( deleted );
+
+    } );
+  } );
 } );

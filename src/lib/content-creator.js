@@ -4,6 +4,8 @@
 import TurndownService from "turndown";
 import YAML from "yaml";
 
+import TagReplacer from "./tag-replacer.js";
+
 /**
  * Create content from the statuses in the archive.
  */
@@ -16,11 +18,81 @@ class ContentCreator {
   turndownService = null;
 
   /**
-   * Construct a new ContentCreator and initialise dependencies.
+   * The maximum number of words to have in a title.
+   * @type {number}
    */
-  constructor() {
+  maxTitleLen = 10;
+
+  /**
+   * An instance of the Intl.Segmenter used to make titles.
+   * @type {Intl.Segmeter}
+   */
+  titleSegmenter = null;
+
+  /**
+   * The maximum number of sentences to have in a description.
+   * @type {number}
+   */
+  maxDescrLen = 2;
+
+  /**
+   * An instance of the Intl.Segmenter used to make descriptions.
+   * @type {Intl.Segmeter}
+   */
+  descriptionSegmenter = null;
+
+  /**
+   * A map of converted content to act as a cache.
+   * @type {Map}
+   */
+  contentCache = null;
+
+  /**
+   * An instance of the TagReplacer class.
+   * @type {TagReplacer}
+   */
+  tagReplacer = null;
+
+  /**
+   * Regular expression to remove tag links in the body of the content.
+   * @type {RegExp}
+   */
+  tagLinkRegEx = /\[(#[\w\s\d]+)\]\((https?:\/\/[\w\d./?=#@]+)\)\s?/gm;
+
+  /**
+   * Regular expression to remove trailing spaces in the body of the content.
+   * @type {RegExp}
+   */
+  trailingSpaceRegEx = /[^\S\r\n]+$/gm;
+
+
+  /**
+   * Construct a new ContentCreator and initialise dependencies.
+   * @param {TagReplacer} tagReplacer An optional instance of the TagReplacer class.
+   */
+  constructor( tagReplacer = null ) {
 
     this.turndownService = new TurndownService();
+
+    this.titleSegmenter = new Intl.Segmenter(
+      "en-au",
+      {
+        granularity: "word"
+      }
+    );
+
+    this.descriptionSegmenter = new Intl.Segmenter(
+      "en-au",
+      {
+        granularity: "sentence"
+      }
+    );
+
+    this.contentCache = new Map();
+
+    if ( tagReplacer !== null && tagReplacer instanceof TagReplacer ) {
+      this.tagReplacer = tagReplacer;
+    }
 
   }
 
@@ -40,9 +112,39 @@ class ContentCreator {
       throw new TypeError( "The htmlContent parameter cannot be a zero length string." );
     }
 
-    // replace any trailing spaces on each line.
-    return this.turndownService.turndown( htmlContent ).replace( /[^\S\r\n]+$/gm, "" );
+    return this.turndownService.turndown( htmlContent )
+      .replace( this.trailingSpaceRegEx, "" ) // Replace any trailing spaces on each line.
+      .replace( this.tagLinkRegEx, "" ); // Remove links to tags in the content.
 
+  }
+
+  /**
+   * Make the Markdown version of the content of the status.
+   * @param {object} status The status object.
+   * @returns {string} The content of the status as Markdown.
+   * @throws {TypeError} If the required status properties are missing.
+   */
+  makeMarkdownContent( status ) {
+
+    if ( typeof status !== "object" ) {
+      throw new TypeError( "The status parameter must be an object" );
+    }
+
+    if ( status.content === undefined ) {
+      this.throwError( "content" );
+    }
+
+    if ( status.id === undefined ) {
+      this.throwError( "id" );
+    }
+
+    if ( this.contentCache.has( status.id ) ) {
+      return this.contentCache.get( status.id );
+    }
+
+    const content = this.convertContent( status.content );
+    this.contentCache.set( status.id, content );
+    return content;
   }
 
   /**
@@ -52,7 +154,7 @@ class ContentCreator {
    * @returns {string} The front matter as a YAML string.
    * @throws {TypeError} If the status object doesn't contain the expected property.
    */
-  createFrontMatter( status, categories = [] ) {
+  makeFrontMatter( status, categories = [] ) {
 
     const frontMatter = {};
 
@@ -78,9 +180,13 @@ class ContentCreator {
 
     frontMatter.date = status.created_at;
 
-    frontMatter.title = "Archived toot";
+    frontMatter.title = this.makeTitle(
+      this.makeMarkdownContent( status )
+    );
 
-    frontMatter.description = "An archived toot";
+    frontMatter.description = this.makeDescription(
+      this.makeMarkdownContent( status )
+    );
 
     frontMatter.toot_url = status.url;
 
@@ -94,7 +200,16 @@ class ContentCreator {
       }
     }
 
-    return YAML.stringify( frontMatter );
+    if ( this.tagReplacer !== null ) {
+      frontMatter.tags = this.tagReplacer.replaceTags( frontMatter.tags );
+    }
+
+    return YAML.stringify(
+      frontMatter,
+      {
+        lineWidth: 0
+      }
+    ).trim();
 
   }
 
@@ -110,6 +225,123 @@ class ContentCreator {
     }
 
     return `[Original post on the Fediverse](${ statusUrl })`;
+  }
+
+  /**
+   * Use the first words to make a post title.
+   * @param {string} markdownContent The content in Markdown format.
+   * @throws {TypeError} If the parameter is incorrect.
+   * @returns {string} The title of the content using the first words.
+   */
+  makeTitle( markdownContent ) {
+
+    if ( markdownContent === undefined ) {
+      throw new TypeError( "The markdownContent parameter is required" );
+    }
+
+    if ( typeof markdownContent !== "string" ) {
+      throw new TypeError( "The markdownContent parameter must be a string" );
+    }
+
+    let content = markdownContent.replaceAll(
+      "\n",
+      " "
+    );
+
+    content = content.replaceAll(
+      "  ",
+      " "
+    );
+
+    const segments = this.titleSegmenter.segment( content );
+
+    let count = 0;
+    let titleSegments = [];
+    let title = "";
+
+    for ( const segment of segments ) {
+
+      if ( count === this.maxTitleLen ) {
+        break;
+      }
+
+      titleSegments.push(
+        segment
+      );
+
+      if ( segment.isWordLike === true ) {
+        count++;
+      }
+
+    }
+
+    for ( const segment of titleSegments ) {
+      title += segment.segment;
+    }
+
+    title += "\u2026";
+
+    return title;
+
+  }
+
+  /**
+   * Use the first sentences to make a post description.
+   * @param {string} markdownContent The content in Markdown format.
+   * @throws {TypeError} If the parameter is incorrect.
+   * @returns {string} The description of the content using the first sentences.
+   */
+  makeDescription( markdownContent ) {
+
+    if ( markdownContent === undefined ) {
+      throw new TypeError( "The markdownContent parameter is required" );
+    }
+
+    if ( typeof markdownContent !== "string" ) {
+      throw new TypeError( "The markdownContent parameter must be a string" );
+    }
+
+    let content = markdownContent.replaceAll(
+      "\n",
+      " "
+    );
+
+    content = content.replaceAll(
+      "  ",
+      " "
+    );
+
+    const segments = this.descriptionSegmenter.segment( content );
+
+    let count = 0;
+    let descrSegments = [];
+    let descr = "";
+
+    for ( const segment of segments ) {
+
+      if ( count === this.maxDescrLen ) {
+        break;
+      }
+
+      descrSegments.push(
+        segment
+      );
+
+      count++;
+
+    }
+
+    for ( const segment of descrSegments ) {
+      descr += segment.segment;
+    }
+
+    descr = descr.trim();
+    descr = descr.substring( 0, descr.length - 1 );
+
+    descr += "\u2026";
+
+    return descr;
+
   }
 
   /**

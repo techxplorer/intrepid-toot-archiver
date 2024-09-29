@@ -50,6 +50,10 @@ const testNewStatuses = [
   "112546982904162819.json"
 ];
 
+const testNoMediaStatuses = [
+  "112793425453345288.json"
+];
+
 /**
  * Helper function to tidy the archive directory.
  */
@@ -492,6 +496,48 @@ describe( "PhotoArchive", () => {
 
       const photoCount = await photoArchive.addContent(
         testNewStatuses,
+        testPassStatusArchivePath,
+        testPassMediaArchive
+      );
+
+      assert.equal(
+        photoCount,
+        0
+      );
+
+    } );
+
+    it( "should only add statuses that have media", async() => {
+
+      // setup the media archive first
+      const mediaArchive = new MediaArchive(
+        testPassMediaArchive
+      );
+
+      let statusCount = await mediaArchive.getContentsCount();
+
+      assert.equal(
+        statusCount,
+        0
+      );
+
+      const { nockDone } = await nockBack( "media-attachment.json" );
+
+      const addedMedia = await mediaArchive.addMedia( testPassMediaUrl );
+
+      nockDone();
+
+      assert.equal(
+        addedMedia,
+        1
+      );
+
+      const photoArchive = new PhotoArchive(
+        testPassArchivePath
+      );
+
+      const photoCount = await photoArchive.addContent(
+        testNoMediaStatuses,
         testPassStatusArchivePath,
         testPassMediaArchive
       );

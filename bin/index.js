@@ -11,6 +11,7 @@ import PackageUtils from "../src/utils/package-utils.js";
 import UpdateArchive from "../src/commands/update-archive.js";
 import UpdateContent from "../src/commands/update-content.js";
 import UpdatePhotos from "../src/commands/update-photos.js";
+import DeleteStatus from "../src/commands/delete-status.js"
 
 const startTime = process.hrtime.bigint();
 
@@ -41,7 +42,7 @@ async function run() {
     .showHelpAfterError( "(add --help for additional information)" )
     .option( "-f, --force", "overwrite existing files" )
     .option( "-d, --debug", "output debug information" )
-    .option( "-t, --tag <tag>", "include only statuses with this tag")
+    .option( "-t, --tag <tag>", "include only statuses with this tag" )
     .addHelpText(
       "after",
       `\nMore info: ${ appPackage.getHomepage() }\nVersion: ${ appPackage.getVersion() }`
@@ -88,6 +89,17 @@ async function run() {
         options.tag
       );
       await updateContent.run();
+    } );
+
+  // Add the delete status command.
+  program.command( "delete-status <status-id>" )
+    .description( "delete a status from the archive" )
+    .action( async( statusId) => {
+      const deleteStatus = new DeleteStatus(
+        statusId
+      );
+      await deleteStatus.run();
+
     } );
 
   // Parse the command line parameters.

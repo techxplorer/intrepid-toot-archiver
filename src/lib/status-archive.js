@@ -8,6 +8,7 @@ import Archive from "./archive.js";
 
 /**
  * Manage an archive of statuses.
+ * @augments Archive
  */
 class StatusArchive extends Archive {
 
@@ -20,6 +21,8 @@ class StatusArchive extends Archive {
   constructor( archivePath, overwriteFlag = false ) {
     super( archivePath, overwriteFlag );
     this.fileExtension = ".json";
+    this.minContentIdLen = 18;
+    this.supportsDelete = true;
   }
 
   /**
@@ -39,7 +42,7 @@ class StatusArchive extends Archive {
     let addedStatuses = 0;
 
     for ( const status of newStatuses ) {
-      const fileName = status.id + ".json";
+      const fileName = status.id + this.fileExtension;
 
       if (
         this.writeFileOptions.flag === "wx" &&

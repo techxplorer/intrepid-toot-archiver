@@ -6,9 +6,7 @@ import { describe, it } from "node:test";
 import YAML from "yaml";
 
 import ContentCreator from "../../src/lib/content-creator.js";
-
-const testContentTypeErrorOne = "The htmlContent parameter must be a string.";
-const testContentTypeErrorTwo = "The htmlContent parameter cannot be a zero length string.";
+import TagReplacer from "../../src/lib/tag-replacer.js";
 
 const testStatusJsonFileName = "112793425453345288.json";
 const testExpectedStatusJsonFilePath = path.join(
@@ -36,15 +34,30 @@ const expectedStatusJson = JSON.parse(
 
 const expectedStatusTxt = readFileSync(
   testExpectedStatusTxtFilePath
-).toString().trimEnd();
+).toString().trim();
 
 const expectedStatusYml = readFileSync(
   testExpectedStatusYmlFilePath
-).toString();
+).toString().trim();
 
 const testStatusUrl = "https://theblower.au/@geton/112793425453345288";
 const testInavlidStatusURL = testStatusUrl.replace( "https://", "" );
 const expectedLinkBack = `[Original post on the Fediverse](${ testStatusUrl })`;
+const testTagMappingYml = path.resolve( "tests/artefacts/tag-replacer/tag-mapping.yml" );
+
+/* eslint-disable max-len, no-useless-escape */
+const testLongContent = `Hello Blowerians!
+
+There's been an uptick in reported posts lately, for probably obvious reasons.
+
+1\. Criticism of any nation's actions is not considered racism by us.
+2\. With that in mind, please be careful with your wording, and do not use general racial terms when talking about the actions of governments.
+3\. We expect all \*public\* posts that appear on the Local feed to meet a fairly conservative PG-13 standard. This is not just "adult" content, but also violence/gore.`;
+
+const expectedTitle = "Hello Blowerians! There's been an uptick in reported posts lately…";
+
+const expectedDescr = "Hello Blowerians! There's been an uptick in reported posts lately, for probably obvious reasons…";
+/* eslint-enable max-len, no-useless-escape */
 
 describe( "ContentCreator", () => {
 
@@ -55,40 +68,103 @@ describe( "ContentCreator", () => {
           new ContentCreator();
         }
       );
+
+      assert.doesNotThrow(
+        () => {
+          new ContentCreator( null );
+        }
+      );
+
+      assert.doesNotThrow(
+        () => {
+          new ContentCreator( new TagReplacer( testTagMappingYml ) );
+        }
+      );
     } );
   } );
 
-  describe( "convertContent", () => {
-    it( "should throw a TypeError of the parameter is not a string.", () => {
+  describe( "makeMarkdownContent", () => {
+    it( "should throw a TypeError of the parameter is not correct", () => {
       const contentCreator = new ContentCreator();
 
+      const testStatusJson = structuredClone( expectedStatusJson );
+
       assert.throws(
         () => {
-          contentCreator.convertContent();
+          contentCreator.makeMarkdownContent();
         },
         {
           name: "TypeError",
-          message: testContentTypeErrorOne
+          message: /must be an object/
         }
       );
 
       assert.throws(
         () => {
-          contentCreator.convertContent( 1234 );
+          contentCreator.makeMarkdownContent( 1234 );
         },
         {
           name: "TypeError",
-          message: testContentTypeErrorOne
+          message: /must be an object/
         }
       );
 
       assert.throws(
         () => {
-          contentCreator.convertContent( "" );
+          contentCreator.makeMarkdownContent( "" );
         },
         {
           name: "TypeError",
-          message: testContentTypeErrorTwo
+          message: /must be an object/
+        }
+      );
+
+      testStatusJson.content = 1234;
+
+      assert.throws(
+        () => {
+          contentCreator.makeMarkdownContent( testStatusJson );
+        },
+        {
+          name: "TypeError",
+          message: /must be a string/
+        }
+      );
+
+      testStatusJson.content = "";
+
+      assert.throws(
+        () => {
+          contentCreator.makeMarkdownContent( testStatusJson );
+        },
+        {
+          name: "TypeError",
+          message: /cannot be a zero length string/
+        }
+      );
+
+      testStatusJson.content = undefined;
+
+      assert.throws(
+        () => {
+          contentCreator.makeMarkdownContent( testStatusJson );
+        },
+        {
+          name: "TypeError",
+          message: /content/
+        }
+      );
+
+      testStatusJson.content = "test content";
+      testStatusJson.id = undefined;
+
+      assert.throws(
+        () => {
+          contentCreator.makeMarkdownContent( testStatusJson );
+        },
+        {
+          name: "TypeError",
+          message: /id/
         }
       );
     } );
@@ -98,20 +174,14 @@ describe( "ContentCreator", () => {
 
       assert.doesNotThrow(
         () => {
-          contentCreator.convertContent( "12345" );
-        }
-      );
-
-      assert.doesNotThrow(
-        () => {
-          contentCreator.convertContent( expectedStatusJson.content );
+          contentCreator.makeMarkdownContent( expectedStatusJson );
         }
       );
     } );
 
     it( "should return the expected markdown from the HTML content.", () => {
       const contentCreator = new ContentCreator();
-      const markdownContent = contentCreator.convertContent( expectedStatusJson.content );
+      const markdownContent = contentCreator.makeMarkdownContent( expectedStatusJson );
 
       assert.equal(
         markdownContent,
@@ -120,13 +190,13 @@ describe( "ContentCreator", () => {
     } );
   } );
 
-  describe( "createFrontMatter", () => {
+  describe( "makeFrontMatter", () => {
     it( "should throw an error when the parameter is incorrect", () => {
       const contentCreator = new ContentCreator();
 
       assert.throws(
         () => {
-          contentCreator.createFrontMatter();
+          contentCreator.makeFrontMatter();
         },
         {
           name: "TypeError",
@@ -136,7 +206,7 @@ describe( "ContentCreator", () => {
 
       assert.throws(
         () => {
-          contentCreator.createFrontMatter( "" );
+          contentCreator.makeFrontMatter( "" );
         },
         {
           name: "TypeError",
@@ -146,7 +216,7 @@ describe( "ContentCreator", () => {
 
       assert.throws(
         () => {
-          contentCreator.createFrontMatter( 1234 );
+          contentCreator.makeFrontMatter( 1234 );
         },
         {
           name: "TypeError",
@@ -156,7 +226,7 @@ describe( "ContentCreator", () => {
 
       assert.throws(
         () => {
-          contentCreator.createFrontMatter(
+          contentCreator.makeFrontMatter(
             expectedStatusJson,
             1234
           );
@@ -173,13 +243,13 @@ describe( "ContentCreator", () => {
 
       assert.doesNotThrow(
         () => {
-          contentCreator.createFrontMatter( expectedStatusJson );
+          contentCreator.makeFrontMatter( expectedStatusJson );
         }
       );
 
     } );
 
-    it( "should not throw an error when the satus object is missing a property", () => {
+    it( "should throw an error when the satus object is missing a property", () => {
       const contentCreator = new ContentCreator();
 
       let testStatusJson = structuredClone( expectedStatusJson );
@@ -187,7 +257,7 @@ describe( "ContentCreator", () => {
 
       assert.throws(
         () => {
-          contentCreator.createFrontMatter( testStatusJson );
+          contentCreator.makeFrontMatter( testStatusJson );
         },
         {
           name: "TypeError",
@@ -200,7 +270,7 @@ describe( "ContentCreator", () => {
 
       assert.throws(
         () => {
-          contentCreator.createFrontMatter( testStatusJson );
+          contentCreator.makeFrontMatter( testStatusJson );
         },
         {
           name: "TypeError",
@@ -213,7 +283,7 @@ describe( "ContentCreator", () => {
 
       assert.throws(
         () => {
-          contentCreator.createFrontMatter( testStatusJson );
+          contentCreator.makeFrontMatter( testStatusJson );
         },
         {
           name: "TypeError",
@@ -225,7 +295,7 @@ describe( "ContentCreator", () => {
 
       assert.throws(
         () => {
-          contentCreator.createFrontMatter( testStatusJson );
+          contentCreator.makeFrontMatter( testStatusJson );
         },
         {
           name: "TypeError",
@@ -235,8 +305,8 @@ describe( "ContentCreator", () => {
     } );
 
     it( "should return the expected front matter", () => {
-      const contentCreator = new ContentCreator();
-      let actualYml = contentCreator.createFrontMatter(
+      const contentCreator = new ContentCreator( new TagReplacer( testTagMappingYml ) );
+      let actualYml = contentCreator.makeFrontMatter(
         expectedStatusJson
       );
 
@@ -267,7 +337,7 @@ describe( "ContentCreator", () => {
         "love"
       ];
 
-      actualYml = contentCreator.createFrontMatter(
+      actualYml = contentCreator.makeFrontMatter(
         testStatusJson
       );
 
@@ -358,5 +428,93 @@ describe( "ContentCreator", () => {
         expectedLinkBack
       );
     } );
+  } );
+
+  describe( "makeTitle", () => {
+
+    it( "should throw an error when the parameter is incorrect", () => {
+      const contentCreator = new ContentCreator();
+
+      assert.throws(
+        () => {
+          contentCreator.makeTitle();
+        },
+        {
+          name: "TypeError",
+          message: /is required/
+        }
+      );
+
+      assert.throws(
+        () => {
+          contentCreator.makeTitle( 1234 );
+        },
+        {
+          name: "TypeError",
+          message: /must be a string/
+        }
+      );
+
+      assert.doesNotThrow(
+        () => {
+          contentCreator.makeTitle( testLongContent );
+        }
+      );
+
+    } );
+
+    it( "should make the expected title", () => {
+      const contentCreator = new ContentCreator();
+      const testTitle = contentCreator.makeTitle( testLongContent );
+      assert.equal(
+        testTitle,
+        expectedTitle
+      );
+    } );
+
+  } );
+
+  describe( "makeDescription", () => {
+
+    it( "should throw an error when the parameter is incorrect", () => {
+      const contentCreator = new ContentCreator();
+
+      assert.throws(
+        () => {
+          contentCreator.makeDescription();
+        },
+        {
+          name: "TypeError",
+          message: /is required/
+        }
+      );
+
+      assert.throws(
+        () => {
+          contentCreator.makeDescription( 1234 );
+        },
+        {
+          name: "TypeError",
+          message: /must be a string/
+        }
+      );
+
+      assert.doesNotThrow(
+        () => {
+          contentCreator.makeDescription( testLongContent );
+        }
+      );
+
+    } );
+
+    it( "should make the expected description", () => {
+      const contentCreator = new ContentCreator();
+      const testDescr = contentCreator.makeDescription( testLongContent );
+      assert.equal(
+        testDescr,
+        expectedDescr
+      );
+    } );
+
   } );
 } );

@@ -8,6 +8,7 @@ import Archive from "./archive.js";
 
 /**
  * Manage an archive of media attachments.
+ * @augments Archive
  */
 class MediaArchive extends Archive {
 
@@ -20,6 +21,8 @@ class MediaArchive extends Archive {
   constructor( archivePath, overwriteFlag = false ) {
     super( archivePath, overwriteFlag );
     this.fileExtension = ".jpeg";
+    this.supportsDelete = true;
+    this.minContentIdLen = 16;
   }
 
   /**
