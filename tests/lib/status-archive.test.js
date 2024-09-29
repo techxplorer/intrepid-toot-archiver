@@ -32,6 +32,8 @@ const testExpectedStatusFilePath = path.join(
 const nockArtefacts = path.resolve( "tests/artefacts/nock" );
 const nockBack = nock.back;
 
+const testContenIdForDelete = "112793425453345288";
+
 /**
  * Helper function to tidy the archive directory.
  */
@@ -518,5 +520,221 @@ describe( "StatusArchive", () => {
         testPassStatusCount
       );
     } );
+  } );
+
+  describe( "getContent", async() => {
+
+    before( () => {
+      nockBack.fixtures = nockArtefacts;
+      nockBack.setMode( "lockdown" );
+
+      tidyArchiveDir();
+
+    } );
+
+    after( () => {
+      tidyArchiveDir();
+    } );
+
+    it( "should return the expected JSON object", async() => {
+
+      const archive = new StatusArchive(
+        testPassArchivePath
+      );
+
+      const fetcher = new FetchStatuses(
+        testPassFQDN,
+        testPassUserId
+      );
+
+      const { nockDone } = await nockBack( "user-statuses.json" );
+
+      await fetcher.fetchData();
+
+      nockDone();
+
+      await archive.addStatuses(
+        fetcher.fetchedStatusData
+      );
+
+      let statusCount = await archive.getContentsCount();
+
+      assert.equal(
+        statusCount,
+        testPassStatusCount
+      );
+
+      const status = await archive.getContent( testContenIdForDelete );
+
+      assert.ok( typeof status === "object" );
+      assert.ok( status.id === testContenIdForDelete );
+
+    } );
+
+  } );
+
+  describe( "deleteContent", async() => {
+
+    before( () => {
+      nockBack.fixtures = nockArtefacts;
+      nockBack.setMode( "lockdown" );
+
+      tidyArchiveDir();
+
+    } );
+
+    after( () => {
+      tidyArchiveDir();
+    } );
+
+    it( "should throw an error if the parameters are invalid", async() => {
+      const archive = new StatusArchive(
+        testPassArchivePath
+      );
+
+      await assert.rejects(
+        async() => {
+          await archive.deleteContent(
+            undefined
+          );
+        },
+        {
+          name: "TypeError",
+          message: /must be a string/
+        }
+      );
+
+      await assert.rejects(
+        async() => {
+          await archive.deleteContent(
+            {}
+          );
+        },
+        {
+          name: "TypeError",
+          message: /must be a string/
+        }
+      );
+
+      await assert.rejects(
+        async() => {
+          await archive.deleteContent(
+            ""
+          );
+        },
+        {
+          name: "TypeError",
+          message: /must not be empty/
+        }
+      );
+
+      await assert.rejects(
+        async() => {
+          await archive.deleteContent(
+            "123"
+          );
+        },
+        {
+          name: "TypeError",
+          message: /[\d]+/
+        }
+      );
+    } );
+
+    it( "should delete the identified content", async() => {
+
+      const archive = new StatusArchive(
+        testPassArchivePath
+      );
+
+      const fetcher = new FetchStatuses(
+        testPassFQDN,
+        testPassUserId
+      );
+
+      const { nockDone } = await nockBack( "user-statuses.json" );
+
+      await fetcher.fetchData();
+
+      nockDone();
+
+      await archive.addStatuses(
+        fetcher.fetchedStatusData
+      );
+
+      let statusCount = await archive.getContentsCount();
+
+      assert.equal(
+        statusCount,
+        testPassStatusCount
+      );
+
+      let deleted = await archive.deleteContent( testContenIdForDelete );
+
+      assert.ok( deleted );
+
+      statusCount = await archive.getContentsCount();
+
+      assert.equal(
+        statusCount,
+        testPassStatusCount - 1
+      );
+
+      deleted = await archive.deleteContent( testContenIdForDelete );
+
+      assert.ok( deleted === false );
+
+    } );
+
+    it( "should return false if the deletion fails", async() => {
+
+      const archive = new StatusArchive(
+        testPassArchivePath
+      );
+
+      const fetcher = new FetchStatuses(
+        testPassFQDN,
+        testPassUserId
+      );
+
+      const { nockDone } = await nockBack( "user-statuses.json" );
+
+      await fetcher.fetchData();
+
+      nockDone();
+
+      await archive.addStatuses(
+        fetcher.fetchedStatusData
+      );
+
+      let statusCount = await archive.getContentsCount();
+
+      assert.equal(
+        statusCount,
+        testPassStatusCount
+      );
+
+      let deleted = await archive.deleteContent( testContenIdForDelete );
+
+      assert.ok( deleted );
+
+      statusCount = await archive.getContentsCount();
+
+      assert.equal(
+        statusCount,
+        testPassStatusCount - 1
+      );
+
+      archive.contents.push(
+        testContenIdForDelete + ".json"
+      );
+      archive.cacheStale = false;
+
+      deleted = await archive.deleteContent( testContenIdForDelete );
+
+      assert.ok( deleted === false );
+
+    } );
+
   } );
 } );

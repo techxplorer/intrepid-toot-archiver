@@ -21,6 +21,8 @@ class MediaArchive extends Archive {
   constructor( archivePath, overwriteFlag = false ) {
     super( archivePath, overwriteFlag );
     this.fileExtension = ".jpeg";
+    this.supportsDelete = true;
+    this.minContentIdLen = 16;
   }
 
   /**

@@ -3,7 +3,7 @@
  */
 
 import { lstatSync } from "node:fs";
-import { readdir } from "node:fs/promises";
+import { readdir, readFile, rm } from "node:fs/promises";
 import path from "node:path";
 
 /**
@@ -48,6 +48,18 @@ class Archive {
    * @type {string}
    */
   statusFilter = false;
+
+  /**
+   * The minimum expected length of a content id.
+   * @type {number}
+   */
+  minContentIdLen = 0;
+
+  /**
+   * A flag indicating that the archive supports content deletion.
+   * @type {boolean}
+   */
+  supportsDelete = false;
 
   /**
    * Manage the archive of contents.
@@ -220,6 +232,104 @@ class Archive {
     if ( status.media_attachments.length === 0 ) {
       return false;
     }
+
+    return true;
+
+  }
+
+  /**
+   * Get the status object from the archive.
+   * @param {string} contentID The Unique id of the status.
+   * @throws {TypeError} If the parameters are invalid.
+   * @returns {object | string} The status object.
+   */
+  async getContent( contentID ) {
+
+    if ( this.fileExtension !== ".json" && this.fileExtension !== ".md" ) {
+      throw Error( "Only supports JSON and Markdown content at this time." );
+    }
+
+    this.validateContentID( contentID );
+
+    await this.loadContents();
+
+    const fileName = contentID + this.fileExtension;
+
+    if ( !this.contents.includes( fileName ) ) {
+      return false;
+    }
+
+    const content = await readFile(
+      path.join(
+        this.archivePath,
+        fileName
+      )
+    );
+
+    if ( this.fileExtension === ".json" ) {
+      return JSON.parse(
+        content.toString()
+      );
+    } else {
+      return content.toString();
+    }
+  }
+
+  /**
+   * Utility function to validate a content ID.
+   * @param {string} contentID The unique ID of the content.
+   * @throws {TypeError} If the content ID is invalid.
+   */
+  validateContentID( contentID ) {
+
+    if ( typeof contentID !== "string" ) {
+      throw new TypeError( "The contentID parameter must be a string" );
+    }
+
+    if ( contentID === "" ) {
+      throw new TypeError( "The contentID parameter must not be empty" );
+    }
+
+    if ( contentID.length < this.minContentIdLen ) {
+      throw new TypeError( `The contentID must be at least ${ this.minContentIdLen } characters` );
+    }
+  }
+
+  /**
+   * Delete an item of content from the archive.
+   * @param {string} contentID The unique identifier of the content in the archive.
+   * @throws {TypeError} If the parameters are invalid.
+   * @returns {boolean} True if the content is deleted, False if it isn't.
+   */
+  async deleteContent( contentID ) {
+
+    if ( !this.supportsDelete ) {
+      throw new Error( "This archive doesn't support content deletion" );
+    }
+
+    this.validateContentID( contentID );
+
+    await this.loadContents();
+
+    const fileName = contentID + this.fileExtension;
+
+    if ( !this.contents.includes( fileName ) ) {
+      return false;
+    }
+
+    const filePath = path.join(
+      this.archivePath,
+      fileName
+    );
+
+    try {
+      await rm( filePath );
+    // eslint-disable-next-line no-unused-vars
+    } catch ( err ) {
+      return false;
+    }
+
+    this.cacheStale = true;
 
     return true;
 

@@ -33,7 +33,7 @@ class UpdateArchive {
   }
 
   /**
-   * Run the command to lookup user details.
+   * Run the command to update the archive.
    */
   async run() {
     console.log( chalk.bold( "Updating status archive..." ) );
@@ -67,7 +67,7 @@ class UpdateArchive {
       userId
     );
 
-    if ( this. debugOutput ) {
+    if ( this.debugOutput ) {
       console.log( chalk.bold.underline( "\nEnvironment variables" ) );
       console.log( "Host: %s", host );
       console.log( "User id: %s", userId );

@@ -493,4 +493,80 @@ describe( "ContentArchive", () => {
 
   } );
 
+  describe( "getContent", async() => {
+
+    before( async() => {
+      nockBack.fixtures = nockArtefacts;
+      nockBack.setMode( "lockdown" );
+
+      const fetcher = new FetchStatuses(
+        testPassFQDN,
+        testPassUserId
+      );
+
+      const { nockDone } = await nockBack( "user-statuses.json" );
+
+      await fetcher.fetchData();
+
+      nockDone();
+
+      const archive = new StatusArchive(
+        testPassStatusArchivePath
+      );
+
+      await archive.addStatuses(
+        fetcher.fetchedStatusData
+      );
+
+      tidyArchiveDir();
+    } );
+
+    after( () => {
+      tidyArchiveDir();
+      tidyStatusArchiveDir();
+    } );
+
+    it( "should return the expected content", async() => {
+      const statusArchive = new StatusArchive(
+        testPassStatusArchivePath
+      );
+
+      const archive = new ContentArchive(
+        testPassArchivePath
+      );
+
+      await archive.addContent(
+        await statusArchive.getContents(),
+        statusArchive.archivePath
+      );
+
+      const content = await archive.getContent( "112793425453345288" );
+
+      assert.ok(
+        typeof content === "string"
+      );
+
+    } );
+  } );
+
+  describe( "deleteContent", async() => {
+
+    it( "should throw an error as deletion isn't supported", async() => {
+      const archive = new ContentArchive(
+        testPassArchivePath
+      );
+
+      await assert.rejects(
+        async() => {
+          await archive.deleteContent( "1234" );
+        },
+        {
+          name: "Error",
+          message: /doesn't support content deletion/
+        }
+      );
+
+    } );
+  } );
+
 } );

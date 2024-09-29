@@ -211,50 +211,103 @@ describe( "Archive", () => {
       } );
     } );
 
+    it( "should return false if the status doesn't have any media", () => {
+      const archive = new Archive(
+        testPassArchivePath
+      );
+
+      assert.ok(
+        archive.statusHasMedia( {} ) === false
+      );
+
+      assert.ok(
+        archive.statusHasMedia( {
+          media_attachments: undefined
+        } ) === false
+      );
+
+      assert.ok(
+        archive.statusHasMedia( {
+          media_attachments: ""
+        } ) === false
+      );
+
+      assert.ok(
+        archive.statusHasMedia( {
+          media_attachments: []
+        } ) === false
+      );
+    } );
+
+    it( "should return true if the status does have media", () => {
+      const archive = new Archive(
+        testPassArchivePath
+      );
+
+      const testStatus = JSON.parse(
+        readFileSync(
+          testStatusFile
+        )
+      );
+
+      assert.ok(
+        archive.statusHasMedia( testStatus ) === true
+      );
+    } );
   } );
 
-  it( "should return false if the status doesn't have any media", () => {
-    const archive = new Archive(
-      testPassArchivePath
-    );
+  describe( "getContent", async() => {
 
-    assert.ok(
-      archive.statusHasMedia( {} ) === false
-    );
+    it( "should throw an error when the content type isn't supported", async() => {
+      const archive = new Archive(
+        testPassArchivePath
+      );
 
-    assert.ok(
-      archive.statusHasMedia( {
-        media_attachments: undefined
-      } ) === false
-    );
+      await assert.rejects(
+        async() => {
+          await archive.getContent( "1234" );
+        },
+        {
+          name: "Error",
+          message: /Only supports JSON and Markdown content/
+        }
+      );
 
-    assert.ok(
-      archive.statusHasMedia( {
-        media_attachments: ""
-      } ) === false
-    );
+    } );
 
-    assert.ok(
-      archive.statusHasMedia( {
-        media_attachments: []
-      } ) === false
-    );
+    it( "should return false when the content cannot be found", async() => {
+      const archive = new Archive(
+        testPassArchivePath
+      );
+      archive.fileExtension = ".json";
+
+      const content = await archive.getContent( "1234" );
+
+      assert.ok(
+        content === false
+      );
+
+    } );
+
   } );
 
-  it( "should return true if the status does had media", () => {
-    const archive = new Archive(
-      testPassArchivePath
-    );
+  describe( "deleteContent", async() => {
 
-    const testStatus = JSON.parse(
-      readFileSync(
-        testStatusFile
-      )
-    );
+    it( "should throw an error when the deletion isn't supported", async() => {
+      const archive = new Archive(
+        testPassArchivePath
+      );
 
-    assert.ok(
-      archive.statusHasMedia( testStatus ) === true
-    );
+      await assert.rejects(
+        async() => {
+          await archive.deleteContent( "1234" );
+        },
+        {
+          name: "Error",
+          message: /doesn't support content deletion/
+        }
+      );
+
+    } );
   } );
-
 } );
