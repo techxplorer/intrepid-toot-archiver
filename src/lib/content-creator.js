@@ -142,7 +142,10 @@ class ContentCreator {
       return this.contentCache.get( status.id );
     }
 
-    const content = this.convertContent( status.content );
+    const content = this.fixDoubleLineSpaces(
+      this.convertContent( status.content )
+    );
+
     this.contentCache.set( status.id, content );
     return content;
   }
@@ -341,6 +344,30 @@ class ContentCreator {
     descr += "\u2026";
 
     return descr;
+
+  }
+
+  /**
+   * Use the first sentences to make a post description.
+   * See this {@linkhttps://stackoverflow.com/a/49432524|Stack Overflow} post for
+   * original implementation.
+   * @param {string} markdownContent The content in Markdown format.
+   * @throws {TypeError} If the parameter is incorrect.
+   * @returns {string} The description of the content using the first sentences.
+   */
+  fixDoubleLineSpaces( markdownContent ) {
+
+    if ( markdownContent === undefined ) {
+      throw new TypeError( "The markdownContent parameter is required" );
+    }
+
+    if ( typeof markdownContent !== "string" ) {
+      throw new TypeError( "The markdownContent parameter must be a string" );
+    }
+
+    // eslint-disable-next-line no-control-regex
+    var regExp = new RegExp( "(\n){3,}", "gm" );
+    return markdownContent.replace( regExp, "\n\n" );
 
   }
 

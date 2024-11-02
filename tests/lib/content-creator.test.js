@@ -59,6 +59,15 @@ const expectedTitle = "Hello Blowerians! There's been an uptick in reported post
 const expectedDescr = "Hello Blowerians! There's been an uptick in reported posts lately, for probably obvious reasons…";
 /* eslint-enable max-len, no-useless-escape */
 
+const testDoubleLineSpace = `Lorem ipsum odor amet, consectetuer adipiscing elit.
+
+
+Ornare dis malesuada vestibulum maximus aliquet etiam.`;
+
+const expectedDoubleLineSpace = `Lorem ipsum odor amet, consectetuer adipiscing elit.
+
+Ornare dis malesuada vestibulum maximus aliquet etiam.`;
+
 describe( "ContentCreator", () => {
 
   describe( "constructor", () => {
@@ -513,6 +522,50 @@ describe( "ContentCreator", () => {
       assert.equal(
         testDescr,
         expectedDescr
+      );
+    } );
+
+  } );
+
+  describe( "fixDoubleLineSpaces", () => {
+
+    it( "should throw an error when the parameter is incorrect", () => {
+      const contentCreator = new ContentCreator();
+
+      assert.throws(
+        () => {
+          contentCreator.fixDoubleLineSpaces();
+        },
+        {
+          name: "TypeError",
+          message: /is required/
+        }
+      );
+
+      assert.throws(
+        () => {
+          contentCreator.fixDoubleLineSpaces( 1234 );
+        },
+        {
+          name: "TypeError",
+          message: /must be a string/
+        }
+      );
+
+      assert.doesNotThrow(
+        () => {
+          contentCreator.fixDoubleLineSpaces( testLongContent );
+        }
+      );
+
+    } );
+
+    it( "should make the expected description", () => {
+      const contentCreator = new ContentCreator();
+      const testContent = contentCreator.fixDoubleLineSpaces( testDoubleLineSpace );
+      assert.equal(
+        testContent,
+        expectedDoubleLineSpace
       );
     } );
 
