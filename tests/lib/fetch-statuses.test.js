@@ -16,7 +16,7 @@ const testFailUsrerIdOne = testPassUserId + "abc";
 const testFailUsrerIdTwo = "-" + testPassUserId;
 const testUserIdMessage = "A numeric userId is required";
 
-const testSingleStatusId = "112793425453345288";
+const testSingleStatusId = "113277092499490290";
 const testFetchedStatusCount = 20;
 
 const testFetchUrlHost =  `https://${ testPassFQDN }`;
@@ -27,7 +27,15 @@ const testFetchURL = testFetchUrlHost + testFetchUrlPath + testFetchUrlQuery;
 const nockArtefacts = path.resolve( "tests/artefacts/nock" );
 const nockBack = nock.back;
 
+const nockBackMode = "lockdown";
+const nockArtefactName = "user-statuses.json";
+
 describe( "FetchStatuses", () => {
+
+  before( () => {
+    nockBack.fixtures = nockArtefacts;
+    nockBack.setMode( nockBackMode );
+  } );
 
   describe( "constructor", () => {
     it( "should throw a TypeError when the host name is not a FQDN", () => {
@@ -119,10 +127,7 @@ describe( "FetchStatuses", () => {
   } );
 
   describe( "fetchData", async() => {
-    before( () => {
-      nockBack.fixtures = nockArtefacts;
-      nockBack.setMode( "lockdown" );
-    } );
+
 
     it( "should throw an error when the request fails", async() => {
       const fetcher = new FetchStatuses(
@@ -153,7 +158,7 @@ describe( "FetchStatuses", () => {
         null
       );
 
-      const { nockDone } = await nockBack( "user-statuses.json" );
+      const { nockDone } = await nockBack( nockArtefactName );
 
       await fetcher.fetchData();
 
