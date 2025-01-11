@@ -1,6 +1,6 @@
 {
   "name": "intrepid-toot-archiver",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "A CLI app to make an archive of toots",
   "main": "index.js",
   "bin": {
@@ -29,7 +29,7 @@
   "dependencies": {
     "@inquirer/prompts": "^7.0.0",
     "chalk": "^5.3.0",
-    "commander": "^12.1.0",
+    "commander": "^13.0.0",
     "dotenv": "^16.4.5",
     "pretty-ms": "^9.1.0",
     "turndown": "^7.2.0",
@@ -43,7 +43,7 @@
     "eslint-plugin-jsdoc": "^50.0.0",
     "globals": "^15.8.0",
     "jsdoc": "~4.0.3",
-    "nock": "^14.0.0-beta.14",
+    "nock": "^14.0.0-beta.19",
     "rimraf": "^6.0.1"
   }
 }

@@ -32,6 +32,9 @@ const testPassStatusArray = [];
 const nockArtefacts = path.resolve( "tests/artefacts/nock" );
 const nockBack = nock.back;
 
+const nockBackMode = "lockdown";
+const nockArtefactName = "user-statuses.json";
+
 const testPassFQDN = "theblower.au";
 const testPassUserId = "109308203429082969";
 const testPassStatusCount = 20;
@@ -65,6 +68,12 @@ function tidyStatusArchiveDir() {
 }
 
 describe( "ContentArchive", () => {
+
+  before( () => {
+    nockBack.fixtures = nockArtefacts;
+    nockBack.setMode( nockBackMode );
+  } );
+
   describe( "constructor", () => {
     it( "should throw a TypeError when the Archive path cannot be found", () => {
       assert.throws(
@@ -222,15 +231,13 @@ describe( "ContentArchive", () => {
   describe( "addContent", async() => {
 
     before( async() => {
-      nockBack.fixtures = nockArtefacts;
-      nockBack.setMode( "lockdown" );
 
       const fetcher = new FetchStatuses(
         testPassFQDN,
         testPassUserId
       );
 
-      const { nockDone } = await nockBack( "user-statuses.json" );
+      const { nockDone } = await nockBack( nockArtefactName );
 
       await fetcher.fetchData();
 
@@ -496,15 +503,12 @@ describe( "ContentArchive", () => {
   describe( "getContent", async() => {
 
     before( async() => {
-      nockBack.fixtures = nockArtefacts;
-      nockBack.setMode( "lockdown" );
-
       const fetcher = new FetchStatuses(
         testPassFQDN,
         testPassUserId
       );
 
-      const { nockDone } = await nockBack( "user-statuses.json" );
+      const { nockDone } = await nockBack( nockArtefactName );
 
       await fetcher.fetchData();
 

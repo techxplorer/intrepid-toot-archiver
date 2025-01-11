@@ -25,7 +25,15 @@ const testUserId = "109308203429082969";
 const nockArtefacts = path.resolve( "tests/artefacts/nock" );
 const nockBack = nock.back;
 
+const nockBackMode = "lockdown";
+const nockArtefactName = "user-data.json";
+
 describe( "FetchUserDetails", () => {
+
+  before( () => {
+    nockBack.fixtures = nockArtefacts;
+    nockBack.setMode( nockBackMode );
+  } );
 
   describe( "constructor", () => {
     it( "should throw a TypeError when the host name is not a FQDN", () => {
@@ -104,10 +112,6 @@ describe( "FetchUserDetails", () => {
   } );
 
   describe( "fetchData", async() => {
-    before( () => {
-      nockBack.fixtures = nockArtefacts;
-      nockBack.setMode( "lockdown" );
-    } );
 
     it( "should throw an error when the request fails", async() => {
       const fetcher = new FetchUserDetails(
@@ -138,7 +142,7 @@ describe( "FetchUserDetails", () => {
         null
       );
 
-      const { nockDone } = await nockBack( "user-data.json" );
+      const { nockDone } = await nockBack( nockArtefactName );
 
       await fetcher.fetchData();
 
@@ -159,10 +163,6 @@ describe( "FetchUserDetails", () => {
   } );
 
   describe( "getUserId", async() => {
-    before( () => {
-      nockBack.fixtures = nockArtefacts;
-      nockBack.setMode( "lockdown" );
-    } );
 
     it( "should get the user id from the server", async() => {
 
@@ -171,7 +171,7 @@ describe( "FetchUserDetails", () => {
         testPassUserName
       );
 
-      const { nockDone } = await nockBack( "user-data.json" );
+      const { nockDone } = await nockBack( nockArtefactName );
 
       await fetcher.fetchData();
       const userId = await fetcher.getUserId();
@@ -192,7 +192,7 @@ describe( "FetchUserDetails", () => {
         testPassUserName
       );
 
-      const { nockDone } = await nockBack( "user-data.json" );
+      const { nockDone } = await nockBack( nockArtefactName );
 
       let userId = await fetcher.getUserId();
 
@@ -214,7 +214,7 @@ describe( "FetchUserDetails", () => {
         testPassUserName
       );
 
-      const { nockDone } = await nockBack( "user-data.json" );
+      const { nockDone } = await nockBack( nockArtefactName );
 
       await fetcher.getUserId();
 

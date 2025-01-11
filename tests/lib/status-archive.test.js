@@ -32,6 +32,9 @@ const testExpectedStatusFilePath = path.join(
 const nockArtefacts = path.resolve( "tests/artefacts/nock" );
 const nockBack = nock.back;
 
+const nockBackMode = "lockdown";
+const nockArtefactName = "user-statuses.json";
+
 const testContenIdForDelete = "112793425453345288";
 
 /**
@@ -48,6 +51,11 @@ function tidyArchiveDir() {
 }
 
 describe( "StatusArchive", () => {
+
+  before( () => {
+    nockBack.fixtures = nockArtefacts;
+    nockBack.setMode( nockBackMode );
+  } );
 
   describe( "constructor", () => {
 
@@ -93,8 +101,6 @@ describe( "StatusArchive", () => {
   describe( "addStatuses", async() => {
 
     before( () => {
-      nockBack.fixtures = nockArtefacts;
-      nockBack.setMode( "lockdown" );
 
       tidyArchiveDir();
 
@@ -144,7 +150,7 @@ describe( "StatusArchive", () => {
         testPassUserId
       );
 
-      const { nockDone } = await nockBack( "user-statuses.json" );
+      const { nockDone } = await nockBack( nockArtefactName );
 
       await fetcher.fetchData();
 
@@ -170,7 +176,7 @@ describe( "StatusArchive", () => {
         testPassUserId
       );
 
-      const { nockDone } = await nockBack( "user-statuses.json" );
+      const { nockDone } = await nockBack( nockArtefactName );
 
       await fetcher.fetchData();
 
@@ -206,7 +212,7 @@ describe( "StatusArchive", () => {
         testPassUserId
       );
 
-      const { nockDone } = await nockBack( "user-statuses.json" );
+      const { nockDone } = await nockBack( nockArtefactName );
 
       await fetcher.fetchData();
 
@@ -243,7 +249,7 @@ describe( "StatusArchive", () => {
         testPassUserId
       );
 
-      const { nockDone } = await nockBack( "user-statuses.json" );
+      const { nockDone } = await nockBack( nockArtefactName );
 
       await fetcher.fetchData();
 
@@ -275,7 +281,7 @@ describe( "StatusArchive", () => {
         testPassUserId
       );
 
-      const { nockDone } = await nockBack( "user-statuses.json" );
+      const { nockDone } = await nockBack( nockArtefactName );
 
       await fetcher.fetchData();
 
@@ -370,7 +376,7 @@ describe( "StatusArchive", () => {
         testPassUserId
       );
 
-      const { nockDone } = await nockBack( "user-statuses.json" );
+      const { nockDone } = await nockBack( nockArtefactName );
 
       await fetcher.fetchData();
 
@@ -434,7 +440,7 @@ describe( "StatusArchive", () => {
         testPassUserId
       );
 
-      const { nockDone } = await nockBack( "user-statuses.json" );
+      const { nockDone } = await nockBack( nockArtefactName );
 
       await fetcher.fetchData();
 
@@ -499,7 +505,7 @@ describe( "StatusArchive", () => {
         testPassUserId
       );
 
-      const { nockDone } = await nockBack( "user-statuses.json" );
+      const { nockDone } = await nockBack( nockArtefactName );
 
       await fetcher.fetchData();
 
@@ -547,7 +553,7 @@ describe( "StatusArchive", () => {
         testPassUserId
       );
 
-      const { nockDone } = await nockBack( "user-statuses.json" );
+      const { nockDone } = await nockBack( nockArtefactName );
 
       await fetcher.fetchData();
 
@@ -652,7 +658,7 @@ describe( "StatusArchive", () => {
         testPassUserId
       );
 
-      const { nockDone } = await nockBack( "user-statuses.json" );
+      const { nockDone } = await nockBack( nockArtefactName );
 
       await fetcher.fetchData();
 
@@ -697,7 +703,7 @@ describe( "StatusArchive", () => {
         testPassUserId
       );
 
-      const { nockDone } = await nockBack( "user-statuses.json" );
+      const { nockDone } = await nockBack( nockArtefactName );
 
       await fetcher.fetchData();
 

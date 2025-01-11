@@ -1,5 +1,161 @@
 [
   {
+    "id": "113277092499490290",
+    "created_at": "2024-10-09T10:54:20.065Z",
+    "in_reply_to_id": null,
+    "in_reply_to_account_id": null,
+    "sensitive": false,
+    "spoiler_text": "",
+    "visibility": "public",
+    "language": "en",
+    "uri": "https://theblower.au/users/geton/statuses/113277092499490290",
+    "url": "https://theblower.au/@geton/113277092499490290",
+    "replies_count": 2,
+    "reblogs_count": 0,
+    "favourites_count": 9,
+    "edited_at": null,
+    "content": "<p>Hello Blowerians! We&#39;ve updated to Mastodon 4.3.0 so if you&#39;re wondering why things look or behave differently now, that&#39;s probably it!</p>",
+    "reblog": null,
+    "application": {
+      "name": "Web",
+      "website": null
+    },
+    "account": {
+      "id": "109308203429082969",
+      "username": "geton",
+      "acct": "geton",
+      "display_name": "Get On The Blower",
+      "locked": false,
+      "bot": false,
+      "discoverable": true,
+      "indexable": true,
+      "group": false,
+      "created_at": "2022-11-08T00:00:00.000Z",
+      "note": "<p>... and sort it out</p><p>Admins are <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@mike\" class=\"u-url mention\">@<span>mike</span></a></span>, <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@s0\" class=\"u-url mention\">@<span>s0</span></a></span>, and <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@shug\" class=\"u-url mention\">@<span>shug</span></a></span></p>",
+      "url": "https://theblower.au/@geton",
+      "uri": "https://theblower.au/users/geton",
+      "avatar": "https://static.theblower.au/accounts/avatars/109/308/203/429/082/969/original/970e290791f6189c.jpg",
+      "avatar_static": "https://static.theblower.au/accounts/avatars/109/308/203/429/082/969/original/970e290791f6189c.jpg",
+      "header": "https://static.theblower.au/accounts/headers/109/308/203/429/082/969/original/9c282abd2948a2b2.jpg",
+      "header_static": "https://static.theblower.au/accounts/headers/109/308/203/429/082/969/original/9c282abd2948a2b2.jpg",
+      "followers_count": 1186,
+      "following_count": 26,
+      "statuses_count": 220,
+      "last_status_at": "2024-10-09",
+      "hide_collections": false,
+      "noindex": false,
+      "emojis": [],
+      "roles": [
+        {
+          "id": "4",
+          "name": "Announcer",
+          "color": "#e40707"
+        }
+      ],
+      "fields": [
+        {
+          "name": "Support Us!",
+          "value": "<a href=\"https://chinwag.au/theblower\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">chinwag.au/theblower</span><span class=\"invisible\"></span></a>",
+          "verified_at": "2024-02-21T09:21:28.714+00:00"
+        },
+        {
+          "name": "Rules",
+          "value": "<a href=\"https://theblower.au/about\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">theblower.au/about</span><span class=\"invisible\"></span></a>",
+          "verified_at": null
+        },
+        {
+          "name": "Privacy",
+          "value": "<a href=\"https://chinwag.au/privacy\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">chinwag.au/privacy</span><span class=\"invisible\"></span></a>",
+          "verified_at": "2024-02-21T09:21:30.261+00:00"
+        }
+      ]
+    },
+    "media_attachments": [],
+    "mentions": [],
+    "tags": [],
+    "emojis": [],
+    "card": null,
+    "poll": null
+  },
+  {
+    "id": "113186197954395034",
+    "created_at": "2024-09-23T09:38:39.371Z",
+    "in_reply_to_id": null,
+    "in_reply_to_account_id": null,
+    "sensitive": false,
+    "spoiler_text": "",
+    "visibility": "public",
+    "language": "en",
+    "uri": "https://theblower.au/users/geton/statuses/113186197954395034",
+    "url": "https://theblower.au/@geton/113186197954395034",
+    "replies_count": 0,
+    "reblogs_count": 0,
+    "favourites_count": 4,
+    "edited_at": "2024-09-23T10:30:03.307Z",
+    "content": "<p>There will be a little bit of downtime this evening for maintenance, folks! If you notice any connection errors in the next hour or so, it&#39;s probably that!</p><p>If you&#39;re seeing this after it&#39;s already happened, that was what happened!</p><p>EDIT: if this edit is successful, we&#39;re probably back online!</p>",
+    "reblog": null,
+    "application": {
+      "name": "Web",
+      "website": null
+    },
+    "account": {
+      "id": "109308203429082969",
+      "username": "geton",
+      "acct": "geton",
+      "display_name": "Get On The Blower",
+      "locked": false,
+      "bot": false,
+      "discoverable": true,
+      "indexable": true,
+      "group": false,
+      "created_at": "2022-11-08T00:00:00.000Z",
+      "note": "<p>... and sort it out</p><p>Admins are <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@mike\" class=\"u-url mention\">@<span>mike</span></a></span>, <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@s0\" class=\"u-url mention\">@<span>s0</span></a></span>, and <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@shug\" class=\"u-url mention\">@<span>shug</span></a></span></p>",
+      "url": "https://theblower.au/@geton",
+      "uri": "https://theblower.au/users/geton",
+      "avatar": "https://static.theblower.au/accounts/avatars/109/308/203/429/082/969/original/970e290791f6189c.jpg",
+      "avatar_static": "https://static.theblower.au/accounts/avatars/109/308/203/429/082/969/original/970e290791f6189c.jpg",
+      "header": "https://static.theblower.au/accounts/headers/109/308/203/429/082/969/original/9c282abd2948a2b2.jpg",
+      "header_static": "https://static.theblower.au/accounts/headers/109/308/203/429/082/969/original/9c282abd2948a2b2.jpg",
+      "followers_count": 1186,
+      "following_count": 26,
+      "statuses_count": 220,
+      "last_status_at": "2024-10-09",
+      "hide_collections": false,
+      "noindex": false,
+      "emojis": [],
+      "roles": [
+        {
+          "id": "4",
+          "name": "Announcer",
+          "color": "#e40707"
+        }
+      ],
+      "fields": [
+        {
+          "name": "Support Us!",
+          "value": "<a href=\"https://chinwag.au/theblower\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">chinwag.au/theblower</span><span class=\"invisible\"></span></a>",
+          "verified_at": "2024-02-21T09:21:28.714+00:00"
+        },
+        {
+          "name": "Rules",
+          "value": "<a href=\"https://theblower.au/about\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">theblower.au/about</span><span class=\"invisible\"></span></a>",
+          "verified_at": null
+        },
+        {
+          "name": "Privacy",
+          "value": "<a href=\"https://chinwag.au/privacy\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">chinwag.au/privacy</span><span class=\"invisible\"></span></a>",
+          "verified_at": "2024-02-21T09:21:30.261+00:00"
+        }
+      ]
+    },
+    "media_attachments": [],
+    "mentions": [],
+    "tags": [],
+    "emojis": [],
+    "card": null,
+    "poll": null
+  },
+  {
     "id": "112793425453345288",
     "created_at": "2024-07-16T00:51:26.625Z",
     "in_reply_to_id": null,
@@ -14,7 +170,7 @@
     "reblogs_count": 6,
     "favourites_count": 19,
     "edited_at": null,
-    "content": "\u003cp\u003eHello Blowerians!\u003c/p\u003e\u003cp\u003eThere\u0026#39;s been an uptick in reported posts lately, for probably obvious reasons. We\u0026#39;d like to make a few points very clear.\u003c/p\u003e\u003cp\u003e1. Criticism of any nation\u0026#39;s actions is not considered racism by us.\u003cbr /\u003e2. With that in mind, please be careful with your wording, and do not use general racial terms when talking about the actions of governments.\u003cbr /\u003e3. We expect all *public* posts that appear on the Local feed to meet a fairly conservative PG-13 standard. This is not just \u0026quot;adult\u0026quot; content, but also violence/gore.\u003cbr /\u003e4. When boosting content from others, please keep the above in mind and think about what you\u0026#39;re amplifying.\u003c/p\u003e\u003cp\u003ePlease note that point 3 especially doesn\u0026#39;t mean you can\u0026#39;t post things outside of that standard, but use content warnings, post followers-only, or preferably both when doing so.\u003c/p\u003e\u003cp\u003eYou\u0026#39;re pretty much all good right now, but we may tap this sign a little bit and then as we go along.\u003c/p\u003e\u003cp\u003ePlease ask us questions any time if you\u0026#39;re unsure about anything! Thanks!\u003c/p\u003e",
+    "content": "<p>Hello Blowerians!</p><p>There&#39;s been an uptick in reported posts lately, for probably obvious reasons. We&#39;d like to make a few points very clear.</p><p>1. Criticism of any nation&#39;s actions is not considered racism by us.<br />2. With that in mind, please be careful with your wording, and do not use general racial terms when talking about the actions of governments.<br />3. We expect all *public* posts that appear on the Local feed to meet a fairly conservative PG-13 standard. This is not just &quot;adult&quot; content, but also violence/gore.<br />4. When boosting content from others, please keep the above in mind and think about what you&#39;re amplifying.</p><p>Please note that point 3 especially doesn&#39;t mean you can&#39;t post things outside of that standard, but use content warnings, post followers-only, or preferably both when doing so.</p><p>You&#39;re pretty much all good right now, but we may tap this sign a little bit and then as we go along.</p><p>Please ask us questions any time if you&#39;re unsure about anything! Thanks!</p>",
     "reblog": null,
     "application": {
       "name": "Tusky",
@@ -28,19 +184,21 @@
       "locked": false,
       "bot": false,
       "discoverable": true,
+      "indexable": true,
       "group": false,
       "created_at": "2022-11-08T00:00:00.000Z",
-      "note": "\u003cp\u003e... and sort it out\u003c/p\u003e\u003cp\u003eAdmins are \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@mike\" class=\"u-url mention\"\u003e@\u003cspan\u003emike\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e, \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@s0\" class=\"u-url mention\"\u003e@\u003cspan\u003es0\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e, and \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@shug\" class=\"u-url mention\"\u003e@\u003cspan\u003eshug\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e\u003c/p\u003e",
+      "note": "<p>... and sort it out</p><p>Admins are <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@mike\" class=\"u-url mention\">@<span>mike</span></a></span>, <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@s0\" class=\"u-url mention\">@<span>s0</span></a></span>, and <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@shug\" class=\"u-url mention\">@<span>shug</span></a></span></p>",
       "url": "https://theblower.au/@geton",
       "uri": "https://theblower.au/users/geton",
       "avatar": "https://static.theblower.au/accounts/avatars/109/308/203/429/082/969/original/970e290791f6189c.jpg",
       "avatar_static": "https://static.theblower.au/accounts/avatars/109/308/203/429/082/969/original/970e290791f6189c.jpg",
       "header": "https://static.theblower.au/accounts/headers/109/308/203/429/082/969/original/9c282abd2948a2b2.jpg",
       "header_static": "https://static.theblower.au/accounts/headers/109/308/203/429/082/969/original/9c282abd2948a2b2.jpg",
-      "followers_count": 1181,
-      "following_count": 25,
-      "statuses_count": 216,
-      "last_status_at": "2024-08-02",
+      "followers_count": 1186,
+      "following_count": 26,
+      "statuses_count": 220,
+      "last_status_at": "2024-10-09",
+      "hide_collections": false,
       "noindex": false,
       "emojis": [],
       "roles": [
@@ -53,17 +211,17 @@
       "fields": [
         {
           "name": "Support Us!",
-          "value": "\u003ca href=\"https://chinwag.au/theblower\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003echinwag.au/theblower\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://chinwag.au/theblower\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">chinwag.au/theblower</span><span class=\"invisible\"></span></a>",
           "verified_at": "2024-02-21T09:21:28.714+00:00"
         },
         {
           "name": "Rules",
-          "value": "\u003ca href=\"https://theblower.au/about\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003etheblower.au/about\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://theblower.au/about\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">theblower.au/about</span><span class=\"invisible\"></span></a>",
           "verified_at": null
         },
         {
           "name": "Privacy",
-          "value": "\u003ca href=\"https://chinwag.au/privacy\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003echinwag.au/privacy\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://chinwag.au/privacy\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">chinwag.au/privacy</span><span class=\"invisible\"></span></a>",
           "verified_at": "2024-02-21T09:21:30.261+00:00"
         }
       ]
@@ -90,7 +248,7 @@
     "reblogs_count": 1,
     "favourites_count": 9,
     "edited_at": null,
-    "content": "\u003cp\u003eHi everyone! The Blower has been updated to Mastodon version 4.2.10. We expect that this should have no noticeable effect for any of you, but please let us know if you think something may have gone wrong!\u003c/p\u003e\u003cp\u003eThanks!\u003c/p\u003e",
+    "content": "<p>Hi everyone! The Blower has been updated to Mastodon version 4.2.10. We expect that this should have no noticeable effect for any of you, but please let us know if you think something may have gone wrong!</p><p>Thanks!</p>",
     "reblog": null,
     "application": {
       "name": "Tusky",
@@ -104,19 +262,21 @@
       "locked": false,
       "bot": false,
       "discoverable": true,
+      "indexable": true,
       "group": false,
       "created_at": "2022-11-08T00:00:00.000Z",
-      "note": "\u003cp\u003e... and sort it out\u003c/p\u003e\u003cp\u003eAdmins are \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@mike\" class=\"u-url mention\"\u003e@\u003cspan\u003emike\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e, \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@s0\" class=\"u-url mention\"\u003e@\u003cspan\u003es0\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e, and \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@shug\" class=\"u-url mention\"\u003e@\u003cspan\u003eshug\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e\u003c/p\u003e",
+      "note": "<p>... and sort it out</p><p>Admins are <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@mike\" class=\"u-url mention\">@<span>mike</span></a></span>, <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@s0\" class=\"u-url mention\">@<span>s0</span></a></span>, and <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@shug\" class=\"u-url mention\">@<span>shug</span></a></span></p>",
       "url": "https://theblower.au/@geton",
       "uri": "https://theblower.au/users/geton",
       "avatar": "https://static.theblower.au/accounts/avatars/109/308/203/429/082/969/original/970e290791f6189c.jpg",
       "avatar_static": "https://static.theblower.au/accounts/avatars/109/308/203/429/082/969/original/970e290791f6189c.jpg",
       "header": "https://static.theblower.au/accounts/headers/109/308/203/429/082/969/original/9c282abd2948a2b2.jpg",
       "header_static": "https://static.theblower.au/accounts/headers/109/308/203/429/082/969/original/9c282abd2948a2b2.jpg",
-      "followers_count": 1181,
-      "following_count": 25,
-      "statuses_count": 216,
-      "last_status_at": "2024-08-02",
+      "followers_count": 1186,
+      "following_count": 26,
+      "statuses_count": 220,
+      "last_status_at": "2024-10-09",
+      "hide_collections": false,
       "noindex": false,
       "emojis": [],
       "roles": [
@@ -129,17 +289,17 @@
       "fields": [
         {
           "name": "Support Us!",
-          "value": "\u003ca href=\"https://chinwag.au/theblower\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003echinwag.au/theblower\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://chinwag.au/theblower\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">chinwag.au/theblower</span><span class=\"invisible\"></span></a>",
           "verified_at": "2024-02-21T09:21:28.714+00:00"
         },
         {
           "name": "Rules",
-          "value": "\u003ca href=\"https://theblower.au/about\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003etheblower.au/about\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://theblower.au/about\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">theblower.au/about</span><span class=\"invisible\"></span></a>",
           "verified_at": null
         },
         {
           "name": "Privacy",
-          "value": "\u003ca href=\"https://chinwag.au/privacy\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003echinwag.au/privacy\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://chinwag.au/privacy\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">chinwag.au/privacy</span><span class=\"invisible\"></span></a>",
           "verified_at": "2024-02-21T09:21:30.261+00:00"
         }
       ]
@@ -166,7 +326,7 @@
     "reblogs_count": 1,
     "favourites_count": 4,
     "edited_at": null,
-    "content": "\u003cp\u003eHi folks! To resolve a small issue we\u0026#39;ve had today, we\u0026#39;ve taken the language translation service offline temporarily. \u003c/p\u003e\u003cp\u003eWe\u0026#39;ll restore it as soon as possible!\u003c/p\u003e",
+    "content": "<p>Hi folks! To resolve a small issue we&#39;ve had today, we&#39;ve taken the language translation service offline temporarily. </p><p>We&#39;ll restore it as soon as possible!</p>",
     "reblog": null,
     "application": {
       "name": "Tusky",
@@ -180,19 +340,21 @@
       "locked": false,
       "bot": false,
       "discoverable": true,
+      "indexable": true,
       "group": false,
       "created_at": "2022-11-08T00:00:00.000Z",
-      "note": "\u003cp\u003e... and sort it out\u003c/p\u003e\u003cp\u003eAdmins are \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@mike\" class=\"u-url mention\"\u003e@\u003cspan\u003emike\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e, \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@s0\" class=\"u-url mention\"\u003e@\u003cspan\u003es0\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e, and \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@shug\" class=\"u-url mention\"\u003e@\u003cspan\u003eshug\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e\u003c/p\u003e",
+      "note": "<p>... and sort it out</p><p>Admins are <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@mike\" class=\"u-url mention\">@<span>mike</span></a></span>, <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@s0\" class=\"u-url mention\">@<span>s0</span></a></span>, and <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@shug\" class=\"u-url mention\">@<span>shug</span></a></span></p>",
       "url": "https://theblower.au/@geton",
       "uri": "https://theblower.au/users/geton",
       "avatar": "https://static.theblower.au/accounts/avatars/109/308/203/429/082/969/original/970e290791f6189c.jpg",
       "avatar_static": "https://static.theblower.au/accounts/avatars/109/308/203/429/082/969/original/970e290791f6189c.jpg",
       "header": "https://static.theblower.au/accounts/headers/109/308/203/429/082/969/original/9c282abd2948a2b2.jpg",
       "header_static": "https://static.theblower.au/accounts/headers/109/308/203/429/082/969/original/9c282abd2948a2b2.jpg",
-      "followers_count": 1181,
-      "following_count": 25,
-      "statuses_count": 216,
-      "last_status_at": "2024-08-02",
+      "followers_count": 1186,
+      "following_count": 26,
+      "statuses_count": 220,
+      "last_status_at": "2024-10-09",
+      "hide_collections": false,
       "noindex": false,
       "emojis": [],
       "roles": [
@@ -205,17 +367,17 @@
       "fields": [
         {
           "name": "Support Us!",
-          "value": "\u003ca href=\"https://chinwag.au/theblower\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003echinwag.au/theblower\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://chinwag.au/theblower\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">chinwag.au/theblower</span><span class=\"invisible\"></span></a>",
           "verified_at": "2024-02-21T09:21:28.714+00:00"
         },
         {
           "name": "Rules",
-          "value": "\u003ca href=\"https://theblower.au/about\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003etheblower.au/about\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://theblower.au/about\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">theblower.au/about</span><span class=\"invisible\"></span></a>",
           "verified_at": null
         },
         {
           "name": "Privacy",
-          "value": "\u003ca href=\"https://chinwag.au/privacy\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003echinwag.au/privacy\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://chinwag.au/privacy\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">chinwag.au/privacy</span><span class=\"invisible\"></span></a>",
           "verified_at": "2024-02-21T09:21:30.261+00:00"
         }
       ]
@@ -242,7 +404,7 @@
     "reblogs_count": 1,
     "favourites_count": 7,
     "edited_at": null,
-    "content": "\u003cp\u003eHello Blowerians! We\u0026#39;ve just applied a small update, and are now running on the latest Mastodon release.\u003c/p\u003e\u003cp\u003eYou shouldn\u0026#39;t notice a thing, ideally - but let us know if you think anything odd seems to be going on! Thanks!\u003c/p\u003e",
+    "content": "<p>Hello Blowerians! We&#39;ve just applied a small update, and are now running on the latest Mastodon release.</p><p>You shouldn&#39;t notice a thing, ideally - but let us know if you think anything odd seems to be going on! Thanks!</p>",
     "reblog": null,
     "application": {
       "name": "Tusky",
@@ -256,19 +418,21 @@
       "locked": false,
       "bot": false,
       "discoverable": true,
+      "indexable": true,
       "group": false,
       "created_at": "2022-11-08T00:00:00.000Z",
-      "note": "\u003cp\u003e... and sort it out\u003c/p\u003e\u003cp\u003eAdmins are \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@mike\" class=\"u-url mention\"\u003e@\u003cspan\u003emike\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e, \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@s0\" class=\"u-url mention\"\u003e@\u003cspan\u003es0\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e, and \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@shug\" class=\"u-url mention\"\u003e@\u003cspan\u003eshug\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e\u003c/p\u003e",
+      "note": "<p>... and sort it out</p><p>Admins are <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@mike\" class=\"u-url mention\">@<span>mike</span></a></span>, <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@s0\" class=\"u-url mention\">@<span>s0</span></a></span>, and <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@shug\" class=\"u-url mention\">@<span>shug</span></a></span></p>",
       "url": "https://theblower.au/@geton",
       "uri": "https://theblower.au/users/geton",
       "avatar": "https://static.theblower.au/accounts/avatars/109/308/203/429/082/969/original/970e290791f6189c.jpg",
       "avatar_static": "https://static.theblower.au/accounts/avatars/109/308/203/429/082/969/original/970e290791f6189c.jpg",
       "header": "https://static.theblower.au/accounts/headers/109/308/203/429/082/969/original/9c282abd2948a2b2.jpg",
       "header_static": "https://static.theblower.au/accounts/headers/109/308/203/429/082/969/original/9c282abd2948a2b2.jpg",
-      "followers_count": 1181,
-      "following_count": 25,
-      "statuses_count": 216,
-      "last_status_at": "2024-08-02",
+      "followers_count": 1186,
+      "following_count": 26,
+      "statuses_count": 220,
+      "last_status_at": "2024-10-09",
+      "hide_collections": false,
       "noindex": false,
       "emojis": [],
       "roles": [
@@ -281,17 +445,17 @@
       "fields": [
         {
           "name": "Support Us!",
-          "value": "\u003ca href=\"https://chinwag.au/theblower\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003echinwag.au/theblower\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://chinwag.au/theblower\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">chinwag.au/theblower</span><span class=\"invisible\"></span></a>",
           "verified_at": "2024-02-21T09:21:28.714+00:00"
         },
         {
           "name": "Rules",
-          "value": "\u003ca href=\"https://theblower.au/about\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003etheblower.au/about\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://theblower.au/about\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">theblower.au/about</span><span class=\"invisible\"></span></a>",
           "verified_at": null
         },
         {
           "name": "Privacy",
-          "value": "\u003ca href=\"https://chinwag.au/privacy\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003echinwag.au/privacy\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://chinwag.au/privacy\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">chinwag.au/privacy</span><span class=\"invisible\"></span></a>",
           "verified_at": "2024-02-21T09:21:30.261+00:00"
         }
       ]
@@ -318,7 +482,7 @@
     "reblogs_count": 1,
     "favourites_count": 8,
     "edited_at": null,
-    "content": "\u003cp\u003eWe\u0026#39;re now processing incoming posts in real time! Things should be back to normal now, folks - please carry on as you were!\u003c/p\u003e",
+    "content": "<p>We&#39;re now processing incoming posts in real time! Things should be back to normal now, folks - please carry on as you were!</p>",
     "reblog": null,
     "application": {
       "name": "Tusky",
@@ -332,19 +496,21 @@
       "locked": false,
       "bot": false,
       "discoverable": true,
+      "indexable": true,
       "group": false,
       "created_at": "2022-11-08T00:00:00.000Z",
-      "note": "\u003cp\u003e... and sort it out\u003c/p\u003e\u003cp\u003eAdmins are \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@mike\" class=\"u-url mention\"\u003e@\u003cspan\u003emike\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e, \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@s0\" class=\"u-url mention\"\u003e@\u003cspan\u003es0\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e, and \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@shug\" class=\"u-url mention\"\u003e@\u003cspan\u003eshug\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e\u003c/p\u003e",
+      "note": "<p>... and sort it out</p><p>Admins are <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@mike\" class=\"u-url mention\">@<span>mike</span></a></span>, <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@s0\" class=\"u-url mention\">@<span>s0</span></a></span>, and <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@shug\" class=\"u-url mention\">@<span>shug</span></a></span></p>",
       "url": "https://theblower.au/@geton",
       "uri": "https://theblower.au/users/geton",
       "avatar": "https://static.theblower.au/accounts/avatars/109/308/203/429/082/969/original/970e290791f6189c.jpg",
       "avatar_static": "https://static.theblower.au/accounts/avatars/109/308/203/429/082/969/original/970e290791f6189c.jpg",
       "header": "https://static.theblower.au/accounts/headers/109/308/203/429/082/969/original/9c282abd2948a2b2.jpg",
       "header_static": "https://static.theblower.au/accounts/headers/109/308/203/429/082/969/original/9c282abd2948a2b2.jpg",
-      "followers_count": 1181,
-      "following_count": 25,
-      "statuses_count": 216,
-      "last_status_at": "2024-08-02",
+      "followers_count": 1186,
+      "following_count": 26,
+      "statuses_count": 220,
+      "last_status_at": "2024-10-09",
+      "hide_collections": false,
       "noindex": false,
       "emojis": [],
       "roles": [
@@ -357,17 +523,17 @@
       "fields": [
         {
           "name": "Support Us!",
-          "value": "\u003ca href=\"https://chinwag.au/theblower\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003echinwag.au/theblower\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://chinwag.au/theblower\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">chinwag.au/theblower</span><span class=\"invisible\"></span></a>",
           "verified_at": "2024-02-21T09:21:28.714+00:00"
         },
         {
           "name": "Rules",
-          "value": "\u003ca href=\"https://theblower.au/about\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003etheblower.au/about\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://theblower.au/about\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">theblower.au/about</span><span class=\"invisible\"></span></a>",
           "verified_at": null
         },
         {
           "name": "Privacy",
-          "value": "\u003ca href=\"https://chinwag.au/privacy\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003echinwag.au/privacy\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://chinwag.au/privacy\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">chinwag.au/privacy</span><span class=\"invisible\"></span></a>",
           "verified_at": "2024-02-21T09:21:30.261+00:00"
         }
       ]
@@ -394,7 +560,7 @@
     "reblogs_count": 0,
     "favourites_count": 1,
     "edited_at": null,
-    "content": "\u003cp\u003eWe\u0026#39;re down to about 2 hours of backlog now! We\u0026#39;re almost living in the present again! Thanks for the patience, Blowerians - we\u0026#39;ll update again when we believe things are totally back to normal.\u003c/p\u003e",
+    "content": "<p>We&#39;re down to about 2 hours of backlog now! We&#39;re almost living in the present again! Thanks for the patience, Blowerians - we&#39;ll update again when we believe things are totally back to normal.</p>",
     "reblog": null,
     "application": {
       "name": "Tusky",
@@ -408,19 +574,21 @@
       "locked": false,
       "bot": false,
       "discoverable": true,
+      "indexable": true,
       "group": false,
       "created_at": "2022-11-08T00:00:00.000Z",
-      "note": "\u003cp\u003e... and sort it out\u003c/p\u003e\u003cp\u003eAdmins are \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@mike\" class=\"u-url mention\"\u003e@\u003cspan\u003emike\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e, \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@s0\" class=\"u-url mention\"\u003e@\u003cspan\u003es0\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e, and \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@shug\" class=\"u-url mention\"\u003e@\u003cspan\u003eshug\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e\u003c/p\u003e",
+      "note": "<p>... and sort it out</p><p>Admins are <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@mike\" class=\"u-url mention\">@<span>mike</span></a></span>, <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@s0\" class=\"u-url mention\">@<span>s0</span></a></span>, and <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@shug\" class=\"u-url mention\">@<span>shug</span></a></span></p>",
       "url": "https://theblower.au/@geton",
       "uri": "https://theblower.au/users/geton",
       "avatar": "https://static.theblower.au/accounts/avatars/109/308/203/429/082/969/original/970e290791f6189c.jpg",
       "avatar_static": "https://static.theblower.au/accounts/avatars/109/308/203/429/082/969/original/970e290791f6189c.jpg",
       "header": "https://static.theblower.au/accounts/headers/109/308/203/429/082/969/original/9c282abd2948a2b2.jpg",
       "header_static": "https://static.theblower.au/accounts/headers/109/308/203/429/082/969/original/9c282abd2948a2b2.jpg",
-      "followers_count": 1181,
-      "following_count": 25,
-      "statuses_count": 216,
-      "last_status_at": "2024-08-02",
+      "followers_count": 1186,
+      "following_count": 26,
+      "statuses_count": 220,
+      "last_status_at": "2024-10-09",
+      "hide_collections": false,
       "noindex": false,
       "emojis": [],
       "roles": [
@@ -433,17 +601,17 @@
       "fields": [
         {
           "name": "Support Us!",
-          "value": "\u003ca href=\"https://chinwag.au/theblower\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003echinwag.au/theblower\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://chinwag.au/theblower\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">chinwag.au/theblower</span><span class=\"invisible\"></span></a>",
           "verified_at": "2024-02-21T09:21:28.714+00:00"
         },
         {
           "name": "Rules",
-          "value": "\u003ca href=\"https://theblower.au/about\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003etheblower.au/about\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://theblower.au/about\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">theblower.au/about</span><span class=\"invisible\"></span></a>",
           "verified_at": null
         },
         {
           "name": "Privacy",
-          "value": "\u003ca href=\"https://chinwag.au/privacy\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003echinwag.au/privacy\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://chinwag.au/privacy\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">chinwag.au/privacy</span><span class=\"invisible\"></span></a>",
           "verified_at": "2024-02-21T09:21:30.261+00:00"
         }
       ]
@@ -467,10 +635,10 @@
     "uri": "https://theblower.au/users/geton/statuses/112362748547864476",
     "url": "https://theblower.au/@geton/112362748547864476",
     "replies_count": 1,
-    "reblogs_count": 1,
+    "reblogs_count": 0,
     "favourites_count": 2,
     "edited_at": null,
-    "content": "\u003cp\u003eThere\u0026#39;s still a significant backlog of incoming posts, but the numbers are now going down instead of up so it should sort itself out during the course of today. We\u0026#39;re keeping an eye on it and will let you know if anything changes!\u003c/p\u003e",
+    "content": "<p>There&#39;s still a significant backlog of incoming posts, but the numbers are now going down instead of up so it should sort itself out during the course of today. We&#39;re keeping an eye on it and will let you know if anything changes!</p>",
     "reblog": null,
     "application": {
       "name": "Tusky",
@@ -484,19 +652,21 @@
       "locked": false,
       "bot": false,
       "discoverable": true,
+      "indexable": true,
       "group": false,
       "created_at": "2022-11-08T00:00:00.000Z",
-      "note": "\u003cp\u003e... and sort it out\u003c/p\u003e\u003cp\u003eAdmins are \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@mike\" class=\"u-url mention\"\u003e@\u003cspan\u003emike\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e, \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@s0\" class=\"u-url mention\"\u003e@\u003cspan\u003es0\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e, and \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@shug\" class=\"u-url mention\"\u003e@\u003cspan\u003eshug\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e\u003c/p\u003e",
+      "note": "<p>... and sort it out</p><p>Admins are <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@mike\" class=\"u-url mention\">@<span>mike</span></a></span>, <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@s0\" class=\"u-url mention\">@<span>s0</span></a></span>, and <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@shug\" class=\"u-url mention\">@<span>shug</span></a></span></p>",
       "url": "https://theblower.au/@geton",
       "uri": "https://theblower.au/users/geton",
       "avatar": "https://static.theblower.au/accounts/avatars/109/308/203/429/082/969/original/970e290791f6189c.jpg",
       "avatar_static": "https://static.theblower.au/accounts/avatars/109/308/203/429/082/969/original/970e290791f6189c.jpg",
       "header": "https://static.theblower.au/accounts/headers/109/308/203/429/082/969/original/9c282abd2948a2b2.jpg",
       "header_static": "https://static.theblower.au/accounts/headers/109/308/203/429/082/969/original/9c282abd2948a2b2.jpg",
-      "followers_count": 1181,
-      "following_count": 25,
-      "statuses_count": 216,
-      "last_status_at": "2024-08-02",
+      "followers_count": 1186,
+      "following_count": 26,
+      "statuses_count": 220,
+      "last_status_at": "2024-10-09",
+      "hide_collections": false,
       "noindex": false,
       "emojis": [],
       "roles": [
@@ -509,17 +679,17 @@
       "fields": [
         {
           "name": "Support Us!",
-          "value": "\u003ca href=\"https://chinwag.au/theblower\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003echinwag.au/theblower\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://chinwag.au/theblower\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">chinwag.au/theblower</span><span class=\"invisible\"></span></a>",
           "verified_at": "2024-02-21T09:21:28.714+00:00"
         },
         {
           "name": "Rules",
-          "value": "\u003ca href=\"https://theblower.au/about\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003etheblower.au/about\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://theblower.au/about\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">theblower.au/about</span><span class=\"invisible\"></span></a>",
           "verified_at": null
         },
         {
           "name": "Privacy",
-          "value": "\u003ca href=\"https://chinwag.au/privacy\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003echinwag.au/privacy\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://chinwag.au/privacy\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">chinwag.au/privacy</span><span class=\"invisible\"></span></a>",
           "verified_at": "2024-02-21T09:21:30.261+00:00"
         }
       ]
@@ -543,10 +713,10 @@
     "uri": "https://theblower.au/users/geton/statuses/112362166711266583",
     "url": "https://theblower.au/@geton/112362166711266583",
     "replies_count": 2,
-    "reblogs_count": 3,
+    "reblogs_count": 2,
     "favourites_count": 4,
     "edited_at": null,
-    "content": "\u003cp\u003eHi folks, we\u0026#39;re currently aware of an issue where some of our processing of posts is running about 5 hours behind.\u003c/p\u003e\u003cp\u003eWe\u0026#39;re investigating and will let you know as soon as we have any more information. Right now it\u0026#39;s just a delay, nothing is going missing.\u003c/p\u003e",
+    "content": "<p>Hi folks, we&#39;re currently aware of an issue where some of our processing of posts is running about 5 hours behind.</p><p>We&#39;re investigating and will let you know as soon as we have any more information. Right now it&#39;s just a delay, nothing is going missing.</p>",
     "reblog": null,
     "application": {
       "name": "Tusky",
@@ -560,19 +730,21 @@
       "locked": false,
       "bot": false,
       "discoverable": true,
+      "indexable": true,
       "group": false,
       "created_at": "2022-11-08T00:00:00.000Z",
-      "note": "\u003cp\u003e... and sort it out\u003c/p\u003e\u003cp\u003eAdmins are \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@mike\" class=\"u-url mention\"\u003e@\u003cspan\u003emike\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e, \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@s0\" class=\"u-url mention\"\u003e@\u003cspan\u003es0\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e, and \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@shug\" class=\"u-url mention\"\u003e@\u003cspan\u003eshug\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e\u003c/p\u003e",
+      "note": "<p>... and sort it out</p><p>Admins are <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@mike\" class=\"u-url mention\">@<span>mike</span></a></span>, <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@s0\" class=\"u-url mention\">@<span>s0</span></a></span>, and <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@shug\" class=\"u-url mention\">@<span>shug</span></a></span></p>",
       "url": "https://theblower.au/@geton",
       "uri": "https://theblower.au/users/geton",
       "avatar": "https://static.theblower.au/accounts/avatars/109/308/203/429/082/969/original/970e290791f6189c.jpg",
       "avatar_static": "https://static.theblower.au/accounts/avatars/109/308/203/429/082/969/original/970e290791f6189c.jpg",
       "header": "https://static.theblower.au/accounts/headers/109/308/203/429/082/969/original/9c282abd2948a2b2.jpg",
       "header_static": "https://static.theblower.au/accounts/headers/109/308/203/429/082/969/original/9c282abd2948a2b2.jpg",
-      "followers_count": 1181,
-      "following_count": 25,
-      "statuses_count": 216,
-      "last_status_at": "2024-08-02",
+      "followers_count": 1186,
+      "following_count": 26,
+      "statuses_count": 220,
+      "last_status_at": "2024-10-09",
+      "hide_collections": false,
       "noindex": false,
       "emojis": [],
       "roles": [
@@ -585,17 +757,17 @@
       "fields": [
         {
           "name": "Support Us!",
-          "value": "\u003ca href=\"https://chinwag.au/theblower\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003echinwag.au/theblower\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://chinwag.au/theblower\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">chinwag.au/theblower</span><span class=\"invisible\"></span></a>",
           "verified_at": "2024-02-21T09:21:28.714+00:00"
         },
         {
           "name": "Rules",
-          "value": "\u003ca href=\"https://theblower.au/about\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003etheblower.au/about\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://theblower.au/about\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">theblower.au/about</span><span class=\"invisible\"></span></a>",
           "verified_at": null
         },
         {
           "name": "Privacy",
-          "value": "\u003ca href=\"https://chinwag.au/privacy\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003echinwag.au/privacy\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://chinwag.au/privacy\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">chinwag.au/privacy</span><span class=\"invisible\"></span></a>",
           "verified_at": "2024-02-21T09:21:30.261+00:00"
         }
       ]
@@ -622,7 +794,7 @@
     "reblogs_count": 0,
     "favourites_count": 2,
     "edited_at": null,
-    "content": "\u003cp\u003eWelcome back, mastodon.au. You didn\u0026#39;t miss much, we\u0026#39;ve just been chilling out, mostly.\u003c/p\u003e",
+    "content": "<p>Welcome back, mastodon.au. You didn&#39;t miss much, we&#39;ve just been chilling out, mostly.</p>",
     "reblog": null,
     "application": {
       "name": "Tusky",
@@ -636,19 +808,21 @@
       "locked": false,
       "bot": false,
       "discoverable": true,
+      "indexable": true,
       "group": false,
       "created_at": "2022-11-08T00:00:00.000Z",
-      "note": "\u003cp\u003e... and sort it out\u003c/p\u003e\u003cp\u003eAdmins are \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@mike\" class=\"u-url mention\"\u003e@\u003cspan\u003emike\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e, \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@s0\" class=\"u-url mention\"\u003e@\u003cspan\u003es0\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e, and \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@shug\" class=\"u-url mention\"\u003e@\u003cspan\u003eshug\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e\u003c/p\u003e",
+      "note": "<p>... and sort it out</p><p>Admins are <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@mike\" class=\"u-url mention\">@<span>mike</span></a></span>, <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@s0\" class=\"u-url mention\">@<span>s0</span></a></span>, and <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@shug\" class=\"u-url mention\">@<span>shug</span></a></span></p>",
       "url": "https://theblower.au/@geton",
       "uri": "https://theblower.au/users/geton",
       "avatar": "https://static.theblower.au/accounts/avatars/109/308/203/429/082/969/original/970e290791f6189c.jpg",
       "avatar_static": "https://static.theblower.au/accounts/avatars/109/308/203/429/082/969/original/970e290791f6189c.jpg",
       "header": "https://static.theblower.au/accounts/headers/109/308/203/429/082/969/original/9c282abd2948a2b2.jpg",
       "header_static": "https://static.theblower.au/accounts/headers/109/308/203/429/082/969/original/9c282abd2948a2b2.jpg",
-      "followers_count": 1181,
-      "following_count": 25,
-      "statuses_count": 216,
-      "last_status_at": "2024-08-02",
+      "followers_count": 1186,
+      "following_count": 26,
+      "statuses_count": 220,
+      "last_status_at": "2024-10-09",
+      "hide_collections": false,
       "noindex": false,
       "emojis": [],
       "roles": [
@@ -661,17 +835,17 @@
       "fields": [
         {
           "name": "Support Us!",
-          "value": "\u003ca href=\"https://chinwag.au/theblower\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003echinwag.au/theblower\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://chinwag.au/theblower\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">chinwag.au/theblower</span><span class=\"invisible\"></span></a>",
           "verified_at": "2024-02-21T09:21:28.714+00:00"
         },
         {
           "name": "Rules",
-          "value": "\u003ca href=\"https://theblower.au/about\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003etheblower.au/about\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://theblower.au/about\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">theblower.au/about</span><span class=\"invisible\"></span></a>",
           "verified_at": null
         },
         {
           "name": "Privacy",
-          "value": "\u003ca href=\"https://chinwag.au/privacy\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003echinwag.au/privacy\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://chinwag.au/privacy\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">chinwag.au/privacy</span><span class=\"invisible\"></span></a>",
           "verified_at": "2024-02-21T09:21:30.261+00:00"
         }
       ]
@@ -695,10 +869,10 @@
     "uri": "https://theblower.au/users/geton/statuses/112063492296588414",
     "url": "https://theblower.au/@geton/112063492296588414",
     "replies_count": 1,
-    "reblogs_count": 17,
+    "reblogs_count": 16,
     "favourites_count": 11,
     "edited_at": null,
-    "content": "\u003cp\u003eHi folks! Anyone who\u0026#39;s wondering what\u0026#39;s up with mastodon.au today - there\u0026#39;s an update on the web site now. \u003c/p\u003e\u003cp\u003e\u003ca href=\"https://mastodon.au\" target=\"_blank\" rel=\"nofollow noopener noreferrer\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003emastodon.au\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e\u003c/p\u003e\u003cp\u003eThe key part any of you who have accounts there probably want to know is:\u003cbr /\u003e\u0026quot;For anyone concerned about data loss, everything is up, I can get into everything out-of-band, it\u0026#39;s just that they can\u0026#39;t reach the internet.\u0026quot;\u003c/p\u003e\u003cp\u003eSo hang in there. If you\u0026#39;re in touch with users there by other means, pass that info along and if we hear more we\u0026#39;ll let you know!\u003c/p\u003e",
+    "content": "<p>Hi folks! Anyone who&#39;s wondering what&#39;s up with mastodon.au today - there&#39;s an update on the web site now. </p><p><a href=\"https://mastodon.au\" target=\"_blank\" rel=\"nofollow noopener noreferrer\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">mastodon.au</span><span class=\"invisible\"></span></a></p><p>The key part any of you who have accounts there probably want to know is:<br />&quot;For anyone concerned about data loss, everything is up, I can get into everything out-of-band, it&#39;s just that they can&#39;t reach the internet.&quot;</p><p>So hang in there. If you&#39;re in touch with users there by other means, pass that info along and if we hear more we&#39;ll let you know!</p>",
     "reblog": null,
     "application": {
       "name": "Tusky",
@@ -712,19 +886,21 @@
       "locked": false,
       "bot": false,
       "discoverable": true,
+      "indexable": true,
       "group": false,
       "created_at": "2022-11-08T00:00:00.000Z",
-      "note": "\u003cp\u003e... and sort it out\u003c/p\u003e\u003cp\u003eAdmins are \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@mike\" class=\"u-url mention\"\u003e@\u003cspan\u003emike\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e, \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@s0\" class=\"u-url mention\"\u003e@\u003cspan\u003es0\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e, and \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@shug\" class=\"u-url mention\"\u003e@\u003cspan\u003eshug\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e\u003c/p\u003e",
+      "note": "<p>... and sort it out</p><p>Admins are <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@mike\" class=\"u-url mention\">@<span>mike</span></a></span>, <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@s0\" class=\"u-url mention\">@<span>s0</span></a></span>, and <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@shug\" class=\"u-url mention\">@<span>shug</span></a></span></p>",
       "url": "https://theblower.au/@geton",
       "uri": "https://theblower.au/users/geton",
       "avatar": "https://static.theblower.au/accounts/avatars/109/308/203/429/082/969/original/970e290791f6189c.jpg",
       "avatar_static": "https://static.theblower.au/accounts/avatars/109/308/203/429/082/969/original/970e290791f6189c.jpg",
       "header": "https://static.theblower.au/accounts/headers/109/308/203/429/082/969/original/9c282abd2948a2b2.jpg",
       "header_static": "https://static.theblower.au/accounts/headers/109/308/203/429/082/969/original/9c282abd2948a2b2.jpg",
-      "followers_count": 1181,
-      "following_count": 25,
-      "statuses_count": 216,
-      "last_status_at": "2024-08-02",
+      "followers_count": 1186,
+      "following_count": 26,
+      "statuses_count": 220,
+      "last_status_at": "2024-10-09",
+      "hide_collections": false,
       "noindex": false,
       "emojis": [],
       "roles": [
@@ -737,17 +913,17 @@
       "fields": [
         {
           "name": "Support Us!",
-          "value": "\u003ca href=\"https://chinwag.au/theblower\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003echinwag.au/theblower\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://chinwag.au/theblower\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">chinwag.au/theblower</span><span class=\"invisible\"></span></a>",
           "verified_at": "2024-02-21T09:21:28.714+00:00"
         },
         {
           "name": "Rules",
-          "value": "\u003ca href=\"https://theblower.au/about\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003etheblower.au/about\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://theblower.au/about\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">theblower.au/about</span><span class=\"invisible\"></span></a>",
           "verified_at": null
         },
         {
           "name": "Privacy",
-          "value": "\u003ca href=\"https://chinwag.au/privacy\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003echinwag.au/privacy\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://chinwag.au/privacy\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">chinwag.au/privacy</span><span class=\"invisible\"></span></a>",
           "verified_at": "2024-02-21T09:21:30.261+00:00"
         }
       ]
@@ -773,7 +949,14 @@
       "image_description": "",
       "embed_url": "",
       "blurhash": "UbIPF_{cIv74F4IvxCs%IMOlWBr_RpS4X8sA",
-      "published_at": null
+      "published_at": null,
+      "authors": [
+        {
+          "name": "",
+          "url": "",
+          "account": null
+        }
+      ]
     },
     "poll": null
   },
@@ -792,7 +975,7 @@
     "reblogs_count": 3,
     "favourites_count": 8,
     "edited_at": null,
-    "content": "\u003cp\u003eHello friends! We\u0026#39;ve consolidated all the ways to support The Blower into one handy page!\u003c/p\u003e\u003cp\u003e\u003ca href=\"https://chinwag.au/theblower\" target=\"_blank\" rel=\"nofollow noopener noreferrer\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003echinwag.au/theblower\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e\u003c/p\u003e\u003cp\u003eThe Blower does not require payment for any services, but if you\u0026#39;re able to contribute and help us survive it\u0026#39;d be massively appreciated!\u003c/p\u003e\u003cp\u003eWe\u0026#39;re here for the long haul if you are!\u003c/p\u003e",
+    "content": "<p>Hello friends! We&#39;ve consolidated all the ways to support The Blower into one handy page!</p><p><a href=\"https://chinwag.au/theblower\" target=\"_blank\" rel=\"nofollow noopener noreferrer\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">chinwag.au/theblower</span><span class=\"invisible\"></span></a></p><p>The Blower does not require payment for any services, but if you&#39;re able to contribute and help us survive it&#39;d be massively appreciated!</p><p>We&#39;re here for the long haul if you are!</p>",
     "reblog": null,
     "application": {
       "name": "Tusky",
@@ -806,19 +989,21 @@
       "locked": false,
       "bot": false,
       "discoverable": true,
+      "indexable": true,
       "group": false,
       "created_at": "2022-11-08T00:00:00.000Z",
-      "note": "\u003cp\u003e... and sort it out\u003c/p\u003e\u003cp\u003eAdmins are \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@mike\" class=\"u-url mention\"\u003e@\u003cspan\u003emike\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e, \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@s0\" class=\"u-url mention\"\u003e@\u003cspan\u003es0\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e, and \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@shug\" class=\"u-url mention\"\u003e@\u003cspan\u003eshug\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e\u003c/p\u003e",
+      "note": "<p>... and sort it out</p><p>Admins are <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@mike\" class=\"u-url mention\">@<span>mike</span></a></span>, <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@s0\" class=\"u-url mention\">@<span>s0</span></a></span>, and <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@shug\" class=\"u-url mention\">@<span>shug</span></a></span></p>",
       "url": "https://theblower.au/@geton",
       "uri": "https://theblower.au/users/geton",
       "avatar": "https://static.theblower.au/accounts/avatars/109/308/203/429/082/969/original/970e290791f6189c.jpg",
       "avatar_static": "https://static.theblower.au/accounts/avatars/109/308/203/429/082/969/original/970e290791f6189c.jpg",
       "header": "https://static.theblower.au/accounts/headers/109/308/203/429/082/969/original/9c282abd2948a2b2.jpg",
       "header_static": "https://static.theblower.au/accounts/headers/109/308/203/429/082/969/original/9c282abd2948a2b2.jpg",
-      "followers_count": 1181,
-      "following_count": 25,
-      "statuses_count": 216,
-      "last_status_at": "2024-08-02",
+      "followers_count": 1186,
+      "following_count": 26,
+      "statuses_count": 220,
+      "last_status_at": "2024-10-09",
+      "hide_collections": false,
       "noindex": false,
       "emojis": [],
       "roles": [
@@ -831,17 +1016,17 @@
       "fields": [
         {
           "name": "Support Us!",
-          "value": "\u003ca href=\"https://chinwag.au/theblower\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003echinwag.au/theblower\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://chinwag.au/theblower\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">chinwag.au/theblower</span><span class=\"invisible\"></span></a>",
           "verified_at": "2024-02-21T09:21:28.714+00:00"
         },
         {
           "name": "Rules",
-          "value": "\u003ca href=\"https://theblower.au/about\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003etheblower.au/about\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://theblower.au/about\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">theblower.au/about</span><span class=\"invisible\"></span></a>",
           "verified_at": null
         },
         {
           "name": "Privacy",
-          "value": "\u003ca href=\"https://chinwag.au/privacy\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003echinwag.au/privacy\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://chinwag.au/privacy\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">chinwag.au/privacy</span><span class=\"invisible\"></span></a>",
           "verified_at": "2024-02-21T09:21:30.261+00:00"
         }
       ]
@@ -867,7 +1052,14 @@
       "image_description": "",
       "embed_url": "",
       "blurhash": null,
-      "published_at": null
+      "published_at": null,
+      "authors": [
+        {
+          "name": "",
+          "url": "",
+          "account": null
+        }
+      ]
     },
     "poll": null
   },
@@ -886,7 +1078,7 @@
     "reblogs_count": 1,
     "favourites_count": 11,
     "edited_at": null,
-    "content": "\u003cp\u003eGood morning, Blowerians!\u003c/p\u003e\u003cp\u003eWe\u0026#39;ve just installed the most recent Masto security update. You shouldn\u0026#39;t notice any differences, but please let us know if something doesn\u0026#39;t seem right as usual!\u003c/p\u003e\u003cp\u003eCarry on!\u003c/p\u003e",
+    "content": "<p>Good morning, Blowerians!</p><p>We&#39;ve just installed the most recent Masto security update. You shouldn&#39;t notice any differences, but please let us know if something doesn&#39;t seem right as usual!</p><p>Carry on!</p>",
     "reblog": null,
     "application": {
       "name": "Tusky",
@@ -900,19 +1092,21 @@
       "locked": false,
       "bot": false,
       "discoverable": true,
+      "indexable": true,
       "group": false,
       "created_at": "2022-11-08T00:00:00.000Z",
-      "note": "\u003cp\u003e... and sort it out\u003c/p\u003e\u003cp\u003eAdmins are \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@mike\" class=\"u-url mention\"\u003e@\u003cspan\u003emike\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e, \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@s0\" class=\"u-url mention\"\u003e@\u003cspan\u003es0\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e, and \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@shug\" class=\"u-url mention\"\u003e@\u003cspan\u003eshug\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e\u003c/p\u003e",
+      "note": "<p>... and sort it out</p><p>Admins are <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@mike\" class=\"u-url mention\">@<span>mike</span></a></span>, <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@s0\" class=\"u-url mention\">@<span>s0</span></a></span>, and <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@shug\" class=\"u-url mention\">@<span>shug</span></a></span></p>",
       "url": "https://theblower.au/@geton",
       "uri": "https://theblower.au/users/geton",
       "avatar": "https://static.theblower.au/accounts/avatars/109/308/203/429/082/969/original/970e290791f6189c.jpg",
       "avatar_static": "https://static.theblower.au/accounts/avatars/109/308/203/429/082/969/original/970e290791f6189c.jpg",
       "header": "https://static.theblower.au/accounts/headers/109/308/203/429/082/969/original/9c282abd2948a2b2.jpg",
       "header_static": "https://static.theblower.au/accounts/headers/109/308/203/429/082/969/original/9c282abd2948a2b2.jpg",
-      "followers_count": 1181,
-      "following_count": 25,
-      "statuses_count": 216,
-      "last_status_at": "2024-08-02",
+      "followers_count": 1186,
+      "following_count": 26,
+      "statuses_count": 220,
+      "last_status_at": "2024-10-09",
+      "hide_collections": false,
       "noindex": false,
       "emojis": [],
       "roles": [
@@ -925,17 +1119,17 @@
       "fields": [
         {
           "name": "Support Us!",
-          "value": "\u003ca href=\"https://chinwag.au/theblower\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003echinwag.au/theblower\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://chinwag.au/theblower\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">chinwag.au/theblower</span><span class=\"invisible\"></span></a>",
           "verified_at": "2024-02-21T09:21:28.714+00:00"
         },
         {
           "name": "Rules",
-          "value": "\u003ca href=\"https://theblower.au/about\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003etheblower.au/about\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://theblower.au/about\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">theblower.au/about</span><span class=\"invisible\"></span></a>",
           "verified_at": null
         },
         {
           "name": "Privacy",
-          "value": "\u003ca href=\"https://chinwag.au/privacy\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003echinwag.au/privacy\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://chinwag.au/privacy\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">chinwag.au/privacy</span><span class=\"invisible\"></span></a>",
           "verified_at": "2024-02-21T09:21:30.261+00:00"
         }
       ]
@@ -962,7 +1156,7 @@
     "reblogs_count": 5,
     "favourites_count": 8,
     "edited_at": null,
-    "content": "\u003cp\u003eHi Blowerians! If you\u0026#39;re getting these random spam messages, please hit the report button, don\u0026#39;t just block! We can limit the sources if we know where they\u0026#39;re coming from.  It\u0026#39;s super easy if we have the report to click on!\u003c/p\u003e",
+    "content": "<p>Hi Blowerians! If you&#39;re getting these random spam messages, please hit the report button, don&#39;t just block! We can limit the sources if we know where they&#39;re coming from.  It&#39;s super easy if we have the report to click on!</p>",
     "reblog": null,
     "application": {
       "name": "Tusky",
@@ -976,19 +1170,21 @@
       "locked": false,
       "bot": false,
       "discoverable": true,
+      "indexable": true,
       "group": false,
       "created_at": "2022-11-08T00:00:00.000Z",
-      "note": "\u003cp\u003e... and sort it out\u003c/p\u003e\u003cp\u003eAdmins are \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@mike\" class=\"u-url mention\"\u003e@\u003cspan\u003emike\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e, \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@s0\" class=\"u-url mention\"\u003e@\u003cspan\u003es0\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e, and \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@shug\" class=\"u-url mention\"\u003e@\u003cspan\u003eshug\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e\u003c/p\u003e",
+      "note": "<p>... and sort it out</p><p>Admins are <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@mike\" class=\"u-url mention\">@<span>mike</span></a></span>, <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@s0\" class=\"u-url mention\">@<span>s0</span></a></span>, and <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@shug\" class=\"u-url mention\">@<span>shug</span></a></span></p>",
       "url": "https://theblower.au/@geton",
       "uri": "https://theblower.au/users/geton",
       "avatar": "https://static.theblower.au/accounts/avatars/109/308/203/429/082/969/original/970e290791f6189c.jpg",
       "avatar_static": "https://static.theblower.au/accounts/avatars/109/308/203/429/082/969/original/970e290791f6189c.jpg",
       "header": "https://static.theblower.au/accounts/headers/109/308/203/429/082/969/original/9c282abd2948a2b2.jpg",
       "header_static": "https://static.theblower.au/accounts/headers/109/308/203/429/082/969/original/9c282abd2948a2b2.jpg",
-      "followers_count": 1181,
-      "following_count": 25,
-      "statuses_count": 216,
-      "last_status_at": "2024-08-02",
+      "followers_count": 1186,
+      "following_count": 26,
+      "statuses_count": 220,
+      "last_status_at": "2024-10-09",
+      "hide_collections": false,
       "noindex": false,
       "emojis": [],
       "roles": [
@@ -1001,17 +1197,17 @@
       "fields": [
         {
           "name": "Support Us!",
-          "value": "\u003ca href=\"https://chinwag.au/theblower\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003echinwag.au/theblower\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://chinwag.au/theblower\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">chinwag.au/theblower</span><span class=\"invisible\"></span></a>",
           "verified_at": "2024-02-21T09:21:28.714+00:00"
         },
         {
           "name": "Rules",
-          "value": "\u003ca href=\"https://theblower.au/about\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003etheblower.au/about\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://theblower.au/about\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">theblower.au/about</span><span class=\"invisible\"></span></a>",
           "verified_at": null
         },
         {
           "name": "Privacy",
-          "value": "\u003ca href=\"https://chinwag.au/privacy\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003echinwag.au/privacy\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://chinwag.au/privacy\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">chinwag.au/privacy</span><span class=\"invisible\"></span></a>",
           "verified_at": "2024-02-21T09:21:30.261+00:00"
         }
       ]
@@ -1038,7 +1234,7 @@
     "reblogs_count": 0,
     "favourites_count": 2,
     "edited_at": null,
-    "content": "\u003cp\u003eWe\u0026#39;ve updated our privacy policy!\u003c/p\u003e\u003cp\u003eNo really, we have.\u003c/p\u003e\u003cp\u003e\u003ca href=\"https://chinwag.au/privacy/\" target=\"_blank\" rel=\"nofollow noopener noreferrer\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003echinwag.au/privacy/\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e\u003c/p\u003e\u003cp\u003eIt\u0026#39;s not substantially changed at all, except that it\u0026#39;s now in that one definitive location and we\u0026#39;ll be updating all sites and services to point there instead of having a bunch of slightly different ones all saying \u0026quot;look, we don\u0026#39;t ask for much and we don\u0026#39;t give it to anyone else anyway unless they have a warrant\u0026quot;.\u003c/p\u003e",
+    "content": "<p>We&#39;ve updated our privacy policy!</p><p>No really, we have.</p><p><a href=\"https://chinwag.au/privacy/\" target=\"_blank\" rel=\"nofollow noopener noreferrer\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">chinwag.au/privacy/</span><span class=\"invisible\"></span></a></p><p>It&#39;s not substantially changed at all, except that it&#39;s now in that one definitive location and we&#39;ll be updating all sites and services to point there instead of having a bunch of slightly different ones all saying &quot;look, we don&#39;t ask for much and we don&#39;t give it to anyone else anyway unless they have a warrant&quot;.</p>",
     "reblog": null,
     "application": {
       "name": "Tusky",
@@ -1052,19 +1248,21 @@
       "locked": false,
       "bot": false,
       "discoverable": true,
+      "indexable": true,
       "group": false,
       "created_at": "2022-11-08T00:00:00.000Z",
-      "note": "\u003cp\u003e... and sort it out\u003c/p\u003e\u003cp\u003eAdmins are \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@mike\" class=\"u-url mention\"\u003e@\u003cspan\u003emike\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e, \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@s0\" class=\"u-url mention\"\u003e@\u003cspan\u003es0\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e, and \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@shug\" class=\"u-url mention\"\u003e@\u003cspan\u003eshug\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e\u003c/p\u003e",
+      "note": "<p>... and sort it out</p><p>Admins are <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@mike\" class=\"u-url mention\">@<span>mike</span></a></span>, <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@s0\" class=\"u-url mention\">@<span>s0</span></a></span>, and <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@shug\" class=\"u-url mention\">@<span>shug</span></a></span></p>",
       "url": "https://theblower.au/@geton",
       "uri": "https://theblower.au/users/geton",
       "avatar": "https://static.theblower.au/accounts/avatars/109/308/203/429/082/969/original/970e290791f6189c.jpg",
       "avatar_static": "https://static.theblower.au/accounts/avatars/109/308/203/429/082/969/original/970e290791f6189c.jpg",
       "header": "https://static.theblower.au/accounts/headers/109/308/203/429/082/969/original/9c282abd2948a2b2.jpg",
       "header_static": "https://static.theblower.au/accounts/headers/109/308/203/429/082/969/original/9c282abd2948a2b2.jpg",
-      "followers_count": 1181,
-      "following_count": 25,
-      "statuses_count": 216,
-      "last_status_at": "2024-08-02",
+      "followers_count": 1186,
+      "following_count": 26,
+      "statuses_count": 220,
+      "last_status_at": "2024-10-09",
+      "hide_collections": false,
       "noindex": false,
       "emojis": [],
       "roles": [
@@ -1077,17 +1275,17 @@
       "fields": [
         {
           "name": "Support Us!",
-          "value": "\u003ca href=\"https://chinwag.au/theblower\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003echinwag.au/theblower\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://chinwag.au/theblower\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">chinwag.au/theblower</span><span class=\"invisible\"></span></a>",
           "verified_at": "2024-02-21T09:21:28.714+00:00"
         },
         {
           "name": "Rules",
-          "value": "\u003ca href=\"https://theblower.au/about\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003etheblower.au/about\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://theblower.au/about\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">theblower.au/about</span><span class=\"invisible\"></span></a>",
           "verified_at": null
         },
         {
           "name": "Privacy",
-          "value": "\u003ca href=\"https://chinwag.au/privacy\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003echinwag.au/privacy\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://chinwag.au/privacy\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">chinwag.au/privacy</span><span class=\"invisible\"></span></a>",
           "verified_at": "2024-02-21T09:21:30.261+00:00"
         }
       ]
@@ -1113,7 +1311,14 @@
       "image_description": "",
       "embed_url": "",
       "blurhash": null,
-      "published_at": null
+      "published_at": null,
+      "authors": [
+        {
+          "name": "",
+          "url": "",
+          "account": null
+        }
+      ]
     },
     "poll": null
   },
@@ -1132,7 +1337,7 @@
     "reblogs_count": 1,
     "favourites_count": 12,
     "edited_at": null,
-    "content": "\u003cp\u003eHi friends! We\u0026#39;ve just updated The Blower to Mastodon 4.2.3, which is a very minor bugfix update and we don\u0026#39;t expect you to notice any difference to your lives as a result.\u003c/p\u003e\u003cp\u003eIf things do seem a bit wonky though, please don\u0026#39;t hesitate to give us a shout and let us know!\u003c/p\u003e",
+    "content": "<p>Hi friends! We&#39;ve just updated The Blower to Mastodon 4.2.3, which is a very minor bugfix update and we don&#39;t expect you to notice any difference to your lives as a result.</p><p>If things do seem a bit wonky though, please don&#39;t hesitate to give us a shout and let us know!</p>",
     "reblog": null,
     "application": {
       "name": "Tusky",
@@ -1146,19 +1351,21 @@
       "locked": false,
       "bot": false,
       "discoverable": true,
+      "indexable": true,
       "group": false,
       "created_at": "2022-11-08T00:00:00.000Z",
-      "note": "\u003cp\u003e... and sort it out\u003c/p\u003e\u003cp\u003eAdmins are \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@mike\" class=\"u-url mention\"\u003e@\u003cspan\u003emike\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e, \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@s0\" class=\"u-url mention\"\u003e@\u003cspan\u003es0\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e, and \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@shug\" class=\"u-url mention\"\u003e@\u003cspan\u003eshug\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e\u003c/p\u003e",
+      "note": "<p>... and sort it out</p><p>Admins are <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@mike\" class=\"u-url mention\">@<span>mike</span></a></span>, <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@s0\" class=\"u-url mention\">@<span>s0</span></a></span>, and <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@shug\" class=\"u-url mention\">@<span>shug</span></a></span></p>",
       "url": "https://theblower.au/@geton",
       "uri": "https://theblower.au/users/geton",
       "avatar": "https://static.theblower.au/accounts/avatars/109/308/203/429/082/969/original/970e290791f6189c.jpg",
       "avatar_static": "https://static.theblower.au/accounts/avatars/109/308/203/429/082/969/original/970e290791f6189c.jpg",
       "header": "https://static.theblower.au/accounts/headers/109/308/203/429/082/969/original/9c282abd2948a2b2.jpg",
       "header_static": "https://static.theblower.au/accounts/headers/109/308/203/429/082/969/original/9c282abd2948a2b2.jpg",
-      "followers_count": 1181,
-      "following_count": 25,
-      "statuses_count": 216,
-      "last_status_at": "2024-08-02",
+      "followers_count": 1186,
+      "following_count": 26,
+      "statuses_count": 220,
+      "last_status_at": "2024-10-09",
+      "hide_collections": false,
       "noindex": false,
       "emojis": [],
       "roles": [
@@ -1171,17 +1378,17 @@
       "fields": [
         {
           "name": "Support Us!",
-          "value": "\u003ca href=\"https://chinwag.au/theblower\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003echinwag.au/theblower\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://chinwag.au/theblower\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">chinwag.au/theblower</span><span class=\"invisible\"></span></a>",
           "verified_at": "2024-02-21T09:21:28.714+00:00"
         },
         {
           "name": "Rules",
-          "value": "\u003ca href=\"https://theblower.au/about\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003etheblower.au/about\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://theblower.au/about\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">theblower.au/about</span><span class=\"invisible\"></span></a>",
           "verified_at": null
         },
         {
           "name": "Privacy",
-          "value": "\u003ca href=\"https://chinwag.au/privacy\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003echinwag.au/privacy\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://chinwag.au/privacy\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">chinwag.au/privacy</span><span class=\"invisible\"></span></a>",
           "verified_at": "2024-02-21T09:21:30.261+00:00"
         }
       ]
@@ -1204,11 +1411,11 @@
     "language": "en",
     "uri": "https://theblower.au/users/geton/statuses/111589092037202431",
     "url": "https://theblower.au/@geton/111589092037202431",
-    "replies_count": 4,
-    "reblogs_count": 22,
-    "favourites_count": 44,
+    "replies_count": 3,
+    "reblogs_count": 21,
+    "favourites_count": 45,
     "edited_at": null,
-    "content": "\u003cp\u003eSo ... Threads.\u003c/p\u003e\u003cp\u003eFacebook is coming into this interaction with a long history behind it. It\u0026#39;s not a random group or small community with a special interest. It\u0026#39;s a behemoth in the explicit business of turning human interactions into money.\u003c/p\u003e\u003cp\u003eThey\u0026#39;re starting with a negative trust balance. We have no belief that they would ever enter into any arrangement that they were not the sole beneficiary of.\u003c/p\u003e\u003cp\u003eWe believe, even if we do not understand or see the mechanisms or tactics, that they intend to exploit us, our users, and our communities.\u003c/p\u003e\u003cp\u003eWe will not be entering into any federation with them via their Threads platform or any future services.\u003c/p\u003e\u003cp\u003eIf they do nothing but positive things in the network for a few years, they might just start creeping up to the point of \u0026quot;zero trust\u0026quot; we\u0026#39;d offer to any new instance and maybe then we\u0026#39;ll be open to discussion.\u003c/p\u003e\u003cp\u003eIf you really want to see Threads posts, maybe get a second account somewhere that is federating and try it? You\u0026#39;re allowed! There\u0026#39;s no limit!\u003c/p\u003e",
+    "content": "<p>So ... Threads.</p><p>Facebook is coming into this interaction with a long history behind it. It&#39;s not a random group or small community with a special interest. It&#39;s a behemoth in the explicit business of turning human interactions into money.</p><p>They&#39;re starting with a negative trust balance. We have no belief that they would ever enter into any arrangement that they were not the sole beneficiary of.</p><p>We believe, even if we do not understand or see the mechanisms or tactics, that they intend to exploit us, our users, and our communities.</p><p>We will not be entering into any federation with them via their Threads platform or any future services.</p><p>If they do nothing but positive things in the network for a few years, they might just start creeping up to the point of &quot;zero trust&quot; we&#39;d offer to any new instance and maybe then we&#39;ll be open to discussion.</p><p>If you really want to see Threads posts, maybe get a second account somewhere that is federating and try it? You&#39;re allowed! There&#39;s no limit!</p>",
     "reblog": null,
     "application": {
       "name": "Tusky",
@@ -1222,19 +1429,21 @@
       "locked": false,
       "bot": false,
       "discoverable": true,
+      "indexable": true,
       "group": false,
       "created_at": "2022-11-08T00:00:00.000Z",
-      "note": "\u003cp\u003e... and sort it out\u003c/p\u003e\u003cp\u003eAdmins are \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@mike\" class=\"u-url mention\"\u003e@\u003cspan\u003emike\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e, \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@s0\" class=\"u-url mention\"\u003e@\u003cspan\u003es0\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e, and \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@shug\" class=\"u-url mention\"\u003e@\u003cspan\u003eshug\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e\u003c/p\u003e",
+      "note": "<p>... and sort it out</p><p>Admins are <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@mike\" class=\"u-url mention\">@<span>mike</span></a></span>, <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@s0\" class=\"u-url mention\">@<span>s0</span></a></span>, and <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@shug\" class=\"u-url mention\">@<span>shug</span></a></span></p>",
       "url": "https://theblower.au/@geton",
       "uri": "https://theblower.au/users/geton",
       "avatar": "https://static.theblower.au/accounts/avatars/109/308/203/429/082/969/original/970e290791f6189c.jpg",
       "avatar_static": "https://static.theblower.au/accounts/avatars/109/308/203/429/082/969/original/970e290791f6189c.jpg",
       "header": "https://static.theblower.au/accounts/headers/109/308/203/429/082/969/original/9c282abd2948a2b2.jpg",
       "header_static": "https://static.theblower.au/accounts/headers/109/308/203/429/082/969/original/9c282abd2948a2b2.jpg",
-      "followers_count": 1181,
-      "following_count": 25,
-      "statuses_count": 216,
-      "last_status_at": "2024-08-02",
+      "followers_count": 1186,
+      "following_count": 26,
+      "statuses_count": 220,
+      "last_status_at": "2024-10-09",
+      "hide_collections": false,
       "noindex": false,
       "emojis": [],
       "roles": [
@@ -1247,17 +1456,17 @@
       "fields": [
         {
           "name": "Support Us!",
-          "value": "\u003ca href=\"https://chinwag.au/theblower\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003echinwag.au/theblower\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://chinwag.au/theblower\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">chinwag.au/theblower</span><span class=\"invisible\"></span></a>",
           "verified_at": "2024-02-21T09:21:28.714+00:00"
         },
         {
           "name": "Rules",
-          "value": "\u003ca href=\"https://theblower.au/about\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003etheblower.au/about\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://theblower.au/about\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">theblower.au/about</span><span class=\"invisible\"></span></a>",
           "verified_at": null
         },
         {
           "name": "Privacy",
-          "value": "\u003ca href=\"https://chinwag.au/privacy\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003echinwag.au/privacy\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://chinwag.au/privacy\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">chinwag.au/privacy</span><span class=\"invisible\"></span></a>",
           "verified_at": "2024-02-21T09:21:30.261+00:00"
         }
       ]
@@ -1281,10 +1490,10 @@
     "uri": "https://theblower.au/users/geton/statuses/111589091322269556",
     "url": "https://theblower.au/@geton/111589091322269556",
     "replies_count": 1,
-    "reblogs_count": 24,
+    "reblogs_count": 23,
     "favourites_count": 48,
     "edited_at": null,
-    "content": "\u003cp\u003eThe Blower will not be federated with Threads. You won\u0026#39;t see their posts, they won\u0026#39;t see yours.\u003c/p\u003e\u003cp\u003eWhy?\u003c/p\u003e\u003cp\u003eWhen we defederate (totally disconnect) from another instance, it\u0026#39;s almost always for the same reason. A lack of trust. Every instance in this network has different rules, reasons, standards - and that\u0026#39;s great. It lets people find a home and a community that suits them.\u003c/p\u003e\u003cp\u003eIf an issue arises, we admins sometimes need to get in touch with our counterparts on the other side to resolve things. This could just be by forwarding reports of \u0026quot;hey this account is spamming people\u0026quot;, or \u0026quot;this person is threatening that one\u0026quot;.\u003c/p\u003e\u003cp\u003eIn almost all cases, we trust that their actions will be compatible with the expectations of our local users. We start out treating instances as trusted. This is usually just fine.\u003c/p\u003e\u003cp\u003eTrust builds up over time, or goes down - but if negative interactions are bad or frequent enough, if it seems what they want and what we want are just totally different things, we cut them off.\u003c/p\u003e",
+    "content": "<p>The Blower will not be federated with Threads. You won&#39;t see their posts, they won&#39;t see yours.</p><p>Why?</p><p>When we defederate (totally disconnect) from another instance, it&#39;s almost always for the same reason. A lack of trust. Every instance in this network has different rules, reasons, standards - and that&#39;s great. It lets people find a home and a community that suits them.</p><p>If an issue arises, we admins sometimes need to get in touch with our counterparts on the other side to resolve things. This could just be by forwarding reports of &quot;hey this account is spamming people&quot;, or &quot;this person is threatening that one&quot;.</p><p>In almost all cases, we trust that their actions will be compatible with the expectations of our local users. We start out treating instances as trusted. This is usually just fine.</p><p>Trust builds up over time, or goes down - but if negative interactions are bad or frequent enough, if it seems what they want and what we want are just totally different things, we cut them off.</p>",
     "reblog": null,
     "application": {
       "name": "Tusky",
@@ -1298,19 +1507,21 @@
       "locked": false,
       "bot": false,
       "discoverable": true,
+      "indexable": true,
       "group": false,
       "created_at": "2022-11-08T00:00:00.000Z",
-      "note": "\u003cp\u003e... and sort it out\u003c/p\u003e\u003cp\u003eAdmins are \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@mike\" class=\"u-url mention\"\u003e@\u003cspan\u003emike\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e, \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@s0\" class=\"u-url mention\"\u003e@\u003cspan\u003es0\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e, and \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@shug\" class=\"u-url mention\"\u003e@\u003cspan\u003eshug\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e\u003c/p\u003e",
+      "note": "<p>... and sort it out</p><p>Admins are <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@mike\" class=\"u-url mention\">@<span>mike</span></a></span>, <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@s0\" class=\"u-url mention\">@<span>s0</span></a></span>, and <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@shug\" class=\"u-url mention\">@<span>shug</span></a></span></p>",
       "url": "https://theblower.au/@geton",
       "uri": "https://theblower.au/users/geton",
       "avatar": "https://static.theblower.au/accounts/avatars/109/308/203/429/082/969/original/970e290791f6189c.jpg",
       "avatar_static": "https://static.theblower.au/accounts/avatars/109/308/203/429/082/969/original/970e290791f6189c.jpg",
       "header": "https://static.theblower.au/accounts/headers/109/308/203/429/082/969/original/9c282abd2948a2b2.jpg",
       "header_static": "https://static.theblower.au/accounts/headers/109/308/203/429/082/969/original/9c282abd2948a2b2.jpg",
-      "followers_count": 1181,
-      "following_count": 25,
-      "statuses_count": 216,
-      "last_status_at": "2024-08-02",
+      "followers_count": 1186,
+      "following_count": 26,
+      "statuses_count": 220,
+      "last_status_at": "2024-10-09",
+      "hide_collections": false,
       "noindex": false,
       "emojis": [],
       "roles": [
@@ -1323,17 +1534,17 @@
       "fields": [
         {
           "name": "Support Us!",
-          "value": "\u003ca href=\"https://chinwag.au/theblower\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003echinwag.au/theblower\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://chinwag.au/theblower\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">chinwag.au/theblower</span><span class=\"invisible\"></span></a>",
           "verified_at": "2024-02-21T09:21:28.714+00:00"
         },
         {
           "name": "Rules",
-          "value": "\u003ca href=\"https://theblower.au/about\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003etheblower.au/about\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://theblower.au/about\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">theblower.au/about</span><span class=\"invisible\"></span></a>",
           "verified_at": null
         },
         {
           "name": "Privacy",
-          "value": "\u003ca href=\"https://chinwag.au/privacy\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003echinwag.au/privacy\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://chinwag.au/privacy\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">chinwag.au/privacy</span><span class=\"invisible\"></span></a>",
           "verified_at": "2024-02-21T09:21:30.261+00:00"
         }
       ]
@@ -1357,10 +1568,10 @@
     "uri": "https://theblower.au/users/geton/statuses/111376971933219747",
     "url": "https://theblower.au/@geton/111376971933219747",
     "replies_count": 5,
-    "reblogs_count": 7,
+    "reblogs_count": 6,
     "favourites_count": 30,
     "edited_at": null,
-    "content": "\u003cp\u003eThe Blower is a year old today! Thanks to everyone who\u0026#39;s joined us over the last 12 months!\u003c/p\u003e\u003cp\u003eThe first week was pretty wild. Our plan to slowly and carefully ramp up went out the window when that guy at Twitter said something dumb and a ton of people went looking for something else. There was a lot of frantic hammering at keyboards, but we got through it and we\u0026#39;re still here!\u003c/p\u003e\u003cp\u003eWe hope that those of you who joined us back then found what you were looking for! Everyone who\u0026#39;s rocked up for various reasons since, keep being awesome!\u003c/p\u003e\u003cp\u003eNow let\u0026#39;s have some cake. We deserve it.\u003c/p\u003e\u003cp\u003e🎂🎉🎊🎈🥳\u003c/p\u003e\u003cp\u003e\u003ca href=\"https://theblower.au/tags/HappyBirthday\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003eHappyBirthday\u003c/span\u003e\u003c/a\u003e \u003ca href=\"https://theblower.au/tags/fediversary\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003efediversary\u003c/span\u003e\u003c/a\u003e\u003c/p\u003e",
+    "content": "<p>The Blower is a year old today! Thanks to everyone who&#39;s joined us over the last 12 months!</p><p>The first week was pretty wild. Our plan to slowly and carefully ramp up went out the window when that guy at Twitter said something dumb and a ton of people went looking for something else. There was a lot of frantic hammering at keyboards, but we got through it and we&#39;re still here!</p><p>We hope that those of you who joined us back then found what you were looking for! Everyone who&#39;s rocked up for various reasons since, keep being awesome!</p><p>Now let&#39;s have some cake. We deserve it.</p><p>🎂🎉🎊🎈🥳</p><p><a href=\"https://theblower.au/tags/HappyBirthday\" class=\"mention hashtag\" rel=\"tag\">#<span>HappyBirthday</span></a> <a href=\"https://theblower.au/tags/fediversary\" class=\"mention hashtag\" rel=\"tag\">#<span>fediversary</span></a></p>",
     "reblog": null,
     "application": {
       "name": "Tusky",
@@ -1374,19 +1585,21 @@
       "locked": false,
       "bot": false,
       "discoverable": true,
+      "indexable": true,
       "group": false,
       "created_at": "2022-11-08T00:00:00.000Z",
-      "note": "\u003cp\u003e... and sort it out\u003c/p\u003e\u003cp\u003eAdmins are \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@mike\" class=\"u-url mention\"\u003e@\u003cspan\u003emike\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e, \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@s0\" class=\"u-url mention\"\u003e@\u003cspan\u003es0\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e, and \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@shug\" class=\"u-url mention\"\u003e@\u003cspan\u003eshug\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e\u003c/p\u003e",
+      "note": "<p>... and sort it out</p><p>Admins are <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@mike\" class=\"u-url mention\">@<span>mike</span></a></span>, <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@s0\" class=\"u-url mention\">@<span>s0</span></a></span>, and <span class=\"h-card\" translate=\"no\"><a href=\"https://theblower.au/@shug\" class=\"u-url mention\">@<span>shug</span></a></span></p>",
       "url": "https://theblower.au/@geton",
       "uri": "https://theblower.au/users/geton",
       "avatar": "https://static.theblower.au/accounts/avatars/109/308/203/429/082/969/original/970e290791f6189c.jpg",
       "avatar_static": "https://static.theblower.au/accounts/avatars/109/308/203/429/082/969/original/970e290791f6189c.jpg",
       "header": "https://static.theblower.au/accounts/headers/109/308/203/429/082/969/original/9c282abd2948a2b2.jpg",
       "header_static": "https://static.theblower.au/accounts/headers/109/308/203/429/082/969/original/9c282abd2948a2b2.jpg",
-      "followers_count": 1181,
-      "following_count": 25,
-      "statuses_count": 216,
-      "last_status_at": "2024-08-02",
+      "followers_count": 1186,
+      "following_count": 26,
+      "statuses_count": 220,
+      "last_status_at": "2024-10-09",
+      "hide_collections": false,
       "noindex": false,
       "emojis": [],
       "roles": [
@@ -1399,17 +1612,17 @@
       "fields": [
         {
           "name": "Support Us!",
-          "value": "\u003ca href=\"https://chinwag.au/theblower\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003echinwag.au/theblower\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://chinwag.au/theblower\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">chinwag.au/theblower</span><span class=\"invisible\"></span></a>",
           "verified_at": "2024-02-21T09:21:28.714+00:00"
         },
         {
           "name": "Rules",
-          "value": "\u003ca href=\"https://theblower.au/about\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003etheblower.au/about\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://theblower.au/about\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">theblower.au/about</span><span class=\"invisible\"></span></a>",
           "verified_at": null
         },
         {
           "name": "Privacy",
-          "value": "\u003ca href=\"https://chinwag.au/privacy\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003echinwag.au/privacy\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
+          "value": "<a href=\"https://chinwag.au/privacy\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">chinwag.au/privacy</span><span class=\"invisible\"></span></a>",
           "verified_at": "2024-02-21T09:21:30.261+00:00"
         }
       ]
@@ -1426,184 +1639,6 @@
         "url": "https://theblower.au/tags/fediversary"
       }
     ],
-    "emojis": [],
-    "card": null,
-    "poll": null
-  },
-  {
-    "id": "111362481553665444",
-    "created_at": "2023-11-06T07:43:35.505Z",
-    "in_reply_to_id": null,
-    "in_reply_to_account_id": null,
-    "sensitive": false,
-    "spoiler_text": "",
-    "visibility": "public",
-    "language": "en",
-    "uri": "https://theblower.au/users/geton/statuses/111362481553665444",
-    "url": "https://theblower.au/@geton/111362481553665444",
-    "replies_count": 0,
-    "reblogs_count": 0,
-    "favourites_count": 5,
-    "edited_at": null,
-    "content": "\u003cp\u003eNice to see Primitive Technology this week giving us a shoutout! Uncannily accurate representation of how the instance here actually works.\u003c/p\u003e\u003cp\u003e\u003ca href=\"https://youtu.be/Csb-AFD58ww\" target=\"_blank\" rel=\"nofollow noopener noreferrer\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003eyoutu.be/Csb-AFD58ww\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e\u003c/p\u003e",
-    "reblog": null,
-    "application": {
-      "name": "Tusky",
-      "website": "https://tusky.app"
-    },
-    "account": {
-      "id": "109308203429082969",
-      "username": "geton",
-      "acct": "geton",
-      "display_name": "Get On The Blower",
-      "locked": false,
-      "bot": false,
-      "discoverable": true,
-      "group": false,
-      "created_at": "2022-11-08T00:00:00.000Z",
-      "note": "\u003cp\u003e... and sort it out\u003c/p\u003e\u003cp\u003eAdmins are \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@mike\" class=\"u-url mention\"\u003e@\u003cspan\u003emike\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e, \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@s0\" class=\"u-url mention\"\u003e@\u003cspan\u003es0\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e, and \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@shug\" class=\"u-url mention\"\u003e@\u003cspan\u003eshug\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e\u003c/p\u003e",
-      "url": "https://theblower.au/@geton",
-      "uri": "https://theblower.au/users/geton",
-      "avatar": "https://static.theblower.au/accounts/avatars/109/308/203/429/082/969/original/970e290791f6189c.jpg",
-      "avatar_static": "https://static.theblower.au/accounts/avatars/109/308/203/429/082/969/original/970e290791f6189c.jpg",
-      "header": "https://static.theblower.au/accounts/headers/109/308/203/429/082/969/original/9c282abd2948a2b2.jpg",
-      "header_static": "https://static.theblower.au/accounts/headers/109/308/203/429/082/969/original/9c282abd2948a2b2.jpg",
-      "followers_count": 1181,
-      "following_count": 25,
-      "statuses_count": 216,
-      "last_status_at": "2024-08-02",
-      "noindex": false,
-      "emojis": [],
-      "roles": [
-        {
-          "id": "4",
-          "name": "Announcer",
-          "color": "#e40707"
-        }
-      ],
-      "fields": [
-        {
-          "name": "Support Us!",
-          "value": "\u003ca href=\"https://chinwag.au/theblower\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003echinwag.au/theblower\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
-          "verified_at": "2024-02-21T09:21:28.714+00:00"
-        },
-        {
-          "name": "Rules",
-          "value": "\u003ca href=\"https://theblower.au/about\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003etheblower.au/about\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
-          "verified_at": null
-        },
-        {
-          "name": "Privacy",
-          "value": "\u003ca href=\"https://chinwag.au/privacy\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003echinwag.au/privacy\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
-          "verified_at": "2024-02-21T09:21:30.261+00:00"
-        }
-      ]
-    },
-    "media_attachments": [
-      {
-        "id": "111362463003816835",
-        "type": "image",
-        "url": "https://static.theblower.au/media_attachments/files/111/362/463/003/816/835/original/8a51354e2b09906b.png",
-        "preview_url": "https://static.theblower.au/media_attachments/files/111/362/463/003/816/835/small/8a51354e2b09906b.png",
-        "remote_url": null,
-        "preview_remote_url": null,
-        "text_url": null,
-        "meta": {
-          "original": {
-            "width": 2340,
-            "height": 1080,
-            "size": "2340x1080",
-            "aspect": 2.1666666666666665
-          },
-          "small": {
-            "width": 706,
-            "height": 326,
-            "size": "706x326",
-            "aspect": 2.165644171779141
-          }
-        },
-        "description": "Screenshot from a video looking through a clay pipe and the text caption reads \"view from inside the blower\"",
-        "blurhash": "U8CsT~~V^bIV9d9a4o-oWEofIpIp0KM|-;oL"
-      }
-    ],
-    "mentions": [],
-    "tags": [],
-    "emojis": [],
-    "card": null,
-    "poll": null
-  },
-  {
-    "id": "111345626278122086",
-    "created_at": "2023-11-03T08:17:04.407Z",
-    "in_reply_to_id": null,
-    "in_reply_to_account_id": null,
-    "sensitive": false,
-    "spoiler_text": "",
-    "visibility": "public",
-    "language": "en",
-    "uri": "https://theblower.au/users/geton/statuses/111345626278122086",
-    "url": "https://theblower.au/@geton/111345626278122086",
-    "replies_count": 2,
-    "reblogs_count": 2,
-    "favourites_count": 16,
-    "edited_at": null,
-    "content": "\u003cp\u003eThe first post here was made November 9th, 2022 just after midnight, so it\u0026#39;s The Blower\u0026#39;s first birthday next week!\u003c/p\u003e\u003cp\u003eSome kind of cake is probably called for, right?\u003c/p\u003e\u003cp\u003e🎂\u003c/p\u003e",
-    "reblog": null,
-    "application": {
-      "name": "Tusky",
-      "website": "https://tusky.app"
-    },
-    "account": {
-      "id": "109308203429082969",
-      "username": "geton",
-      "acct": "geton",
-      "display_name": "Get On The Blower",
-      "locked": false,
-      "bot": false,
-      "discoverable": true,
-      "group": false,
-      "created_at": "2022-11-08T00:00:00.000Z",
-      "note": "\u003cp\u003e... and sort it out\u003c/p\u003e\u003cp\u003eAdmins are \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@mike\" class=\"u-url mention\"\u003e@\u003cspan\u003emike\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e, \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@s0\" class=\"u-url mention\"\u003e@\u003cspan\u003es0\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e, and \u003cspan class=\"h-card\" translate=\"no\"\u003e\u003ca href=\"https://theblower.au/@shug\" class=\"u-url mention\"\u003e@\u003cspan\u003eshug\u003c/span\u003e\u003c/a\u003e\u003c/span\u003e\u003c/p\u003e",
-      "url": "https://theblower.au/@geton",
-      "uri": "https://theblower.au/users/geton",
-      "avatar": "https://static.theblower.au/accounts/avatars/109/308/203/429/082/969/original/970e290791f6189c.jpg",
-      "avatar_static": "https://static.theblower.au/accounts/avatars/109/308/203/429/082/969/original/970e290791f6189c.jpg",
-      "header": "https://static.theblower.au/accounts/headers/109/308/203/429/082/969/original/9c282abd2948a2b2.jpg",
-      "header_static": "https://static.theblower.au/accounts/headers/109/308/203/429/082/969/original/9c282abd2948a2b2.jpg",
-      "followers_count": 1181,
-      "following_count": 25,
-      "statuses_count": 216,
-      "last_status_at": "2024-08-02",
-      "noindex": false,
-      "emojis": [],
-      "roles": [
-        {
-          "id": "4",
-          "name": "Announcer",
-          "color": "#e40707"
-        }
-      ],
-      "fields": [
-        {
-          "name": "Support Us!",
-          "value": "\u003ca href=\"https://chinwag.au/theblower\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003echinwag.au/theblower\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
-          "verified_at": "2024-02-21T09:21:28.714+00:00"
-        },
-        {
-          "name": "Rules",
-          "value": "\u003ca href=\"https://theblower.au/about\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003etheblower.au/about\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
-          "verified_at": null
-        },
-        {
-          "name": "Privacy",
-          "value": "\u003ca href=\"https://chinwag.au/privacy\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"\"\u003echinwag.au/privacy\u003c/span\u003e\u003cspan class=\"invisible\"\u003e\u003c/span\u003e\u003c/a\u003e",
-          "verified_at": "2024-02-21T09:21:30.261+00:00"
-        }
-      ]
-    },
-    "media_attachments": [],
-    "mentions": [],
-    "tags": [],
     "emojis": [],
     "card": null,
     "poll": null

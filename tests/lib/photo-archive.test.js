@@ -78,7 +78,15 @@ function tidyArchiveDir() {
 const nockArtefacts = path.resolve( "tests/artefacts/nock" );
 const nockBack = nock.back;
 
+const nockBackMode = "lockdown";
+const nockArtefactName = "media-attachment.json";
+
 describe( "PhotoArchive", () => {
+
+  before( () => {
+    nockBack.fixtures = nockArtefacts;
+    nockBack.setMode( nockBackMode );
+  } );
 
   describe( "constructor", () => {
     it( "should throw a TypeError when the Archive path cannot be found", () => {
@@ -249,8 +257,6 @@ describe( "PhotoArchive", () => {
   describe( "addContent", async() => {
 
     before( () => {
-      nockBack.fixtures = nockArtefacts;
-      nockBack.setMode( "lockdown" );
 
       tidyArchiveDir();
 
@@ -382,7 +388,7 @@ describe( "PhotoArchive", () => {
         0
       );
 
-      const { nockDone } = await nockBack( "media-attachment.json" );
+      const { nockDone } = await nockBack( nockArtefactName );
 
       const addedMedia = await mediaArchive.addMedia( testPassMediaUrl );
 
@@ -424,7 +430,7 @@ describe( "PhotoArchive", () => {
         0
       );
 
-      const { nockDone } = await nockBack( "media-attachment.json" );
+      const { nockDone } = await nockBack( nockArtefactName );
 
       const addedMedia = await mediaArchive.addMedia( testPassMediaUrl );
 
@@ -477,7 +483,7 @@ describe( "PhotoArchive", () => {
         0
       );
 
-      const { nockDone } = await nockBack( "media-attachment.json" );
+      const { nockDone } = await nockBack( nockArtefactName );
 
       const addedMedia = await mediaArchive.addMedia( testPassMediaUrl );
 
@@ -521,7 +527,7 @@ describe( "PhotoArchive", () => {
         0
       );
 
-      const { nockDone } = await nockBack( "media-attachment.json" );
+      const { nockDone } = await nockBack( nockArtefactName );
 
       const addedMedia = await mediaArchive.addMedia( testPassMediaUrl );
 
