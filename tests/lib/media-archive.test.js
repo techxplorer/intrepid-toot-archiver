@@ -25,7 +25,6 @@ const testPassMediaUrl = new URL(
 
 const testPassMediaCount = 1;
 
-
 const testStatusFileName = "112546982904162819.json";
 const testExpectedStatusFilePath = path.join(
   path.resolve( "tests/artefacts/statuses" ),
@@ -50,8 +49,15 @@ function tidyArchiveDir() {
 const nockArtefacts = path.resolve( "tests/artefacts/nock" );
 const nockBack = nock.back;
 
+const nockBackMode = "lockdown";
+const nockArtefactName = "media-attachment.json";
 
 describe( "MediaArchive", () => {
+
+  before( () => {
+    nockBack.fixtures = nockArtefacts;
+    nockBack.setMode( nockBackMode );
+  } );
 
   describe( "constructor", () => {
 
@@ -118,8 +124,6 @@ describe( "MediaArchive", () => {
   describe( "addMedia", async() => {
 
     before( () => {
-      nockBack.fixtures = nockArtefacts;
-      nockBack.setMode( "lockdown" );
 
       tidyArchiveDir();
 
@@ -182,7 +186,7 @@ describe( "MediaArchive", () => {
         0
       );
 
-      const { nockDone } = await nockBack( "media-attachment.json" );
+      const { nockDone } = await nockBack( nockArtefactName );
 
       const addedMedia = await archive.addMedia( testPassMediaUrl );
 
@@ -215,7 +219,7 @@ describe( "MediaArchive", () => {
         0
       );
 
-      const { nockDone } = await nockBack( "media-attachment.json" );
+      const { nockDone } = await nockBack( nockArtefactName );
 
       await archive.addMedia( testPassMediaUrl );
 
@@ -228,7 +232,7 @@ describe( "MediaArchive", () => {
 
       await assert.doesNotReject(
         async() => {
-          const { nockDone } = await nockBack( "media-attachment.json" );
+          const { nockDone } = await nockBack( nockArtefactName );
           await archive.addMedia(
             testPassMediaUrl
           );
@@ -258,7 +262,7 @@ describe( "MediaArchive", () => {
         0
       );
 
-      const { nockDone } = await nockBack( "media-attachment.json" );
+      const { nockDone } = await nockBack( nockArtefactName );
 
       const addedMedia = await archive.addMedia( testPassMediaUrl );
 
@@ -269,7 +273,7 @@ describe( "MediaArchive", () => {
 
       await assert.doesNotReject(
         async() => {
-          const { nockDone } = await nockBack( "media-attachment.json" );
+          const { nockDone } = await nockBack( nockArtefactName );
           await archive.addMedia(
             testPassMediaUrl
           );
@@ -291,8 +295,6 @@ describe( "MediaArchive", () => {
   describe( "getContents", async() => {
 
     before( () => {
-      nockBack.fixtures = nockArtefacts;
-      nockBack.setMode( "lockdown" );
 
       tidyArchiveDir();
 
@@ -340,7 +342,7 @@ describe( "MediaArchive", () => {
         0
       );
 
-      const { nockDone } = await nockBack( "media-attachment.json" );
+      const { nockDone } = await nockBack( nockArtefactName );
 
       await archive.addMedia( testPassMediaUrl );
 
@@ -385,7 +387,7 @@ describe( "MediaArchive", () => {
         0
       );
 
-      const { nockDone } = await nockBack( "media-attachment.json" );
+      const { nockDone } = await nockBack( nockArtefactName );
 
       await archive.addMedia( testPassMediaUrl );
 
@@ -425,8 +427,6 @@ describe( "MediaArchive", () => {
   describe( "addMediaFromStatus", async() => {
 
     before( () => {
-      nockBack.fixtures = nockArtefacts;
-      nockBack.setMode( "lockdown" );
 
       tidyArchiveDir();
 
@@ -502,7 +502,7 @@ describe( "MediaArchive", () => {
         0
       );
 
-      const { nockDone } = await nockBack( "media-attachment.json" );
+      const { nockDone } = await nockBack( nockArtefactName );
 
       const newMediaCount = await archive.addMediaFromStatus( expectedStatusJson );
 
@@ -527,8 +527,6 @@ describe( "MediaArchive", () => {
   describe( "deleteContent", async() => {
 
     before( () => {
-      nockBack.fixtures = nockArtefacts;
-      nockBack.setMode( "lockdown" );
 
       tidyArchiveDir();
 
@@ -554,7 +552,7 @@ describe( "MediaArchive", () => {
         testPassArchivePath
       );
 
-      const { nockDone } = await nockBack( "media-attachment.json" );
+      const { nockDone } = await nockBack( nockArtefactName );
 
       const newMediaCount = await archive.addMediaFromStatus( expectedStatusJson );
 
